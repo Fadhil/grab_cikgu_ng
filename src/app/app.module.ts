@@ -1,3 +1,4 @@
+import { HeaderComponent } from './shared/components/layouts/header/header.component';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
