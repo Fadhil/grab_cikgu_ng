@@ -19,6 +19,8 @@ import { AdminFooterComponent } from './admin/admin-footer/admin-footer.componen
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
 import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
 
+import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,11 +29,13 @@ import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboa
     StarterLeftSideComponent,
     StarterContentComponent,
     StarterFooterComponent,
-    StarterControlSidebarComponent
+    StarterControlSidebarComponent,
+    tutorRoutingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    TutorRoutingModule,
     AdminModule
   ],
   providers: [],
