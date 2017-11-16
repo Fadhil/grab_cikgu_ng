@@ -1,3 +1,4 @@
+import { HeaderComponent } from './shared/components/layouts/header/header.component';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +19,9 @@ import { AdminFooterComponent } from './admin/admin-footer/admin-footer.componen
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
 import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
 
+import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
+import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +30,14 @@ import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboa
     StarterLeftSideComponent,
     StarterContentComponent,
     StarterFooterComponent,
-    StarterControlSidebarComponent
+    StarterControlSidebarComponent,
+    TutorLayoutComponent,
+    tutorRoutingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    TutorRoutingModule,
     AdminModule
   ],
   providers: [],
