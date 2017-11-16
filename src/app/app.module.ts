@@ -20,6 +20,7 @@ import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admi
 import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
 
 import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
+import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routin
     StarterContentComponent,
     StarterFooterComponent,
     StarterControlSidebarComponent,
+    TutorLayoutComponent,
     tutorRoutingComponents
   ],
   imports: [

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var AdminLTE: any;
 @Component({
   selector: 'app-tutor-layout',
   templateUrl: './tutor-layout.component.html',
@@ -14,7 +14,8 @@ export class TutorLayoutComponent implements OnInit {
 
   ngOnInit() {
     // add the the body classes
-    this.body.classList.add('skin-blue-light');
+    // AdminLTE.init();
+    this.body.classList.add('skin-blue');
     this.body.classList.add('sidebar-mini');
   }
 
