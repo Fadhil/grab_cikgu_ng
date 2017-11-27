@@ -29,14 +29,13 @@ export class AlertService {
     }
 
     error(message: any, keepAfterNavigationChange = false) {
-        console.log("trying errors", message.error);
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({ type: 'error', text: this.parseError(message.error) });
+        this.subject.next({ type: 'error', text: this.parseError(message) });
     }
 
     parseError(aString) {
         try {
-            const o = JSON.parse(aString);
+            const o = aString;
             let error_message: string = '';
             // Handle non-exception-throwing cases:
             // Neither JSON.parse(false) or JSON.parse(1234) throw errors, hence the type-checking,
