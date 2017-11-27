@@ -18,7 +18,6 @@ export class TutorRegisterComponent implements OnInit {
   submitted = false;
 
   submit(): void {
-    console.log("submit clicked. Registering tutor");
     this.tutorService.createTutor(this.tutor)
       .subscribe(
         result => {
@@ -27,8 +26,7 @@ export class TutorRegisterComponent implements OnInit {
           this.tutor = result;
         },
         error => {
-          console.log("got an error", error);
-          this.alertService.error(error);
+          this.alertService.error(error.error);
         }
       );
   }
