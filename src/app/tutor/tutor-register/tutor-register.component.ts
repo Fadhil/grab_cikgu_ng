@@ -4,6 +4,8 @@ import { Tutor } from '../../models/tutor';
 import { appInitializerFactory } from '@angular/platform-browser/src/browser/server-transition';
 import { distinctUntilKeyChanged } from 'rxjs/operator/distinctUntilKeyChanged';
 import { TutorService } from '../../shared/services/tutor.service';
+import { waitForMap } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutor-register',
@@ -16,20 +18,26 @@ export class TutorRegisterComponent implements OnInit {
   submitted = false;
 
   submit(): void {
-    // post input to api
-    // get Response
-    //   if response is user object
-    //    save user object into local disk
-    //   else this.alertService.error("Unable to register. Errors:" ++ response.error);
     console.log("submit clicked. Registering tutor");
     this.tutorService.createTutor(this.tutor)
-      .subscribe(tutor => this.tutor = tutor);
+      .subscribe(
+        result => {
+          this.router.navigate(['/tutor/login']);
+          this.alertService.success("Successfully registered as a Tutor. ");
+          this.tutor = result;
+        },
+        error => {
+          console.log("got an error", error);
+          this.alertService.error(error);
+        }
+      );
   }
 
 
   constructor(
     private alertService: AlertService,
-    private tutorService: TutorService
+    private tutorService: TutorService,
+    private router: Router
   ) { }
 
   ngOnInit() {
