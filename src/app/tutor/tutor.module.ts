@@ -10,6 +10,8 @@ import { SidebarComponent } from '../shared/components/layouts/sidebar/sidebar.c
 import { TutorComponent } from './tutor.component';
 import { TutorLayoutComponent } from './tutor-layout/tutor-layout.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
+import { TutorLoginComponent } from './tutor-login/tutor-login.component';
+import { TutorRegisterComponent } from './tutor-register/tutor-register.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { TutorListComponent } from './tutor-list/tutor-list.component';
     // Shared Components
     // HeaderComponent, SidebarComponent,
     // TutorComponent, TutorLayoutComponent,
-    TutorListComponent
+    TutorListComponent,
+    TutorLoginComponent,
+    TutorRegisterComponent
 ]
 })
 export class TutorModule { }

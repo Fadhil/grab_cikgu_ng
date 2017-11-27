@@ -1,3 +1,4 @@
+import { TutorLoginComponent } from './../tutor-login/tutor-login.component';
 import { ControlSidebarComponent } from './../../shared/components/layouts/control-sidebar/control-sidebar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,6 +8,8 @@ import { TutorListComponent } from '../tutor-list/tutor-list.component';
 import { TutorComponent } from '../tutor.component';
 import { TutorLayoutComponent } from '../tutor-layout/tutor-layout.component';
 import { FooterComponent } from '../../shared/components/layouts/footer/footer.component';
+import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
+import { TutorRegisterComponent } from '../tutor-register/tutor-register.component';
 
 
 const routes: Routes = [
@@ -15,6 +18,19 @@ const routes: Routes = [
     children: [
       {
         path: '', component: TutorListComponent,
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'tutor', component: SimpleLayoutComponent,
+    children: [
+      {
+        path: 'login', component: TutorLoginComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'register', component: TutorRegisterComponent,
         pathMatch: 'full'
       }
     ]
@@ -29,5 +45,5 @@ export class TutorRoutingModule { }
 
 export const tutorRoutingComponents = [
   TutorComponent, TutorLayoutComponent, TutorListComponent, HeaderComponent, SidebarComponent, FooterComponent,
-  ControlSidebarComponent
+  ControlSidebarComponent, TutorLoginComponent, TutorRegisterComponent
 ];

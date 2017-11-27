@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tutor } from './tutors';
+import { Tutor } from '../models/tutor';
 
 declare var AdminLTE: any;
 
