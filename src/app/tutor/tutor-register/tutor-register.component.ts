@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tutor } from '../../models/tutor';
 import { appInitializerFactory } from '@angular/platform-browser/src/browser/server-transition';
 import { distinctUntilKeyChanged } from 'rxjs/operator/distinctUntilKeyChanged';
+import { TutorService } from '../../shared/services/tutor.service';
 
 @Component({
   selector: 'app-tutor-register',
@@ -14,16 +15,22 @@ export class TutorRegisterComponent implements OnInit {
 
   submitted = false;
 
-  submit() { 
-    // post input to api 
+  submit(): void {
+    // post input to api
     // get Response
     //   if response is user object
-    //    save user object into local disk 
+    //    save user object into local disk
     //   else this.alertService.error("Unable to register. Errors:" ++ response.error);
-    this.submitted = true; console.log('submitted'); 
+    console.log("submit clicked. Registering tutor");
+    this.tutorService.createTutor(this.tutor)
+      .subscribe(tutor => this.tutor = tutor);
   }
 
-  constructor(private alertService: AlertService) { }
+
+  constructor(
+    private alertService: AlertService,
+    private tutorService: TutorService
+  ) { }
 
   ngOnInit() {
   }
