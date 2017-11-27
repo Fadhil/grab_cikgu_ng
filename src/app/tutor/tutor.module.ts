@@ -12,6 +12,7 @@ import { TutorLayoutComponent } from './tutor-layout/tutor-layout.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { TutorLoginComponent } from './tutor-login/tutor-login.component';
 import { TutorRegisterComponent } from './tutor-register/tutor-register.component';
+import { TutorService } from '../shared/services/tutor.service';
 
 
 @NgModule({
