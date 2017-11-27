@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { StarterComponent } from './starter/starter.component';
 import { StarterHeaderComponent } from './starter/starter-header/starter-header.component';
 import { StarterLeftSideComponent } from './starter/starter-left-side/starter-left-side.component';
@@ -42,6 +43,7 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     TutorRoutingModule,
     AdminModule
   ],
