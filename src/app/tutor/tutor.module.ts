@@ -9,6 +9,9 @@ import { SidebarComponent } from '../shared/components/layouts/sidebar/sidebar.c
 // Tutor Components
 import { TutorComponent } from './tutor.component';
 import { TutorLayoutComponent } from './tutor-layout/tutor-layout.component';
+import { TutorListComponent } from './tutor-list/tutor-list.component';
+import { TutorLoginComponent } from './tutor-login/tutor-login.component';
+import { TutorRegisterComponent } from './tutor-register/tutor-register.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { TutorLayoutComponent } from './tutor-layout/tutor-layout.component';
   declarations: [
     // Shared Components
     // HeaderComponent, SidebarComponent,
-    // TutorComponent, TutorLayoutComponent
-  ]
+    // TutorComponent, TutorLayoutComponent,
+    TutorListComponent,
+    TutorLoginComponent,
+    TutorRegisterComponent
+]
 })
 export class TutorModule { }
