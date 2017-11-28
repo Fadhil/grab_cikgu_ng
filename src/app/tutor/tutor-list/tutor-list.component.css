@@ -1,15 +1,19 @@
 .separador-vertical{
   border-right:1px solid #bfbdbd;
-  }
+}
   
-  .titulo-equipo{
-  margin-top:0px;
-      
-    }
+.titulo-equipo{
+  margin-top:0px;   
+}
     
-  .equipo-item{
-    border:	1px solid #D1CFCF ;
-        padding: 10px;
-    border-radius:10px;
+.equipo-item{
+  border:	1px solid #D1CFCF ;
+  padding: 10px;
+  border-radius:10px;
   margin-bottom:25px;
-      }
+}
+
+    
+.wrapper {
+  height: 600px;
+}

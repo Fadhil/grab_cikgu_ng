@@ -1,3 +1,4 @@
+import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
@@ -50,7 +51,7 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     HttpClientModule,
     AdminModule
   ],
-  providers: [AlertService, TutorService],
+  providers: [AlertService, TutorService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

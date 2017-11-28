@@ -10,19 +10,16 @@ import { AlertService } from './index';
 export class TutorService {
 private tutorsUrl = 'http://localhost:4000/api/tutors';
 
-createTutor(tutor): Observable<Tutor> {
-  console.log('Creating Tutor through api', tutor);
-  return this.http.post(this.tutorsUrl, {tutor: tutor})
-    // .pipe(
-    //   tap(tutor => 
-    //     this.alertService.success('Successfully Registered as a Tutor. Your account will be activated once reviewed by an Admin')),
-    //   catchError(this.handleError('createTutor', tutor)
-    // ));
-}
-
 constructor(
   private http: HttpClient, private alertService: AlertService
 ) { }
+
+createTutor(tutor): Observable<Tutor> {
+  console.log('Creating Tutor through api', tutor);
+  return this.http.post(this.tutorsUrl, {tutor: tutor});
+}
+
+
 
 
 /**
@@ -33,7 +30,7 @@ constructor(
  */
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
- 
+
     // TODO: send the error to remote logging infrastructure
     console.log(error); // log to console instead
     this.alertService.error(error);

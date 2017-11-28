@@ -13,6 +13,7 @@ import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { TutorLoginComponent } from './tutor-login/tutor-login.component';
 import { TutorRegisterComponent } from './tutor-register/tutor-register.component';
 import { TutorService } from '../shared/services/tutor.service';
+import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TutorService } from '../shared/services/tutor.service';
     // TutorComponent, TutorLayoutComponent,
     TutorListComponent,
     TutorLoginComponent,
-    TutorRegisterComponent
+    TutorRegisterComponent,
+    TutorProfileComponent
 ]
 })
 export class TutorModule { }
