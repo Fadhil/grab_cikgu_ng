@@ -9,6 +9,7 @@ import { AlertService } from './index';
 @Injectable()
 export class TutorService {
 private tutorsUrl = 'http://localhost:4000/api/tutors';
+private tutorUrl = 'http://localhost:4000/api/tutor';
 
 constructor(
   private http: HttpClient, private alertService: AlertService
@@ -19,6 +20,13 @@ createTutor(tutor): Observable<Tutor> {
   return this.http.post(this.tutorsUrl, {tutor: tutor});
 }
 
+getTutorProfile(): Observable<Tutor> {
+  const userToken = localStorage.getItem('currentUserToken');
+  const headers = new HttpHeaders().set('Authorization', userToken);
+
+  console.log('Getting Tutor Profile');
+  return this.http.get(this.tutorUrl + '/profile', {headers: headers});
+}
 
 
 

@@ -14,6 +14,7 @@ import { TutorLoginComponent } from './tutor-login/tutor-login.component';
 import { TutorRegisterComponent } from './tutor-register/tutor-register.component';
 import { TutorService } from '../shared/services/tutor.service';
 import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
+import { TutorProfileEditComponent } from './tutor-profile-edit/tutor-profile-edit.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
     TutorListComponent,
     TutorLoginComponent,
     TutorRegisterComponent,
-    TutorProfileComponent
+    TutorProfileComponent,
+    TutorProfileEditComponent
 ]
 })
 export class TutorModule { }

@@ -1,3 +1,4 @@
+import { TutorProfileEditComponent } from './../tutor-profile-edit/tutor-profile-edit.component';
 import { TutorProfileComponent } from './../tutor-profile/tutor-profile.component';
 import { TutorLayoutComponent } from './../tutor-layout/tutor-layout.component';
 import { TutorLoginComponent } from './../tutor-login/tutor-login.component';
@@ -40,8 +41,17 @@ const routes: Routes = [
     path: 'tutor', component: TutorLayoutComponent,
     children: [
       {
-        path: 'profile', component: TutorProfileComponent,
-        pathMatch: 'full'
+        path: 'profile',
+        children: [
+          {
+            path: '', component:  TutorProfileComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: 'edit', component: TutorProfileEditComponent,
+            pathMatch: 'full'
+          }
+        ]
       }
     ]
   }
@@ -55,5 +65,6 @@ export class TutorRoutingModule { }
 
 export const tutorRoutingComponents = [
   TutorComponent, TutorLayoutComponent, TutorListComponent, HeaderComponent, SidebarComponent, FooterComponent,
-  ControlSidebarComponent, TutorLoginComponent, TutorRegisterComponent, TutorProfileComponent
+  ControlSidebarComponent, TutorLoginComponent, TutorRegisterComponent, TutorProfileComponent,
+  TutorProfileEditComponent
 ];
