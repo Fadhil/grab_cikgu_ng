@@ -6,5 +6,6 @@ export class Tutor {
   gender: string;
   age: number;
   occupation: string;
+  icNo: string;
 
 }

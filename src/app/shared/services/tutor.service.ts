@@ -9,20 +9,25 @@ import { AlertService } from './index';
 @Injectable()
 export class TutorService {
 private tutorsUrl = 'http://localhost:4000/api/tutors';
-
-createTutor(tutor): Observable<Tutor> {
-  console.log('Creating Tutor through api', tutor);
-  return this.http.post(this.tutorsUrl, {tutor: tutor})
-    // .pipe(
-    //   tap(tutor => 
-    //     this.alertService.success('Successfully Registered as a Tutor. Your account will be activated once reviewed by an Admin')),
-    //   catchError(this.handleError('createTutor', tutor)
-    // ));
-}
+private tutorUrl = 'http://localhost:4000/api/tutor';
 
 constructor(
   private http: HttpClient, private alertService: AlertService
 ) { }
+
+createTutor(tutor): Observable<Tutor> {
+  console.log('Creating Tutor through api', tutor);
+  return this.http.post(this.tutorsUrl, {tutor: tutor});
+}
+
+getTutorProfile(): Observable<Tutor> {
+  const userToken = localStorage.getItem('currentUserToken');
+  const headers = new HttpHeaders().set('Authorization', userToken);
+
+  console.log('Getting Tutor Profile');
+  return this.http.get(this.tutorUrl + '/profile', {headers: headers});
+}
+
 
 
 /**
@@ -33,7 +38,7 @@ constructor(
  */
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
- 
+
     // TODO: send the error to remote logging infrastructure
     console.log(error); // log to console instead
     this.alertService.error(error);
