@@ -82,58 +82,33 @@
                       <li><a href="#tuition" data-toggle="tab">Tuition Service</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="active tab-pane" id="personal-form">
-                            <form novalidate #f="ngForm" class="form-horizontal">
-                              <div class="form-group">
-                                <label for="fullName" class="col-sm-2 control-label">Full Name</label>
-            
-                                <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="inputName" placeholder="Name">
+                        <div class="active tab-pane" id="personal">
+                                <div>
+                                    <ul class="list-group list-group-unbordered">
+                                        <li class="list-group-item">
+                                          <b>Name</b> <span class="pull-right">{{tutorProfile.name}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                          <b>IC Number</b> <span class="pull-right">{{tutorProfile.ic_no}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                          <b>Gender</b> <span class="pull-right">{{tutorProfile.gender}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Age</b> <span class="pull-right">{{tutorProfile.age}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Address</b> <span class="pull-right">{{tutorProfile.address}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Phone Number</b> <span class="pull-right">{{tutorProfile.phone_no}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Occupation</b> <span class="pull-right">{{tutorProfile.occupation}}</span>
+                                        </li>
+
+                                      </ul>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-            
-                                <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-            
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-            
-                                <div class="col-sm-10">
-                                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-            
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                  <button type="submit" class="btn btn-danger">Submit</button>
-                                </div>
-                              </div>
-                            </form>
                           </div>
                       <div class="tab-pane" id="education">
                         <!-- Post -->
@@ -345,60 +320,7 @@
                         </ul>
                       </div>
                       <!-- /.tab-pane -->
-        
-                      <div class="tab-pane" id="personal">
-                        <form class="form-horizontal">
-                          <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Name</label>
-        
-                            <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputName" placeholder="Name">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-        
-                            <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Name</label>
-        
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputName" placeholder="Name">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-        
-                            <div class="col-sm-10">
-                              <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-        
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-danger">Submit</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
+      
                       <!-- /.tab-pane -->
                     </div>
                     <!-- /.tab-content -->

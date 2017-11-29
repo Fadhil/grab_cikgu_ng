@@ -6,6 +6,19 @@ export class Tutor {
   gender: string;
   age: number;
   occupation: string;
-  icNo: string;
-
+  ic_no: string;
+  tutor_license_no: string;
+  teach_in_center: string;
+  qualification: string;
+  phone_no: string;
+  hourly_rate_cents: number;
+  experience: string;
+  description: string;
+  bank_name: string;
+  bank_acc_no: string;
+  bank_acc_name: string;
+  availability: string;
+  area_covered: string;
+  address: string;
+  achievement: string;
 }

@@ -15,12 +15,12 @@ constructor(
   private http: HttpClient, private alertService: AlertService
 ) { }
 
-createTutor(tutor): Observable<Tutor> {
+createTutor(tutor): Observable<any> {
   console.log('Creating Tutor through api', tutor);
   return this.http.post(this.tutorsUrl, {tutor: tutor});
 }
 
-getTutorProfile(): Observable<Tutor> {
+getTutorProfile(): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
