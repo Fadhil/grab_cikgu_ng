@@ -32,7 +32,7 @@ export class TutorProfileEditComponent implements OnInit {
   }
 
   saveProfile() {
-    console.log("saving profile");
+    console.log("saving profile with attrs:", this.tutorProfile);
     this.router.navigateByUrl('/tutor/profile');
   }
 }

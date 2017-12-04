@@ -22,7 +22,7 @@
                   <ul class="list-group list-group-unbordered">
                       <li class="list-group-item">
                         <b>Gender</b> <span class="pull-right"><div class="form-group">
-                          <select class="form-control">
+                          <select id="gender" name="gender" class="form-control" [(ngModel)]="tutorProfile.gender">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                           </select>
@@ -36,6 +36,29 @@
                       <li class="list-group-item list-group-address-item">
                           <b>Address</b> 
                           <div><textarea class="form-control" rows="3" placeholder="Address" (ngModelChange)="display_change($event)" [(ngModel)]="tutorProfile.address" placeholder="Address"></textarea></div>
+                      </li>
+                      <li class="list-group-item">
+                          <b>State</b> 
+                          <span class="pull-right">       
+                            <select id="state" name="state" class="form-control" [(ngModel)]="tutorProfile.state">
+                              <option value="johor">Johor</option>
+                              <option value="kedah">Kedah</option>
+                              <option value="kelantan">Kelantan</option>
+                              <option value="kuala-lumpur">Kuala Lumpur</option>
+                              <option value="labuan">Labuan</option>
+                              <option value="melaka">Melaka</option>
+                              <option value="negeri-sembilan">Negeri Sembilan</option>
+                              <option value="pahang">Pahang</option>
+                              <option value="perak">Perak</option>
+                              <option value="perlis">Perlis</option>
+                              <option value="pulau-pinang">Pulau Pinang</option>
+                              <option value="putrajaya">Putrajaya</option>
+                              <option value="sabah">Sabah</option>
+                              <option value="sarawak">Sarawak</option>
+                              <option value="selangor">Selangor</option>
+                              <option value="terengganu">Terengganu</option>
+                            </select>
+                          </span>
                       </li>
                       <li class="list-group-item">
                           <b>Phone Number</b> <span class="pull-right">       
@@ -92,12 +115,12 @@
                 <!-- /.tab-content -->
               </div>
               <!-- /.nav-tabs-custom -->
-            <div class="row">
-              <div class="col-md-6 col-md-offset-3">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-                  <a href="#" (click)="saveProfile()" class="btn btn-primary btn-block"><b>Update Profile</b></a>
+                    <a (click)="saveProfile()" class="btn btn-primary btn-block"><b>Update Profile</b></a>
+                </div>
               </div>
-            </div>
             </div>
             <!-- /.col -->
 
