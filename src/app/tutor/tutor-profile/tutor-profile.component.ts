@@ -17,7 +17,9 @@ export class TutorProfileComponent implements OnInit {
     private tutorService: TutorService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    // Hides tooltip when switching between save/edit
+    $('.tooltip').hide();
     this.tutorService.getTutorProfile()
     .subscribe(result => {
       this.tutorProfile = result;
