@@ -35,6 +35,13 @@ export class TutorProfileEditComponent implements OnInit {
 
   saveProfile() {
     console.log('saving profile with attrs:', this.tutorProfile);
-    this.router.navigateByUrl('/tutor/profile');
+    this.tutorService.updateTutorProfile(this.tutorProfile)
+      .subscribe(result => {
+        console.log('Successfully updated profile');
+        this.router.navigateByUrl('/tutor/profile');
+      },
+      error => {
+        console.log('Failed to update profile:', error);
+      });
   }
 }
