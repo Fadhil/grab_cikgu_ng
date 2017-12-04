@@ -14,6 +14,7 @@ export class Tutor {
   hourly_rate_cents: number;
   experience: string;
   description: string;
+  subjects: string;
   bank_name: string;
   bank_acc_no: string;
   bank_acc_name: string;
