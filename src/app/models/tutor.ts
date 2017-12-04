@@ -20,5 +20,6 @@ export class Tutor {
   availability: string;
   area_covered: string;
   address: string;
+  state: string;
   achievement: string;
 }

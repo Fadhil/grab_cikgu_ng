@@ -8,7 +8,7 @@
                   <div class="box box-primary">
                     <div class="box-header">
                       <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Edit Profile" data-original-title="Edit Profile">
+                        <button routerLink="/tutor/profile/edit" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Edit Profile" data-original-title="Edit Profile">
                         <i class="fa fa-pencil"></i></button>
                       </div>
                     </div>
@@ -31,11 +31,13 @@
                               <b>Address</b> <span class="pull-right">{{tutorProfile.address}}</span>
                           </li>
                           <li class="list-group-item">
+                              <b>State</b> <span class="pull-right">{{tutorProfile.state}}</span>
+                            </li>
+                          <li class="list-group-item">
                               <b>Phone Number</b> <span class="pull-right">{{tutorProfile.phone_no}}</span>
                           </li>
                         </ul>
 
-                      <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                     </div>
                     <!-- /.box-body -->
                   </div>
@@ -85,6 +87,12 @@
                     <!-- /.tab-content -->
                   </div>
                   <!-- /.nav-tabs-custom -->
+                  <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+      
+                          <a routerLink="/tutor/profile/edit" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                      </div>
+                    </div>
                 </div>
                 <!-- /.col -->
               </div>
