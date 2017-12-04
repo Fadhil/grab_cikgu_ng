@@ -24,7 +24,6 @@ getTutorProfile(): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
-  console.log('Getting tutor profile with:', headers);
   return this.http.get(this.tutorUrl + '/profile', {headers: headers});
 }
 
@@ -32,7 +31,6 @@ updateTutorProfile(tutor): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
-  console.log('Updating tutor profile with:', headers);
   return this.http.put(this.tutorUrl + '/profile', tutor , {headers: headers});
 }
 

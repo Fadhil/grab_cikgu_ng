@@ -21,11 +21,9 @@ export class TutorProfileEditComponent implements OnInit {
   ngOnInit() {
     // Hides tooltip when switching between save/edit
     $('.tooltip').hide();
-    console.log('initializing Tutor Service');
     this.tutorService.getTutorProfile()
     .subscribe(result => {
       this.tutorProfile = result;
-      console.log('got profile', this.tutorProfile);
     });
   }
 
@@ -37,11 +35,13 @@ export class TutorProfileEditComponent implements OnInit {
     console.log('saving profile with attrs:', this.tutorProfile);
     this.tutorService.updateTutorProfile(this.tutorProfile)
       .subscribe(result => {
-        console.log('Successfully updated profile');
+
         this.router.navigateByUrl('/tutor/profile');
+        this.alertService.success('Successfully Updated Profile');
       },
       error => {
         console.log('Failed to update profile:', error);
+        this.alertService.error('Failed to Update Profile');
       });
   }
 }
