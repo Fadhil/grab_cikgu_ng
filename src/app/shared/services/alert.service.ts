@@ -42,16 +42,20 @@ export class AlertService {
             // but... JSON.parse(null) returns null, and typeof null === "object", 
             // so we must check for that, too. Thankfully, null is falsey, so this suffices:
             console.log("parsing errors");
-            if (o && typeof o === 'object') {
-                if (typeof(o.errors.detail) === 'string') {
-                  return o.errors.detail;
-                } else {
-                  for (const key in o.errors) {
-                    if (o.errors.hasOwnProperty(key)) {
-                      error_message = error_message + key + ': ' + o.errors[key];
-                      return error_message;
+            if (o && typeof o === 'string'){
+                return o;
+            } else {
+                if (o && typeof o === 'object') {
+                    if (typeof(o.errors.detail) === 'string') {
+                    return o.errors.detail;
+                    } else {
+                    for (const key in o.errors) {
+                        if (o.errors.hasOwnProperty(key)) {
+                        error_message = error_message + key + ': ' + o.errors[key];
+                        return error_message;
+                        }
                     }
-                  }
+                    }
                 }
             }
         } catch (e) {
