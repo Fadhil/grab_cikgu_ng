@@ -13,6 +13,7 @@ export class AlertComponent implements OnInit {
 
   ngOnInit() {
     this.alertService.getMessage().subscribe(message => { this.message = message; this.fadeOutAndRemove(); });
+    // this.alertService.getMessage().subscribe(message => { this.message = message; ; });
   }
 
   fadeOutAndRemove() {

@@ -15,7 +15,7 @@
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="assets/img/user4-128x128.jpg" alt="User profile picture">
 
-                      <h3 class="profile-username text-center">{{tutorProfile.name}}</h3>
+                      <h3 class="profile-username text-center" id="username">{{tutorProfile.name}}</h3>
                       <p class="text-muted text-center">{{tutorProfile.ic_no || "888888-88-8888"}}</p>
 
                       <p class="text-muted text-center">{{tutorProfile.occupation || "-Occupation-"}}</p>
@@ -86,7 +86,7 @@
                   <!-- /.nav-tabs-custom -->
                   <div class="row">
                       <div class="col-md-6 col-md-offset-3">
-      
+
                           <a routerLink="/tutor/profile/edit" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
                       </div>
                     </div>
