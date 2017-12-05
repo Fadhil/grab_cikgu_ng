@@ -24,6 +24,7 @@ export class TutorLoginComponent implements OnInit {
     this.authenticationService.login(this.email, this.password)
       .subscribe(
         result => {
+          console.log("authenticating", result);
           localStorage.setItem('currentUserToken', result.data.token);
           this.alertService.success('Successfully logged in.', true);
           this.router.navigate(['/tutor/profile']);
