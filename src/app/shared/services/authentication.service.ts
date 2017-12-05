@@ -18,6 +18,10 @@ login(email, password): Observable<any> {
   return this.http.post(this.authUrl, {tutor: {email: email, password: password}});
 }
 
+studentLogin(email, password): Observable<any> {
+  return this.http.post(this.authUrl, {student: {email: email, password: password}});
+}
+
 logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('currentUser');
