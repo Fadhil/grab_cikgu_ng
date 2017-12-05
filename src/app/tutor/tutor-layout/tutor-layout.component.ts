@@ -7,7 +7,7 @@ declare var AdminLTE: any;
   styleUrls: ['./tutor-layout.component.css']
 })
 export class TutorLayoutComponent implements OnInit {
-  bodyClasses = 'skin-green sidebar-mini';
+  bodyClasses = 'skin-blue sidebar-mini';
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
   constructor() { }
@@ -15,7 +15,7 @@ export class TutorLayoutComponent implements OnInit {
   ngOnInit() {
     // add the the body classes
     // AdminLTE.init();
-    this.body.classList.add('skin-green');
+    this.body.classList.add('skin-blue');
     this.body.classList.add('sidebar-mini');
   }
 

@@ -1,3 +1,4 @@
+import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
 import { AlertComponent } from './shared/components/alert/alert.component';
@@ -57,7 +58,7 @@ import { StudentComponent } from './student/student.component';
     HttpClientModule,
     AdminModule
   ],
-  providers: [AlertService, TutorService, AuthenticationService],
+  providers: [AlertService, TutorService, StudentService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
