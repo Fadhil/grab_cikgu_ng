@@ -1,0 +1,113 @@
+<!-- Main content -->
+<section class="content">
+
+          <div class="row">
+            <div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <div class="box-tools pull-right">
+                    <button (click)="saveProfile()" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Save Profile">
+                    <i class="fa fa-floppy-o"></i></button>
+                  </div>
+                </div>
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" src="assets/img/user4-128x128.jpg" alt="User profile picture">
+
+                  <input type="text" class="form-control text-center" id="name" name="name" [(ngModel)]="tutorProfile.name" required placeholder="Name">
+                  <input type="text" class="form-control text-center" id="ic_no" name="ic_no" [(ngModel)]="tutorProfile.ic_no" required placeholder="IC Number">
+                  <input type="text" class="form-control text-center" id="occupation" name="occupation" [(ngModel)]="tutorProfile.occupation" placeholder="Occupation">
+                
+                  <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>Gender</b> <span class="pull-right"><div class="form-group">
+                          <select id="gender" name="gender" class="form-control" [(ngModel)]="tutorProfile.gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                          </select>
+                        </div></span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>Age</b> <span class="pull-right">       
+                            <input type="number" class="form-control text-right" id="age" name="age" [(ngModel)]="tutorProfile.age" placeholder="Age">
+                          </span>
+                      </li>
+                      <li class="list-group-item list-group-address-item">
+                          <b>Address</b> 
+                          <div><textarea class="form-control" rows="3" placeholder="Address" [(ngModel)]="tutorProfile.address" placeholder="Address"></textarea></div>
+                      </li>
+                      <li class="list-group-item">
+                          <b>State</b> 
+                          <span class="pull-right">       
+                            <select id="state" name="state" class="form-control" [(ngModel)]="tutorProfile.state">
+                              <option value="Johor">Johor</option>
+                              <option value="Kedah">Kedah</option>
+                              <option value="Kelantan">Kelantan</option>
+                              <option value="Kuala Lumpur">Kuala Lumpur</option>
+                              <option value="Labuan">Labuan</option>
+                              <option value="Melaka">Melaka</option>
+                              <option value="Negeri Sembilan">Negeri Sembilan</option>
+                              <option value="Pahang">Pahang</option>
+                              <option value="Perak">Perak</option>
+                              <option value="Perlis">Perlis</option>
+                              <option value="Pulau Pinang">Pulau Pinang</option>
+                              <option value="Putrajaya">Putrajaya</option>
+                              <option value="Sabah">Sabah</option>
+                              <option value="Sarawak">Sarawak</option>
+                              <option value="Selangor">Selangor</option>
+                              <option value="Terengganu">Terengganu</option>
+                            </select>
+                          </span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>Phone Number</b> <span class="pull-right">       
+                              <input type="text" class="form-control text-right" id="phone_no" name="phone_no" [(ngModel)]="tutorProfile.phone_no" required placeholder="Phone Number">
+                            </span>
+                      </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-8">
+              <div class="box box-primary">
+                  <div class="box-body">
+                    <div>
+                      <strong><i class="fa fa-graduation-cap margin-r-5"></i>Education</strong>
+
+                      <p class="text-muted">
+                          <input type="text" class="form-control text-right" id="qualification" name="qualification" [(ngModel)]="tutorProfile.qualification" required placeholder="Education"> 
+                      </p>
+
+                      <!-- <hr> -->
+                    </div>
+                    <hr>
+                    <div>
+                        <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
+  
+                        <p class="text-muted">
+                           <input type="text" class="form-control text-right" id="subjects" name="subjects" [(ngModel)]="tutorProfile.subjects" required placeholder="Teaching Subjects">
+                        </p>
+  
+                     
+                      </div>
+                  </div>
+                </div>
+        
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <a (click)="saveProfile()" class="btn btn-primary btn-block"><b>Update Profile</b></a>
+                </div>
+              </div>
+            </div>
+            <!-- /.col -->
+
+          </div>
+          <!-- /.row -->
+
+        </section>
+        <!-- /.content -->

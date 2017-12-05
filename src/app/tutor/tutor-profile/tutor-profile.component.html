@@ -1,0 +1,99 @@
+    <!-- Main content -->
+    <section class="content">
+
+              <div class="row">
+                <div class="col-md-4">
+
+                  <!-- Profile Image -->
+                  <div class="box box-primary">
+                    <div class="box-header">
+                      <div class="box-tools pull-right">
+                        <button routerLink="/tutor/profile/edit" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Edit Profile" data-original-title="Edit Profile">
+                        <i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="box-body box-profile">
+                      <img class="profile-user-img img-responsive img-circle" src="assets/img/user4-128x128.jpg" alt="User profile picture">
+
+                      <h3 class="profile-username text-center" id="username">{{tutorProfile.name}}</h3>
+                      <p class="text-muted text-center">{{tutorProfile.ic_no || "888888-88-8888"}}</p>
+
+                      <p class="text-muted text-center">{{tutorProfile.occupation || "-Occupation-"}}</p>
+
+                      <ul class="list-group list-group-unbordered">
+                          <li class="list-group-item">
+                            <b>Gender</b> <span class="pull-right">{{tutorProfile.gender}}</span>
+                          </li>
+                          <li class="list-group-item">
+                              <b>Age</b> <span class="pull-right">{{tutorProfile.age}}</span>
+                          </li>
+                          <li class="list-group-item">
+                              <b>Address</b> <span class="pull-right">{{tutorProfile.address}}</span>
+                          </li>
+                          <li class="list-group-item">
+                              <b>State</b> <span class="pull-right">{{tutorProfile.state}}</span>
+                            </li>
+                          <li class="list-group-item">
+                              <b>Phone Number</b> <span class="pull-right">{{tutorProfile.phone_no}}</span>
+                          </li>
+                        </ul>
+
+                    </div>
+                    <!-- /.box-body -->
+                  </div>
+                  <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-8">
+                  <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#education" data-toggle="tab">Education</a></li>
+                      <li><a href="#tuition" data-toggle="tab">Tuition Service</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="education">
+                        <!-- Post -->
+                        <div>
+                          <strong><i class="fa fa-graduation-cap margin-r-5"></i>Education</strong>
+
+                          <p class="text-muted">
+                            {{tutorProfile.qualification}}
+                          </p>
+
+                          <!-- <hr> -->
+                        </div>
+                        <!-- /.post -->
+
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="tuition">
+                        <div>
+                          <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
+
+                          <p class="text-muted">
+                            {{tutorProfile.subjects}}
+                          </p>
+
+                          <!-- <hr> -->
+                        </div>
+                      </div>
+                      <!-- /.tab-pane -->
+
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div>
+                  <!-- /.nav-tabs-custom -->
+                  <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+
+                          <a routerLink="/tutor/profile/edit" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                      </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+            </section>
+            <!-- /.content -->

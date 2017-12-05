@@ -1,9 +1,20 @@
+import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
+import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
+import { StudentService } from './shared/services/student.service';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { TutorService } from './shared/services/tutor.service';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { AlertService } from './shared/services/alert.service';
+import { HeaderComponent } from './shared/components/layouts/header/header.component';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { StarterComponent } from './starter/starter.component';
 import { StarterHeaderComponent } from './starter/starter-header/starter-header.component';
 import { StarterLeftSideComponent } from './starter/starter-left-side/starter-left-side.component';
@@ -17,23 +28,41 @@ import { AdminContentComponent } from './admin/admin-content/admin-content.compo
 import { AdminFooterComponent } from './admin/admin-footer/admin-footer.component';
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
 import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
+import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
+import { StudentRoutingModule, studentRoutingComponents } from './student/student-routing/student-routing.module';
+import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
+import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
+import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent,
     StarterComponent,
     StarterHeaderComponent,
     StarterLeftSideComponent,
     StarterContentComponent,
     StarterFooterComponent,
-    StarterControlSidebarComponent
-  ],
+    StarterControlSidebarComponent,
+    TutorLayoutComponent,
+    StudentLayoutComponent,
+    SimpleLayoutComponent,
+    tutorRoutingComponents,
+    SearchTutorsComponent,
+    studentRoutingComponents,
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    TutorRoutingModule,
+    StudentRoutingModule,
+    SearchTutorRoutes,
+    HttpClientModule,
     AdminModule
   ],
-  providers: [],
+  providers: [AlertService, TutorService, StudentService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
