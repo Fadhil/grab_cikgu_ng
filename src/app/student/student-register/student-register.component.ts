@@ -2,6 +2,8 @@ import { Router } from '@angular/router';
 import { AlertService } from './../../shared/services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../../models/student';
+import { StudentService } from '../../shared/services/student.service';
+
 
 
 @Component({
