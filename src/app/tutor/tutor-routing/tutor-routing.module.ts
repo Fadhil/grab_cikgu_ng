@@ -1,3 +1,4 @@
+import { StudentLayoutComponent } from './../../student/student-layout/student-layout.component';
 import { TutorProfileEditComponent } from './../tutor-profile-edit/tutor-profile-edit.component';
 import { TutorProfileComponent } from './../tutor-profile/tutor-profile.component';
 import { TutorLayoutComponent } from './../tutor-layout/tutor-layout.component';
@@ -12,6 +13,8 @@ import { TutorComponent } from '../tutor.component';
 import { FooterComponent } from '../../shared/components/layouts/footer/footer.component';
 import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
 import { TutorRegisterComponent } from '../tutor-register/tutor-register.component';
+import { TutorSearchComponent } from '../tutor-search/tutor-search.component';
+
 
 
 const routes: Routes = [

@@ -26,7 +26,7 @@ export class StudentLoginComponent implements OnInit {
         result => {
           localStorage.setItem('currentUserToken', result.data.token);
           this.alertService.success('Successfully logged in.', true);
-          this.router.navigate(['/']);
+          this.router.navigate(['/search']);
 
         },
         error => {
