@@ -26,8 +26,11 @@ import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admi
 import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
 
 import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
+import { StudentRoutingModule, studentRoutingComponents } from './student/student-routing/student-routing.module';
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
+import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
@@ -40,14 +43,17 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     StarterFooterComponent,
     StarterControlSidebarComponent,
     TutorLayoutComponent,
+    StudentLayoutComponent,
     SimpleLayoutComponent,
-    tutorRoutingComponents
-  ],
+    tutorRoutingComponents,
+    studentRoutingComponents
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     TutorRoutingModule,
+    StudentRoutingModule,
     HttpClientModule,
     AdminModule
   ],

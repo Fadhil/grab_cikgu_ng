@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row registration-panel-row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-login">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-6">
+            <a href="/tutor/register" class='active' id="register-form-link">Register</a>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <form novalidate #f="ngForm" (ngSubmit)="submit()" id="register-form" method="post" role="form">
+              <div class="form-group">
+                <input  required minlength="4" type="text" name="name" id="name" tabindex="1" class="form-control" [(ngModel)]="student.name" placeholder="Name (required)" required #name="ngModel">
+              </div>
+  
+              <div class="form-group">
+                <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Email Address (required)" [(ngModel)]="student.email"  required value="">
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Password (required)" [(ngModel)]="student.password" required>
+              </div>
+              <!-- <div class="form-group">
+                <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+              </div> -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" [disabled]="f.invalid" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="assets/js/tutor-registration.js"></script>
