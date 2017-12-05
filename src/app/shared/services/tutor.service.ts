@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -8,8 +9,9 @@ import { AlertService } from './index';
 
 @Injectable()
 export class TutorService {
-private tutorsUrl = 'http://localhost:4000/api/tutors';
-private tutorUrl = 'http://localhost:4000/api/tutor';
+apiUrl = environment.apiUrl;
+private tutorsUrl = this.apiUrl + '/api/tutors';
+private tutorUrl = this.apiUrl + '/api/tutor';
 
 constructor(
   private http: HttpClient, private alertService: AlertService

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -9,7 +10,8 @@ import { AlertService } from './index';
 
 @Injectable()
 export class AuthenticationService {
-private authUrl = 'http://localhost:4000/api/sessions';
+apiUrl = environment.apiUrl;
+private authUrl = this.apiUrl + '/api/sessions';
 
 constructor(private http: HttpClient, private alertService: AlertService) { }
 

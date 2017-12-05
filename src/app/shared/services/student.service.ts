@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -8,9 +9,9 @@ import { AlertService } from './index';
 
 @Injectable()
 export class StudentService {
-
-  private studentsUrl = 'http://localhost:4000/api/students';
-  private studentUrl = 'http://localhost:4000/api/student';
+  apiUrl = environment.apiUrl;
+  private studentsUrl = this.apiUrl + '/api/students';
+  private studentUrl = this.apiUrl + '/api/student';
 
   constructor(
     private http: HttpClient, private alertService: AlertService
