@@ -256,6 +256,10 @@
   dependencies:
     "@types/jquery" "*"
 
+"@types/lodash@^4.14.88":
+  version "4.14.88"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.88.tgz#97eaf2dc668f33ed8e511a5b627035f4ea20b0f5"
+
 "@types/morris.js@^0.5.6":
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/@types/morris.js/-/morris.js-0.5.6.tgz#c9cdfde069a425f6bb3b28b115c51c2f96a04744"
@@ -385,6 +389,12 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
+
+angular2-datatable@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/angular2-datatable/-/angular2-datatable-0.6.0.tgz#ca008f74087f0cb87da5709ed2f2d1d061772632"
+  dependencies:
+    lodash "^4.0.0"
 
 ansi-align@^2.0.0:
   version "2.0.0"
