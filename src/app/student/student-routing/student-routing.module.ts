@@ -63,6 +63,6 @@ const routes: Routes = [
 export class StudentRoutingModule { }
 
 export const studentRoutingComponents = [
-  StudentComponent, StudentLayoutComponent,  HeaderComponent, SidebarComponent, FooterComponent,
+  StudentLayoutComponent,  HeaderComponent, SidebarComponent, FooterComponent,
   ControlSidebarComponent, StudentLoginComponent, StudentRegisterComponent
 ];
