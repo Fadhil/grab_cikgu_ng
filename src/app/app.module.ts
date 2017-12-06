@@ -38,7 +38,8 @@ import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.componen
 import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
 import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
-import {DataTableModule} from 'angular2-datatable';
+import { DataTableModule } from 'angular2-datatable';
+import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {DataTableModule} from 'angular2-datatable';
     MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
+    DataFilterPipe
 ],
   imports: [
     BrowserModule,

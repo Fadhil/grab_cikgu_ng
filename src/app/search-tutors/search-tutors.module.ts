@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchTutorsComponent } from './search-tutors.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { DataFilterPipe } from './../shared/pipes/data-filter.pipe';
 
 
 @NgModule({
@@ -9,7 +10,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     CommonModule
   ],
   declarations: [SearchTutorsComponent,
-    SearchResultsComponent
+    SearchResultsComponent, DataFilterPipe
 ]
 })
 export class SearchTutorsModule { }

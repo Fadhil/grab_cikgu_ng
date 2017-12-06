@@ -12,6 +12,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class SearchResultsComponent implements OnInit {
   tutors: Tutor[] = [];
   state: '';
+
+  public data;
+  public filterQuery = '';
+  public rowsOnPage = 10;
+  public sortBy = 'email';
+  public sortOrder = 'asc';
+
   constructor(
     private searchService: SearchService,
     private alertService: AlertService,
@@ -33,11 +40,20 @@ export class SearchResultsComponent implements OnInit {
     .subscribe(
       results => {
         this.tutors = results.data;
+        this.data = this.tutors;
         console.log('got tutors', this.tutors);
       },
       error => {
       console.log('Failed to get tutors:', error);
       this.alertService.error('Failed to find any Tutors');
     });
+  }
+
+  public toInt(num: string) {
+    return +num;
+  }
+
+  public sortByWordLength = (a: any) => {
+      return a.city.length;
   }
 }
