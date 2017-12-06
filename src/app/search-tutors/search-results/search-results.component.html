@@ -71,7 +71,11 @@
               <td>{{item.name}}</td>
               <td>{{item.email}}</td>
               <td class="text-right">{{item.age}}</td>
-              <td>{{item.city | uppercase}}</td>
+              <td>
+                <ul *ngFor="let subject of item.subjects | splitSubjects as subjects">
+                  <li>{{subject}}</li>
+                </ul>
+              </td>
           </tr>
           </tbody>
           <tfoot>

@@ -40,6 +40,7 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
 import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
 import { DataTableModule } from 'angular2-datatable';
 import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
+import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
     MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
-    DataFilterPipe
+    DataFilterPipe,
+    SplitSubjectsPipe
 ],
   imports: [
     BrowserModule,
