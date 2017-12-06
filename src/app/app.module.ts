@@ -32,7 +32,6 @@ import { StudentRoutingModule, studentRoutingComponents } from './student/studen
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
 import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
-import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
