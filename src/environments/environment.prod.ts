@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://grabcikgu.flexcility.com'
+  apiUrl: 'http://gc-api.flexcility.com'
 };
