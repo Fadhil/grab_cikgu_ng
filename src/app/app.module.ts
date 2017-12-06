@@ -1,3 +1,4 @@
+import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
 import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
@@ -43,6 +44,7 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     StarterContentComponent,
     StarterFooterComponent,
     StarterControlSidebarComponent,
+    SearchTutorsComponent,
     TutorLayoutComponent,
     StudentLayoutComponent,
     SimpleLayoutComponent,
