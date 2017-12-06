@@ -4,6 +4,8 @@ import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
 import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
+import { SearchService } from './shared/services/search.service';
+
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
 import { HeaderComponent } from './shared/components/layouts/header/header.component';
@@ -65,7 +67,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
     HttpClientModule,
     AdminModule
   ],
-  providers: [AlertService, TutorService, StudentService, AuthenticationService],
+  providers: [AlertService, TutorService, StudentService, AuthenticationService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
