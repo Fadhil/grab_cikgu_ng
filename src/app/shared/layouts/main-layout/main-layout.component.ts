@@ -10,7 +10,7 @@ export class MainLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $('body').addClass('layout-top-nav ');
+    // $('body').addClass('layout-top-nav ');
   }
 
 }
