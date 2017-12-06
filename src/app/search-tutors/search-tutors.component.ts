@@ -23,17 +23,6 @@ export class SearchTutorsComponent implements OnInit {
   }
 
   onChange(state) {
-    console.log('selected state: ', state);
-    this.searchService.getTutors(state)
-      .subscribe(
-        results => {
-          this.tutors = results.data;
-          console.log('got tutors', this.tutors);
-        },
-        error => {
-        console.log('Failed to get tutors:', error);
-        this.alertService.error('Failed to find any Tutors');
-      }
-    );
+    this.router.navigate(['/search/results'], {queryParams: {state: state}});
   }
 }

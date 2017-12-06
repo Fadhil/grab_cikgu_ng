@@ -11,7 +11,9 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       { path: '', redirectTo: 'starter', pathMatch: 'full' },
       { path: 'starter', component: StarterComponent },
-    ])
+    ]//,
+    //{ enableTracing: true }   
+  )
   ],
   declarations: [],
   exports: [ RouterModule]

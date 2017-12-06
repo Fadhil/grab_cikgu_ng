@@ -1,3 +1,4 @@
+import { SearchResultsComponent } from './search-tutors/search-results/search-results.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
@@ -37,6 +38,8 @@ import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.componen
 import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
 import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
+import { DataTableModule } from 'angular2-datatable';
+import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
     StarterFooterComponent,
     StarterControlSidebarComponent,
     SearchTutorsComponent,
+    SearchResultsComponent,
     TutorLayoutComponent,
     StudentLayoutComponent,
     SimpleLayoutComponent,
@@ -56,6 +60,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
     MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
+    DataFilterPipe
 ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
     StudentRoutingModule,
     SearchTutorRoutes,
     HttpClientModule,
-    AdminModule
+    AdminModule,
+    DataTableModule
   ],
   providers: [AlertService, TutorService, StudentService, AuthenticationService, SearchService],
   bootstrap: [AppComponent]
