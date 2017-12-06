@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../shared/services/search.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
@@ -12,11 +13,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class SearchResultsComponent implements OnInit {
   tutors: Tutor[] = [];
   state: '';
-
+  public tutorCount = 0;
   public data;
   public filterQuery = '';
   public rowsOnPage = 10;
-  public sortBy = 'email';
+  public sortBy = 'name';
   public sortOrder = 'asc';
 
   constructor(
@@ -41,6 +42,7 @@ export class SearchResultsComponent implements OnInit {
       results => {
         this.tutors = results.data;
         this.data = this.tutors;
+        this.tutorCount = this.tutors.length;
         console.log('got tutors', this.tutors);
       },
       error => {
