@@ -15,7 +15,6 @@ import { TutorRegisterComponent } from './tutor-register/tutor-register.componen
 import { TutorService } from '../shared/services/tutor.service';
 import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 import { TutorProfileEditComponent } from './tutor-profile-edit/tutor-profile-edit.component';
-import { TutorSearchComponent } from './tutor-search/tutor-search.component';
 
 
 @NgModule({
@@ -31,8 +30,7 @@ import { TutorSearchComponent } from './tutor-search/tutor-search.component';
     TutorLoginComponent,
     TutorRegisterComponent,
     TutorProfileComponent,
-    TutorProfileEditComponent,
-    TutorSearchComponent
+    TutorProfileEditComponent
 ]
 })
 export class TutorModule { }

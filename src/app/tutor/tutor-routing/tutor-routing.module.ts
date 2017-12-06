@@ -13,8 +13,6 @@ import { TutorComponent } from '../tutor.component';
 import { FooterComponent } from '../../shared/components/layouts/footer/footer.component';
 import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
 import { TutorRegisterComponent } from '../tutor-register/tutor-register.component';
-import { TutorSearchComponent } from '../tutor-search/tutor-search.component';
-
 
 
 const routes: Routes = [
