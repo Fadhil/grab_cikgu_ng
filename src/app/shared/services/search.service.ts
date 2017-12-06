@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Tutor } from '../../models/tutor';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AlertService } from './index';
 
@@ -17,6 +17,8 @@ export class SearchService {
   ) { }
 
   getTutors(state): Observable<any> {
-    return this.http.get(this.tutorsUrl + '?state=' + state);
+    let params = new HttpParams;
+    params = params.append('state', state);
+    return this.http.get(this.tutorsUrl, {params: params});
   }
 }

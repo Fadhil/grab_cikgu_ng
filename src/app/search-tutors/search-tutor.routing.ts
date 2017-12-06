@@ -2,6 +2,7 @@ import { MainLayoutComponent } from './../shared/layouts/main-layout/main-layout
 import { SimpleLayoutComponent } from './../shared/layouts/simple-layout/simple-layout.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchTutorsComponent } from './search-tutors.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: '', component: SearchTutorsComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'results', component: SearchResultsComponent,
         pathMatch: 'full'
       }
     ]

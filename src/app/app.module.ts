@@ -1,3 +1,4 @@
+import { SearchResultsComponent } from './search-tutors/search-results/search-results.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
@@ -38,6 +39,7 @@ import { StudentLayoutComponent } from './student/student-layout/student-layout.
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
 import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
     StarterFooterComponent,
     StarterControlSidebarComponent,
     SearchTutorsComponent,
+    SearchResultsComponent,
     TutorLayoutComponent,
     StudentLayoutComponent,
     SimpleLayoutComponent,
