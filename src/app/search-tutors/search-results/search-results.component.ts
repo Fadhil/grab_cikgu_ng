@@ -17,7 +17,7 @@ export class SearchResultsComponent implements OnInit {
   public data;
   public filterQuery = '';
   public rowsOnPage = 10;
-  public sortBy = 'email';
+  public sortBy = 'name';
   public sortOrder = 'asc';
 
   constructor(

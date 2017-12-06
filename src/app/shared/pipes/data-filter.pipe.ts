@@ -8,7 +8,10 @@ export class DataFilterPipe implements PipeTransform {
 
     transform(array: any[], query: string): any {
         if (query) {
-            return _.filter(array, row => (row.name.indexOf(query) > -1 || _.includes(row.subjects, query)));
+            return _.filter(array,
+                row => (
+                    _.includes(row.name.toLowerCase(), query.toLowerCase()) ||
+                    _.includes(row.subjects.toLowerCase(), query.toLowerCase())));
         }
         return array;
     }

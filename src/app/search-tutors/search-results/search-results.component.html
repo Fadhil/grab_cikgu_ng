@@ -18,7 +18,6 @@
                 <div class="row">
                     <select class="form-control input-sm" [(ngModel)]="sortBy">
                         <option ngValue="name">Name</option>
-                        <option ngValue="email">Email</option>
                         <option ngValue="age">Age</option>
                         <option [ngValue]="sortByWordLength">City</option>
                     </select>
@@ -46,13 +45,11 @@
               <th style="width: 20%">
                   <mfDefaultSorter by="name">Name</mfDefaultSorter>
               </th>
-              <th style="width: 40%">
-                  <mfDefaultSorter by="email">Email</mfDefaultSorter>
-              </th>
+
               <th style="width: 10%">
                   <mfDefaultSorter by="age">Age</mfDefaultSorter>
               </th>
-              <th style="width: 20%">
+              <th style="width: 30%">
                   <mfDefaultSorter [by]="sortByWordLength">Subjects Taught</mfDefaultSorter>
               </th>
           </tr>
@@ -69,7 +66,7 @@
                   <button (click)="remove(item)" class="btn btn-danger">x</button>
               </td>
               <td>{{item.name}}</td>
-              <td>{{item.email}}</td>
+              <!-- <td>{{item.email}}</td> -->
               <td class="text-right">{{item.age}}</td>
               <td>
                 <ul *ngFor="let subject of item.subjects | splitSubjects as subjects">
