@@ -9,8 +9,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'starter', pathMatch: 'full' },
-      { path: 'starter', component: StarterComponent },
+      { path: '', redirectTo: 'search', pathMatch: 'full' },
     ]//,
     //{ enableTracing: true }   
   )
