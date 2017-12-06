@@ -1,8 +1,11 @@
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
 import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
+import { SearchService } from './shared/services/search.service';
+
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
 import { HeaderComponent } from './shared/components/layouts/header/header.component';
@@ -33,6 +36,7 @@ import { StudentRoutingModule, studentRoutingComponents } from './student/studen
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
 import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
+import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,8 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     TutorLayoutComponent,
     StudentLayoutComponent,
     SimpleLayoutComponent,
+    MainLayoutComponent,
+    MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
 ],
@@ -61,7 +67,7 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     HttpClientModule,
     AdminModule
   ],
-  providers: [AlertService, TutorService, StudentService, AuthenticationService],
+  providers: [AlertService, TutorService, StudentService, AuthenticationService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

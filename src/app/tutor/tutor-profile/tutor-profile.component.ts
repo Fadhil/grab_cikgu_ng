@@ -24,6 +24,7 @@ export class TutorProfileComponent implements OnInit {
     .subscribe(result => {
       this.tutorProfile = result;
     });
+
   }
 
 }

@@ -1,10 +1,11 @@
+import { MainLayoutComponent } from './../shared/layouts/main-layout/main-layout.component';
 import { SimpleLayoutComponent } from './../shared/layouts/simple-layout/simple-layout.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchTutorsComponent } from './search-tutors.component';
 
 const routes: Routes = [
   {
-    path: 'search', component: SimpleLayoutComponent,
+    path: 'search', component: MainLayoutComponent,
     children: [
       {
         path: '', component: SearchTutorsComponent,
