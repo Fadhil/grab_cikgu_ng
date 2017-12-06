@@ -24,6 +24,8 @@ export class TutorProfileComponent implements OnInit {
     .subscribe(result => {
       this.tutorProfile = result;
     });
+
+    $('body').addClass('layout-top-nav ');
   }
 
 }

@@ -1,3 +1,4 @@
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
 import { StudentService } from './shared/services/student.service';
@@ -33,6 +34,7 @@ import { StudentRoutingModule, studentRoutingComponents } from './student/studen
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
 import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
 import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-layout.component';
+import { MainHeaderComponent } from './shared/components/layouts/main-header/main-header.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { SimpleLayoutComponent } from './shared/layouts/simple-layout/simple-lay
     TutorLayoutComponent,
     StudentLayoutComponent,
     SimpleLayoutComponent,
+    MainLayoutComponent,
+    MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
 ],
