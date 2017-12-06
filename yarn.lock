@@ -256,6 +256,10 @@
   dependencies:
     "@types/jquery" "*"
 
+"@types/lodash@^4.14.88":
+  version "4.14.88"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.88.tgz#97eaf2dc668f33ed8e511a5b627035f4ea20b0f5"
+
 "@types/morris.js@^0.5.6":
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/@types/morris.js/-/morris.js-0.5.6.tgz#c9cdfde069a425f6bb3b28b115c51c2f96a04744"
