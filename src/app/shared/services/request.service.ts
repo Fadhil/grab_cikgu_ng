@@ -16,12 +16,20 @@ constructor(
   private http: HttpClient, private alertService: AlertService
 ) { }
 
-createRequest(tutor): Observable<any> {
+createRequest(request): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
-  console.log('Creating Request through api', tutor);
-  return this.http.post(this.requestsUrl, {tutor: tutor, headers: headers});
+  console.log('Creating Request through api', request);
+  return this.http.post(this.requestsUrl, {request: request}, {headers: headers});
+}
+
+getRequests(): Observable<any> {
+  const userToken = localStorage.getItem('currentUserToken');
+  const headers = new HttpHeaders().set('Authorization', userToken);
+
+  console.log('Getting requests through api');
+  return this.http.get(this.requestsUrl, {headers: headers});
 }
 
 /**

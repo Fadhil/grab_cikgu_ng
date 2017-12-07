@@ -5,6 +5,7 @@ import { RequestService } from '../shared/services/request.service';
 import { AlertService } from '../shared/services/index';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 
+
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -12,6 +13,7 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 })
 export class RequestComponent implements OnInit {
   tutor = new Tutor();
+  remarks = '';
   constructor(
     private requestService: RequestService,
     private alertService: AlertService,
@@ -34,13 +36,14 @@ export class RequestComponent implements OnInit {
       });
   }
 
-  createRequest(tutor) {
-    this.requestService.createRequest(tutor)
+  createRequest() {
+    const request = {remarks: this.remarks, tutor_id: this.tutor.id};
+    this.requestService.createRequest(request)
     .subscribe(
       result => {
         console.log('made request', result);
-        this.alertService.success('Request created successfully. Please wait for the system to validate your request.', true);
         this.router.navigate(['/search']);
+        this.alertService.success('Request created successfully. Please wait for the system to validate your request.', true);
 
       },
       error => {

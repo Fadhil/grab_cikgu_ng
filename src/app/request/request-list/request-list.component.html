@@ -1,0 +1,53 @@
+<section class="content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Bordered Table</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered">
+                  <tr>
+                    <th style="width: 10px">Request#</th>
+                    <th>Tutor</th>
+                    <th>Student</th>
+                    <th>Remarks</th>
+                    <th class="text-center">Validate</th>
+                  </tr>
+                  <tr *ngFor="let item of data">
+                        
+                        <td>{{item.id}}</td>
+                        <!-- <td>{{item.email}}</td> -->
+                        <td>{{item.tutor_name}}</td>
+                        <td>
+                            {{item.student_name}}
+                        </td>
+                        <td>
+                            {{item.remarks}}
+                        </td>
+                        <td class='text-center'>
+                        <button (click)="confirmRequest(item)" class="btn btn-primary">Confirm</button>
+                        <button (click)="rejectRequest(item)" class="btn btn-warning">Reject</button>
+                    </td>
+                    </tr>
+                  
+                </table>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                  <li><a href="#">&laquo;</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+         
+          </div>
+          
+        </div>
+        <!-- /.row -->
+    </section>
