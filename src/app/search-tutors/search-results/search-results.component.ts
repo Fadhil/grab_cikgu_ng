@@ -1,9 +1,9 @@
+import { RequestService } from './../../shared/services/request.service';
 import { AlertService } from './../../shared/services/alert.service';
 import { Tutor } from './../../models/tutor';
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../shared/services/search.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
 
 @Component({
   selector: 'app-search-results',
@@ -22,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
+    private requestService: RequestService,
     private alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router
@@ -49,6 +50,21 @@ export class SearchResultsComponent implements OnInit {
       console.log('Failed to get tutors:', error);
       this.alertService.error('Failed to find any Tutors');
     });
+  }
+
+  requestTutor(tutor) {
+    this.requestService.createRequest(tutor)
+      .subscribe(
+        result => {
+          console.log('made request', result);
+          this.alertService.success('Request created successfully. Please wait for the system to validate your request.', true);
+          this.router.navigate(['/search']);
+
+        },
+        error => {
+          this.alertService.error(error.error);
+        }
+      );
   }
 
   public toInt(num: string) {

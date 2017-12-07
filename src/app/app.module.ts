@@ -1,3 +1,4 @@
+import { RequestService } from './shared/services/request.service';
 import { SearchResultsComponent } from './search-tutors/search-results/search-results.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
@@ -75,7 +76,10 @@ import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
     AdminModule,
     DataTableModule
   ],
-  providers: [AlertService, TutorService, StudentService, AuthenticationService, SearchService],
+  providers: [
+    AlertService, TutorService, StudentService, AuthenticationService, SearchService,
+    RequestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
