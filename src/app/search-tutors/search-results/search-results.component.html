@@ -41,17 +41,18 @@
               [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
           <thead>
           <tr>
-              <th style="width: 10%"></th>
+
               <th style="width: 20%">
                   <mfDefaultSorter by="name">Name</mfDefaultSorter>
               </th>
 
               <th style="width: 10%" class="text-center">
-                  <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                  <mfDefaultSorter by="age">Rate/Hour</mfDefaultSorter>
               </th>
               <th style="width: 30%">
                   <mfDefaultSorter [by]="sortByWordLength">Subjects Taught</mfDefaultSorter>
               </th>
+              <th style="width: 20%" class="text-center">Request Tutor</th>
           </tr>
           <tr>
               <th colspan="5">
@@ -62,17 +63,18 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of mf.data">
-              <td>
-                  <button (click)="remove(item)" class="btn btn-danger">x</button>
-              </td>
+
               <td>{{item.name}}</td>
               <!-- <td>{{item.email}}</td> -->
-              <td class="text-center">{{item.age}}</td>
+              <td class="text-center">{{(item.hourly_rate_cents/100) | currency: 'MYR'}}</td>
               <td>
                 <ul *ngFor="let subject of item.subjects | splitSubjects as subjects">
                   <li>{{subject}}</li>
                 </ul>
               </td>
+              <td class='text-center'>
+                <button (click)="requestTutor(item)" class="btn btn-primary"><i class="fa fa-check-square-o"></i></button>
+            </td>
           </tr>
           </tbody>
           <tfoot>
