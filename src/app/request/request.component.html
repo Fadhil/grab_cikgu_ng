@@ -1,0 +1,54 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="container-full">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Make a new request
+          <!-- <small>Preview</small> -->
+        </h1>
+        <!-- <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">Forms</a></li>
+          <li class="active">General Elements</li>
+        </ol> -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+            <br><br>
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Request a Tutor</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="span2" >
+                    <img src="assets/img/user4-128x128.jpg" class="img-circle">
+                    </div>
+                    
+                    <div class="span8">
+                        <h3>{{tutor.name}}</h3>
+                        <h4>Email: {{tutor.email}}</h4>
+                        <h4>Subjects: {{tutor.subjects}}</h4>
+                        <h4>Rate: {{(tutor.hourly_rate_cents/100) | currency: 'MYR'}}</h4>
+                        <!-- <h6><a href="#">More... </a></h6> -->
+                    </div>
+                    <div><textarea class="form-control" rows="3" name="remarks" [(ngModel)]="remarks" placeholder="Remarks (Preferred Schedules, Requirements, etc)"></textarea></div>
+                    
+                    <div class="span2">
+                        <div class="btn-group">
+                            <button (click)="createRequest()" class="btn btn-primary">Request Tutor</button>                    
+                        </div>
+                    </div>
+                
+                  </div>
+            </div>
+            </div>
+        </div>
+        
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->

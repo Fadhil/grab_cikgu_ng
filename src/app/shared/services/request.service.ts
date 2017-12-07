@@ -8,41 +8,29 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AlertService } from './index';
 
 @Injectable()
-export class TutorService {
+export class RequestService {
 apiUrl = environment.apiUrl;
-private tutorsUrl = this.apiUrl + '/api/tutors';
-private tutorUrl = this.apiUrl + '/api/tutor';
+private requestsUrl = this.apiUrl + '/api/requests';
 
 constructor(
   private http: HttpClient, private alertService: AlertService
 ) { }
 
-createTutor(tutor): Observable<any> {
-  console.log('Creating Tutor through api', tutor);
-  return this.http.post(this.tutorsUrl, {tutor: tutor});
-}
-
-getTutorProfile(): Observable<any> {
+createRequest(request): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
-  return this.http.get(this.tutorUrl + '/profile', {headers: headers});
+  console.log('Creating Request through api', request);
+  return this.http.post(this.requestsUrl, {request: request}, {headers: headers});
 }
 
-updateTutorProfile(tutor): Observable<any> {
+getRequests(): Observable<any> {
   const userToken = localStorage.getItem('currentUserToken');
   const headers = new HttpHeaders().set('Authorization', userToken);
 
-  return this.http.put(this.tutorUrl + '/profile', tutor , {headers: headers});
+  console.log('Getting requests through api');
+  return this.http.get(this.requestsUrl, {headers: headers});
 }
-
-getTutor(id): Observable<any> {
-  const userToken = localStorage.getItem('currentUserToken');
-  const headers = new HttpHeaders().set('Authorization', userToken);
-
-  return this.http.get(this.tutorsUrl + '/' + id, {headers: headers});
-}
-
 
 /**
  * Handle Http operation that failed.
