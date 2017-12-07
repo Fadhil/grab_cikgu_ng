@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'requests', component: MainLayoutComponent,
     children: [
       {
-        path: 'new', component: RequestComponent
+        path: 'new/:tutor_id', component: RequestComponent
       }
     ]
    },

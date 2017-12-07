@@ -53,18 +53,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   requestTutor(tutor) {
-    this.requestService.createRequest(tutor)
-      .subscribe(
-        result => {
-          console.log('made request', result);
-          this.alertService.success('Request created successfully. Please wait for the system to validate your request.', true);
-          this.router.navigate(['/search']);
-
-        },
-        error => {
-          this.alertService.error(error.error);
-        }
-      );
+    this.router.navigate(['/requests/new', tutor.id]);
   }
 
   public toInt(num: string) {

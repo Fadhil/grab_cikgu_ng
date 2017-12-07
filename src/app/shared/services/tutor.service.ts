@@ -36,6 +36,12 @@ updateTutorProfile(tutor): Observable<any> {
   return this.http.put(this.tutorUrl + '/profile', tutor , {headers: headers});
 }
 
+getTutor(id): Observable<any> {
+  const userToken = localStorage.getItem('currentUserToken');
+  const headers = new HttpHeaders().set('Authorization', userToken);
+
+  return this.http.get(this.tutorsUrl + '/' + id, {headers: headers});
+}
 
 
 /**
