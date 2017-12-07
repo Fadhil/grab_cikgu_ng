@@ -11,7 +11,7 @@ import { TutorService } from '../../shared/services/tutor.service';
 })
 export class TutorProfileEditComponent implements OnInit {
   tutorProfile = new Tutor();
-
+  hourlyRate = 0;
   constructor(private tutorService: TutorService,
   private alertService: AlertService,
   private router: Router
@@ -32,6 +32,7 @@ export class TutorProfileEditComponent implements OnInit {
   }
 
   saveProfile() {
+    this.tutorProfile.hourly_rate_cents = (this.hourlyRate * 100);
     console.log('saving profile with attrs:', this.tutorProfile);
     this.tutorService.updateTutorProfile(this.tutorProfile)
       .subscribe(result => {

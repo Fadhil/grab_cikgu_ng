@@ -1,7 +1,10 @@
+import { RequestModule } from './request/request.module';
+import { RequestService } from './shared/services/request.service';
 import { SearchResultsComponent } from './search-tutors/search-results/search-results.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchTutorsComponent } from './search-tutors/search-tutors.component';
 import { SearchTutorRoutes } from './search-tutors/search-tutor.routing';
+import { RequestRoutes } from './request/request.routing';
 import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
@@ -70,12 +73,17 @@ import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
     FormsModule,
     TutorRoutingModule,
     StudentRoutingModule,
+    RequestRoutes,
     SearchTutorRoutes,
     HttpClientModule,
     AdminModule,
-    DataTableModule
+    DataTableModule,
+    RequestModule
   ],
-  providers: [AlertService, TutorService, StudentService, AuthenticationService, SearchService],
+  providers: [
+    AlertService, TutorService, StudentService, AuthenticationService, SearchService,
+    RequestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
