@@ -46,7 +46,7 @@
                   <mfDefaultSorter by="name">Name</mfDefaultSorter>
               </th>
 
-              <th style="width: 10%">
+              <th style="width: 10%" class="text-center">
                   <mfDefaultSorter by="age">Age</mfDefaultSorter>
               </th>
               <th style="width: 30%">
@@ -67,7 +67,7 @@
               </td>
               <td>{{item.name}}</td>
               <!-- <td>{{item.email}}</td> -->
-              <td class="text-right">{{item.age}}</td>
+              <td class="text-center">{{item.age}}</td>
               <td>
                 <ul *ngFor="let subject of item.subjects | splitSubjects as subjects">
                   <li>{{subject}}</li>
