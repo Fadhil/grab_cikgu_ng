@@ -27,7 +27,32 @@
                 <div class="form-group">
                     <select id="city" (change)="onCityChange($event.target.value)" class="form-control">
                         <option value="" disabled selected>City</option>
-                        <option *ngFor="let city of cities" value="{{state.id}}">{{state.name}}</option>
+                        <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                  </div>
+              </div>
+           </div>
+        </div>
+        <div class="row">
+          <div class="input-group input-group-lg col-xs-offset-2 col-xs-8">
+              <div class="dropdown">
+                <div class="form-group">
+                    <select id="city" (change)="onCityChange($event.target.value)" class="form-control">
+                        <option value="" disabled selected>Subject</option>
+                        <option *ngFor="let city of cities" value="{{subject.id}}">{{subject.name}}</option>
+                    </select>
+                  </div>
+              </div>
+           </div>
+        </div>
+        <div class="row">
+          <div class="input-group input-group-lg col-xs-offset-2 col-xs-8">
+              <div class="dropdown">
+                <div class="form-group">
+                    <select id="city" (change)="onCityChange($event.target.value)" class="form-control">
+                        <option value="" disabled selected>Rate</option>
+                        <option value="Standard"</option>
+                        <option value="Premium"</option>
                     </select>
                   </div>
               </div>
