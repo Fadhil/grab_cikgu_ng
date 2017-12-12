@@ -18,7 +18,7 @@
                   <input type="text" class="form-control text-center" id="name" name="name" [(ngModel)]="tutorProfile.name" required placeholder="Name">
                   <input type="text" class="form-control text-center" id="ic_no" name="ic_no" [(ngModel)]="tutorProfile.ic_no" required placeholder="IC Number">
                   <input type="text" class="form-control text-center" id="occupation" name="occupation" [(ngModel)]="tutorProfile.occupation" placeholder="Occupation">
-                
+
                   <ul class="list-group list-group-unbordered">
                       <li class="list-group-item">
                         <b>Gender</b> <span class="pull-right"><div class="form-group">
@@ -29,39 +29,38 @@
                         </div></span>
                       </li>
                       <li class="list-group-item">
-                          <b>Age</b> <span class="pull-right">       
+                          <b>Age</b> <span class="pull-right">
                             <input type="number" class="form-control text-right" id="age" name="age" [(ngModel)]="tutorProfile.age" placeholder="Age">
                           </span>
                       </li>
                       <li class="list-group-item list-group-address-item">
-                          <b>Address</b> 
+                          <b>Address</b>
                           <div><textarea class="form-control" rows="3" placeholder="Address" [(ngModel)]="tutorProfile.address" placeholder="Address"></textarea></div>
                       </li>
                       <li class="list-group-item">
-                          <b>State</b> 
-                          <span class="pull-right">       
-                            <select id="state" name="state" class="form-control" [(ngModel)]="tutorProfile.state">
-                              <option value="Johor">Johor</option>
-                              <option value="Kedah">Kedah</option>
-                              <option value="Kelantan">Kelantan</option>
-                              <option value="Kuala Lumpur">Kuala Lumpur</option>
-                              <option value="Labuan">Labuan</option>
-                              <option value="Melaka">Melaka</option>
-                              <option value="Negeri Sembilan">Negeri Sembilan</option>
-                              <option value="Pahang">Pahang</option>
-                              <option value="Perak">Perak</option>
-                              <option value="Perlis">Perlis</option>
-                              <option value="Pulau Pinang">Pulau Pinang</option>
-                              <option value="Putrajaya">Putrajaya</option>
-                              <option value="Sabah">Sabah</option>
-                              <option value="Sarawak">Sarawak</option>
-                              <option value="Selangor">Selangor</option>
-                              <option value="Terengganu">Terengganu</option>
-                            </select>
+                          <b>State</b>
+                          <span class="pull-right">
+                            <div class="form-group">
+                              <select id="state" [(ngModel)]="tutorProfile.state" (change)="onStateChange($event.target.value)" class="form-control">
+                                  <option value="" disabled selected>State</option>
+                                  <option *ngFor="let state of states" value="{{state.name}}">{{state.name}}</option>
+                              </select>
+                            </div>
                           </span>
                       </li>
                       <li class="list-group-item">
-                          <b>Phone Number</b> <span class="pull-right">       
+                          <b>City</b>
+                          <span class="pull-right">
+                            <div class="form-group">
+                              <select id="city" [(ngModel)]="tutorProfile.city" class="form-control">
+                                  <option value="" disabled selected>City</option>
+                                  <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
+                              </select>
+                            </div>
+                          </span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>Phone Number</b> <span class="pull-right">
                               <input type="text" class="form-control text-right" id="phone_no" name="phone_no" [(ngModel)]="tutorProfile.phone_no" required placeholder="Phone Number">
                             </span>
                       </li>
@@ -79,7 +78,7 @@
                       <strong><i class="fa fa-graduation-cap margin-r-5"></i>Education</strong>
 
                       <p class="text-muted">
-                          <input type="text" class="form-control text-right" id="qualification" name="qualification" [(ngModel)]="tutorProfile.qualification" required placeholder="Education"> 
+                          <input type="text" class="form-control text-right" id="qualification" name="qualification" [(ngModel)]="tutorProfile.qualification" required placeholder="Education">
                       </p>
 
                       <!-- <hr> -->
@@ -87,26 +86,26 @@
                     <hr>
                     <div>
                         <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
-  
+
                         <p class="text-muted">
                            <input type="text" class="form-control text-right" id="subjects" name="subjects" [(ngModel)]="tutorProfile.subjects" required placeholder="Teaching Subjects">
                         </p>
-  
-                     
+
+
                       </div>
                       <hr>
                       <div>
                           <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour</strong>
-    
+
                           <p class="text-muted">
                              <input type="text" class="form-control text-right" id="subjects" name="subjects" [(ngModel)]="hourlyRate" required placeholder="Teaching Subjects">
                           </p>
-    
-                       
+
+
                         </div>
                   </div>
                 </div>
-        
+
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 

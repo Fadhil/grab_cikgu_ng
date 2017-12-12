@@ -22,5 +22,6 @@ export class Tutor {
   area_covered: string;
   address: string;
   state: string;
+  city: string;
   achievement: string;
 }
