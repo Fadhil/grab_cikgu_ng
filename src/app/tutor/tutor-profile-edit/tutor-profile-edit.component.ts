@@ -33,17 +33,6 @@ export class TutorProfileEditComponent implements OnInit {
 
   ngOnInit() {
     // Hides tooltip when switching between save/edit
-    $('.tooltip').hide();
-    this.tutorService.getTutorProfile()
-    .subscribe(result => {
-      this.tutorProfile = result;
-    });
-
-    this.locationService.getStates()
-    .subscribe(results => {
-      this.states = results;
-    })
-
     this.subjects[0] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
     this.subjects[1] = {name: 'Bahasa Inggeris', levels: [false, false, false,false]};
     this.subjects[2] = {name: 'Bahasa Cina', levels: [false, false, false,false]};
@@ -62,6 +51,17 @@ export class TutorProfileEditComponent implements OnInit {
     this.subjects[15] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
     this.subjects[16] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
 
+    $('.tooltip').hide();
+    this.tutorService.getTutorProfile()
+    .subscribe(result => {
+      this.tutorProfile = result;
+      this.updateSelectedSubjects(this.tutorProfile.subjects);
+    });
+
+    this.locationService.getStates()
+    .subscribe(results => {
+      this.states = results;
+    })
   }
 
   display_change(newValue) {
@@ -102,7 +102,7 @@ export class TutorProfileEditComponent implements OnInit {
       }
       return val;
     }, '');
-    sString = _.trimEnd(sString, ',');
+    sString = _.trimEnd(sString, ', ');
     return sString;
   }
 
@@ -121,5 +121,29 @@ export class TutorProfileEditComponent implements OnInit {
       }
     }
     return sName;
+  }
+
+  checkIfSelected(subject, id) {
+    return subject.levels[id];
+  }
+
+  updateSelectedSubjects(subjects) {
+    let that = this;
+    let levelNames = [
+      '(Pri 1 - 3)', '(Pri 4 - 5)', '(Form 1 - 3)', '(Form 4 - 5)'
+    ]
+    let splitSubjects = _.split(subjects, ', ');
+    let subjectsArray = _.map(splitSubjects, function(x){
+      let rep = _.replace(x, '(', '=(');
+      return _.split(rep, ' =');
+    });
+
+    _.forEach(subjectsArray, function(x){
+      let subject = _.find(that.subjects, { 'name': x[0]});
+      let levelIndex = levelNames.indexOf(x[1]);
+      subject.levels[levelIndex] = true;
+    });
+
+
   }
 }
