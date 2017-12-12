@@ -19,10 +19,10 @@ h1 {
     font-weight: 900;
     letter-spacing: 2px;
     font-size:4rem;
-    color:#56878c;
+    color:#000000;
 }
 .lead {
-    color:#DDCCEE;
+    color:#000000;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -33,7 +33,7 @@ h1 {
   width: 100%;
   min-height:100%;
   background-color:#110022;
-  background: url("/assets/img/bg-masthead.jpg") no-repeat center center;
+  background: url("/assets/img/desk-teacher.jpg") no-repeat center center;
   color:#eee;
   overflow:hidden;
 }
@@ -46,4 +46,3 @@ h1 {
 .v-center {
   margin-top:7%;
 }
-
