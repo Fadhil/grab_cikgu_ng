@@ -17,6 +17,8 @@ export class SearchTutorsComponent implements OnInit {
   cities: City[] = [];
   state = '';
   tutors = [];
+  tutorProfile = new Tutor();
+  
   constructor(
     private router: Router,
     private searchService: SearchService,
