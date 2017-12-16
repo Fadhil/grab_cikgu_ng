@@ -1,54 +1,51 @@
 <div class="container-full">
-    
+
   <div class="row">
-  
+
     <div class="col-lg-12 text-center v-center">
-      
+
       <h1>Find a tutor near you</h1>
       <p class="lead">Pick a state ...</p>
-      
+
       <br>
-      
       <form class="col-lg-12">
-        <div class="input-group input-group-lg col-xs-offset-2 col-xs-8">
-            <div class="dropdown">
-              <div class="form-group">
-                  <select id="state" (change)="onChange($event.target.value)" class="form-control">
-                      <option value="" disabled selected>State</option>
-                      <option value="Johor">Johor</option>
-                      <option value="Kedah">Kedah</option>
-                      <option value="Kelantan">Kelantan</option>
-                      <option value="Kuala Lumpur">Kuala Lumpur</option>
-                      <option value="Labuan">Labuan</option>
-                      <option value="Melaka">Melaka</option>
-                      <option value="Negeri Sembilan">Negeri Sembilan</option>
-                      <option value="Pahang">Pahang</option>
-                      <option value="Perak">Perak</option>
-                      <option value="Perlis">Perlis</option>
-                      <option value="Pulau Pinang">Pulau Pinang</option>
-                      <option value="Putrajaya">Putrajaya</option>
-                      <option value="Sabah">Sabah</option>
-                      <option value="Sarawak">Sarawak</option>
-                      <option value="Selangor">Selangor</option>
-                      <option value="Terengganu">Terengganu</option>
-                  </select>
-                </div>
-            </div>
-         </div>
+        <div class="row">
+          <div class="input-group input-group-lg col-xs-offset-2 col-xs-8">
+              <div class="dropdown">
+                <div class="form-group">
+                    <select id="state" (change)="onStateChange($event.target.value)" class="form-control">
+                        <option value="" disabled selected>State</option>
+                        <option *ngFor="let state of states" value="{{state.id}}">{{state.name}}</option>
+                    </select>
+                  </div>
+              </div>
+           </div>
+        </div>
+        <div class="row">
+          <div class="input-group input-group-lg col-xs-offset-2 col-xs-8">
+              <div class="dropdown">
+                <div class="form-group">
+                    <select id="city" (change)="onCityChange($event.target.value)" class="form-control">
+                        <option value="" disabled selected>City</option>
+                        <option *ngFor="let city of cities" value="{{state.id}}">{{state.name}}</option>
+                    </select>
+                  </div>
+              </div>
+           </div>
+        </div>
       </form>
     </div>
-    
-  </div> 
+
+  </div>
 
     <div class="row">
-  
+
     <div class="col-lg-12 text-center v-center" style="font-size:39pt;">
       <a href="#"><i class="icon-google-plus"></i></a> <a href="#"><i class="icon-facebook"></i></a>  <a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-github"></i></a> <a href="#"><i class="icon-pinterest"></i></a>
     </div>
-  
+
   </div>
 
 <br><br><br><br><br>
 
-</div> 
-  
+</div>

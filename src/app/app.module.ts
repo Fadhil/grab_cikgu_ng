@@ -9,6 +9,7 @@ import { StudentService } from './shared/services/student.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TutorService } from './shared/services/tutor.service';
 import { SearchService } from './shared/services/search.service';
+import { LocationService } from './shared/services/location.service';
 
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
@@ -82,7 +83,7 @@ import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
-    RequestService
+    RequestService, LocationService
   ],
   bootstrap: [AppComponent]
 })
