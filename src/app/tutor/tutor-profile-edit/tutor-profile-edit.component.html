@@ -98,7 +98,10 @@
                           <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour</strong>
 
                           <p class="text-muted">
-                             <input type="text" class="form-control text-right" id="subjects" name="subjects" [(ngModel)]="hourlyRate" required placeholder="Teaching Subjects">
+                             <select id="hourlyRate" name="hourlyRate" class="form-control" [(ngModel)]="tutorProfile.hourlyRate">
+                              <option value="standard">Standard</option>
+                              <option value="premium">Premium</option>
+                            </select>
                           </p>
 
 
