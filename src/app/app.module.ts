@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { EqualValidator } from './shared/directive/equal-validator.directive';  // import validator
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { StarterComponent } from './starter/starter.component';
@@ -46,6 +46,16 @@ import { DataTableModule } from 'angular2-datatable';
 import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
 import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from '../environments/environment';
+import { FirebaseService } from './shared/services/firebase.service';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +76,8 @@ import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
     tutorRoutingComponents,
     studentRoutingComponents,
     DataFilterPipe,
-    SplitSubjectsPipe
+    SplitSubjectsPipe,
+    EqualValidator
 ],
   imports: [
     BrowserModule,
@@ -79,11 +90,14 @@ import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
     HttpClientModule,
     AdminModule,
     DataTableModule,
-    RequestModule
+    RequestModule,
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
-    RequestService, LocationService
+    RequestService, LocationService, FirebaseService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { AlertService } from './../../shared/services/alert.service';
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FirebaseService } from '../../shared/services/firebase.service';
 
 @Component({
   selector: 'app-tutor-login',
@@ -12,10 +13,17 @@ export class TutorLoginComponent implements OnInit {
   email = '';
   password = '';
   token = '';
+  fbAuth: any;
+
+
   constructor(
-    private authenticationService: AuthenticationService, 
+    private authenticationService: AuthenticationService,
     private alertService: AlertService,
-    private router: Router) { }
+    private router: Router,
+    public firebaseService: FirebaseService)
+    {
+      this.fbAuth = this.firebaseService.sfAuth.auth;
+    }
 
   ngOnInit() {
   }
@@ -34,6 +42,19 @@ export class TutorLoginComponent implements OnInit {
           this.alertService.error(error.error);
         }
       );
+  }
+
+  login2(): void {
+    this.fbAuth.signInWithEmailAndPassword(this.email, this.password)
+      .then( firebaseUser => {
+        console.log(firebaseUser);
+        localStorage.setItem('currentUserToken', firebaseUser.uid);
+        this.alertService.success('Successfully logged in.', true);
+        this.router.navigate(['/tutor/profile']);
+      })
+      .catch( error => {
+        this.alertService.error(error);
+      })
   }
 
   logout(): void {

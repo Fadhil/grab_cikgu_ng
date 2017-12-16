@@ -16,7 +16,6 @@ import { TutorService } from '../shared/services/tutor.service';
 import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 import { TutorProfileEditComponent } from './tutor-profile-edit/tutor-profile-edit.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

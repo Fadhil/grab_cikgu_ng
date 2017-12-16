@@ -13,14 +13,14 @@ describe('grabcikgu login page', function() {
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/tutor/profile');
-    expect(element(by.css('.profile-username')).getText()).toBe("Hazim");
+    expect(element(by.css('.profile-username')).getText()).toBe('Hazim');
   });
 
   it('should not allow unauthorized access', function() {
     element(by.id('email')).sendKeys('hazim@p2digital.com');
     element(by.id('password')).sendKeys('nopass');
     element(by.id('login-submit')).click();
-    expect(element(by.css('.alert')).getText()).toContain("Failed to authenticate");
+    expect(element(by.css('.alert')).getText()).toContain('Failed to authenticate');
   });
 
-})
+});

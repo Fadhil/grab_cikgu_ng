@@ -1,8 +1,9 @@
 export class Tutor {
-  id: number;
+  id: string;
   name: string;
   email: string;
   password: string;
+  confirm_password: string;
   gender: string;
   age: number;
   occupation: string;
@@ -24,4 +25,5 @@ export class Tutor {
   state: string;
   city: string;
   achievement: string;
+  status: string;
 }

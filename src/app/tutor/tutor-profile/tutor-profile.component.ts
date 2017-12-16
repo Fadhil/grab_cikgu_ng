@@ -2,6 +2,7 @@ import { TutorService } from './../../shared/services/tutor.service';
 import { AlertService } from './../../shared/services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Tutor } from '../../models/tutor';
+import { FirebaseService } from '../../shared/services/firebase.service';
 
 
 @Component({
@@ -11,21 +12,26 @@ import { Tutor } from '../../models/tutor';
 })
 export class TutorProfileComponent implements OnInit {
   tutorProfile = new Tutor();
+  s: any;
+
+
 
   constructor(
     private alertService: AlertService,
-    private tutorService: TutorService
+    private tutorService: TutorService,
+    public firebaseService: FirebaseService
   ) { }
 
   ngOnInit() {
     // Hides tooltip when switching between save/edit
+    this.tutorProfile.id = localStorage.getItem('currentUserToken');
     $('.tooltip').hide();
-    this.tutorService.getTutorProfile()
-    .subscribe(result => {
-      console.log('got tutor', result);
-      this.tutorProfile = result;
-    });
 
+    this.s = this.firebaseService.getTutor(this.tutorProfile.id)
+      .subscribe(data => {
+        this.tutorProfile = data;
+        console.log(this.tutorProfile);
+      });
   }
 
 }
