@@ -15,10 +15,11 @@ import { City } from '../models/city';
 export class SearchTutorsComponent implements OnInit {
   states: State[] = [];
   cities: City[] = [];
-  state = '';
-  tutors = [];
-  tutorProfile = new Tutor();
-  
+  selectedState = '';
+  selectedCity = '';
+  selectedSubject = '';
+  selectedRate = '';
+
   constructor(
     private router: Router,
     private searchService: SearchService,
@@ -40,7 +41,25 @@ export class SearchTutorsComponent implements OnInit {
     // this.router.navigate(['/search/results'], {queryParams: {state: state}});
   }
 
-  onStateChange(state_id) {
-    console.log("got state:", state_id);
+  onStateChange(stateName) {
+    this.locationService.getCities(stateName)
+      .subscribe(result => {
+        this.cities = result;
+        this.selectedState = stateName;
+      }, error => {
+         this.alertService.error('Failed to find cities for ' + stateName);
+      });
+  }
+
+  onCityChange(cityName){
+    this.selectedCity = cityName;
+  }
+
+  onSubjectChange(subjectName){
+    this.selectedSubject = subjectName;
+  }
+
+  search() {
+    console.log ("thsi is : ", this);
   }
 }

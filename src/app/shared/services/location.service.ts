@@ -486,4 +486,9 @@ export class LocationService {
     return of(cities);
   }
 
+  getCityId(cityName): number {
+    let city = _.find(this.CITIES, ['name', cityName])
+
+    return city.id;
+  }
 }
