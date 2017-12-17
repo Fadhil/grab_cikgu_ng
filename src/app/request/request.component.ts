@@ -17,7 +17,8 @@ export class RequestComponent implements OnInit {
   constructor(
     private requestService: RequestService,
     private alertService: AlertService,
-    private router: Router, private route: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private tutorService: TutorService
   ) { }
 

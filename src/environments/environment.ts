@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://gc-api.flexcility.com'
+  apiUrl: 'http://localhost:4000'
 };

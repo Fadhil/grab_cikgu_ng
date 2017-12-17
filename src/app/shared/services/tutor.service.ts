@@ -14,7 +14,8 @@ private tutorsUrl = this.apiUrl + '/api/tutors';
 private tutorUrl = this.apiUrl + '/api/tutor';
 
 constructor(
-  private http: HttpClient, private alertService: AlertService
+  private http: HttpClient,
+  private alertService: AlertService
 ) { }
 
 createTutor(tutor): Observable<any> {

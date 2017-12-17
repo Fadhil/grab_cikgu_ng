@@ -2,6 +2,7 @@ import { Tutor } from './../models/tutor';
 import { AlertService } from './../shared/services/alert.service';
 import { SearchService } from './../shared/services/search.service';
 import { LocationService } from './../shared/services/location.service';
+import { SubjectService } from './../shared/services/subject.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { State } from '../models/state';
@@ -16,7 +17,7 @@ import { Subject } from '../models/subject';
 export class SearchTutorsComponent implements OnInit {
   states: State[] = [];
   cities: City[] = [];
-  subjects: Subject[] = [{id: 1, name: "testt", level: "qwerty"}];
+  subjects: Subject[] = [];
 
   selectedState = '';
   selectedCity = '';
@@ -27,7 +28,8 @@ export class SearchTutorsComponent implements OnInit {
     private router: Router,
     private searchService: SearchService,
     private locationService: LocationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private subjectService: SubjectService
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,15 @@ export class SearchTutorsComponent implements OnInit {
           this.states = results;
         }
       );
+
+      this.subjectService.getSubjects()
+      .subscribe(
+        results => {
+          console.log('okk');
+          this.subjects = results.data;
+        }
+      )
+
   }
 
   onChange(state) {
