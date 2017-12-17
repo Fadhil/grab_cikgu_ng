@@ -7,6 +7,7 @@ import { LocationService } from '../../shared/services/location.service';
 import { State } from '../../models/state';
 import { City } from '../../models/city';
 import * as _ from 'lodash';
+import { FirebaseService } from '../../shared/services/firebase.service';
 declare var $:JQueryStatic;
 
 @Component({
@@ -18,50 +19,80 @@ export class TutorProfileEditComponent implements OnInit {
   states: State[] = [];
   cities: City[] = [];
   tutorProfile = new Tutor();
+
   hourlyRate = 0;
   anArray = [false, false];
   subjects = [];
-
+  avatar: string;
+  tutor_list_observable: any;
 
 
   constructor(private tutorService: TutorService,
   private alertService: AlertService,
   private locationService: LocationService,
-  private router: Router
+  private router: Router,
+  public firebaseService: FirebaseService,
   ) {
+    this.resetSubjects();
+  }
+
+  resetSubjects(){
+    this.tutorProfile.subjects = [];
+    this.tutorProfile.subjects[0] = {name: 'Bahasa Malaysia', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[1] = {name: 'Bahasa Inggeris', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[2] = {name: 'Bahasa Cina', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[3] = {name: 'Mathematics', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[4] = {name: 'Science', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[5] = {name: 'Geography', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[6] = {name: 'History', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[7] = {name: 'Accounts', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[8] = {name: 'Economics', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[9] = {name: 'Business', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[10] = {name: 'Biology', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[11] = {name: 'Physics', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[12] = {name: 'Chemistry', levels: [false, false, false, false]};
+    this.tutorProfile.subjects[13] = {name: 'Add Math', levels: [false, false, false, false]};
   }
 
   ngOnInit() {
     // Hides tooltip when switching between save/edit
-    this.subjects[0] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
-    this.subjects[1] = {name: 'Bahasa Inggeris', levels: [false, false, false,false]};
-    this.subjects[2] = {name: 'Bahasa Cina', levels: [false, false, false,false]};
-    this.subjects[3] = {name: 'Mathematics', levels: [false, false, false,false]};
-    this.subjects[4] = {name: 'Science', levels: [false, false, false,false]};
-    this.subjects[5] = {name: 'Geography', levels: [false, false, false,false]};
-    this.subjects[6] = {name: 'History', levels: [false, false, false,false]};
-    this.subjects[7] = {name: 'Accounts', levels: [false, false, false,false]};
-    this.subjects[8] = {name: 'Economics', levels: [false, false, false,false]};
-    this.subjects[9] = {name: 'Business', levels: [false, false, false,false]};
-    this.subjects[10] = {name: 'Biology', levels: [false, false, false,false]};
-    this.subjects[11] = {name: 'Physics', levels: [false, false, false,false]};
-    this.subjects[12] = {name: 'Chemistry', levels: [false, false, false,false]};
-    this.subjects[13] = {name: 'Add Math', levels: [false, false, false,false]};
-    this.subjects[14] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
-    this.subjects[15] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
-    this.subjects[16] = {name: 'Bahasa Malaysia', levels: [false, false, false,false]};
+
+
 
     $('.tooltip').hide();
-    this.tutorService.getTutorProfile()
-    .subscribe(result => {
-      this.tutorProfile = result;
-      this.updateSelectedSubjects(this.tutorProfile.subjects);
-    });
+    // this.tutorService.getTutorProfile()
+    // .subscribe(result => {
+    //   this.tutorProfile = result;
+    //   this.updateSelectedSubjects(this.tutorProfile.subjects);
+    // });
 
     this.locationService.getStates()
     .subscribe(results => {
       this.states = results;
-    })
+    });
+
+    this.tutorProfile.id = localStorage.getItem('currentUserToken');
+
+    this.avatar = 'assets/img/avatar5.png';
+
+    this.tutor_list_observable = this.firebaseService.getTutor(this.tutorProfile.id)
+      .subscribe(data => {
+        this.tutorProfile = data;
+        const d = new Date();
+        const n = d.getFullYear();
+        this.tutorProfile.age = n - this.tutorProfile.byear;
+        console.log(this.tutorProfile);
+        if (!this.tutorProfile.subjects) {
+          this.resetSubjects();
+        }
+
+        if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
+          this.avatar = 'assets/img/avatar2.png';
+        }
+
+        this.onStateChange(this.tutorProfile.state);
+
+      });
   }
 
   display_change(newValue) {
@@ -74,7 +105,6 @@ export class TutorProfileEditComponent implements OnInit {
     console.log('saving profile with attrs:', this.tutorProfile);
     this.tutorService.updateTutorProfile(this.tutorProfile)
       .subscribe(result => {
-
         this.router.navigateByUrl('/tutor/profile');
         this.alertService.success('Successfully Updated Profile');
       },
@@ -82,6 +112,22 @@ export class TutorProfileEditComponent implements OnInit {
         console.log('Failed to update profile:', error);
         this.alertService.error('Failed to Update Profile');
       });
+  }
+
+  saveProfile2() {
+    // this.tutorProfile.subjects = null;
+    // this.tutorProfile.subjects = this.subjects;
+    // console.log(this.subjects);
+    let c = this.firebaseService.addTutor(this.tutorProfile)
+      .then(result => {
+        this.router.navigateByUrl('/tutor/profile');
+        this.alertService.success('Successfully Updated Profile');
+      })
+      .catch(error => {
+        // this.router.navigateByUrl('/tutor/profile');
+        this.alertService.error(error);
+      });
+
   }
 
   onStateChange(state) {

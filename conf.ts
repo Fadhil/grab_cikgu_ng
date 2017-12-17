@@ -1,3 +1,4 @@
+
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['./e2e/**/*-spec.ts'],
@@ -18,9 +19,9 @@ exports.config = {
      // browser.ignoreSynchronization = true;
      // browser.manage().window().maximize();
      // browser.manage().timeouts().implicitlyWait(5000);
-     const Faker = require('faker');
-     browser.params.randomName = Faker.name.findName();
-     browser.params.randomEmail = Faker.internet.email();
+     // const Faker = require('faker');
+     // browser.params.randomName = Faker.name.findName();
+     // browser.params.randomEmail = Faker.internet.email();
    },
   onCleanUp: () => {
     // I need to figure out how to clean up the firebase user database later

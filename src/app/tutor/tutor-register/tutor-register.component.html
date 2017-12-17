@@ -37,8 +37,8 @@
             <div class="form-group">
               <select name="gender" id="gender" tabindex="5" class="form-control" [(ngModel)]="tutor.gender" #gender="ngModel">
                 <option value="none">Please select gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-xs-4">
                       Month
-                      <select name="day" id="day" tabindex="7" class="form-control" [(ngModel)]="tutor.bmonth" #bday="ngModel">
+                      <select name="month" id="month" tabindex="7" class="form-control" [(ngModel)]="tutor.bmonth" #bday="ngModel">
                         <option *ngFor="let n of months">
                           {{n}}
                         </option>
@@ -91,27 +91,27 @@
                 </div>
                 <div class="col-xs-10">
                   <div class="col-xs-6">
-                    <input type="string" name="city" id="city" placeholder="City" [(ngModel)]="tutor.city" class="form-control">
+                    <select id="state" name="state" [(ngModel)]="tutor.state" (change)="onStateChange($event.target.value)" class="form-control" tabindex="10">
+                        <option value="select" disabled>Please select state</option>
+                        <option *ngFor="let state of states" value="{{state.name}}">{{state.name}}</option>
+                    </select>
                   </div>
                   <div class="col-xs-6">
-                    <select id="state" name="state" class="form-control" [(ngModel)]="tutor.state" class="form-control">
-                      <option value="select">Select State</option>
-                      <option value="Selangor">Selangor</option>
-                      <option value="N. Sembilan">N. Sembilan</option>
-                      <option value="Melaka">Melaka</option>
-                      <option value="Johor">Johor</option>
+                    <select id="city" name="city" [(ngModel)]="tutor.city" class="form-control" tabindex="11">
+                        <option value="">Please select city</option>
+                        <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <input type="string" name="license" id="license" placeholder="Tutor License No" [(ngModel)]="tutor.tutor_license_no" class="form-control">
+              <input type="string" name="license" id="license" placeholder="Tutor License No" [(ngModel)]="tutor.tutor_license_no" class="form-control" tabindex="12">
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                  <input type="submit" [disabled]="f.invalid" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                  <input type="submit" [disabled]="f.invalid" name="register-submit" id="register-submit" tabindex="13" class="form-control btn btn-register" value="Register Now">
                 </div>
               </div>
             </div>

@@ -31,7 +31,7 @@ export class FirebaseService {
   }
 
   addTutor(tutor): any {
-    this.db.object('/tutors/'+ tutor.id).set(tutor);
+    return this.db.object('/tutors/'+ tutor.id).set(tutor);
   }
 
   getTutor(key): any {

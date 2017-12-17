@@ -6,6 +6,7 @@ export class Tutor {
   confirm_password: string;
   gender: string;
   age: number;
+  byear: number;
   occupation: string;
   ic_no: string;
   tutor_license_no: string;
@@ -15,7 +16,7 @@ export class Tutor {
   hourly_rate_cents: number;
   experience: string;
   description: string;
-  subjects: string;
+  subjects: any;
   bank_name: string;
   bank_acc_no: string;
   bank_acc_name: string;

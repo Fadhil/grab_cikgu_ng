@@ -12,9 +12,8 @@ import { FirebaseService } from '../../shared/services/firebase.service';
 })
 export class TutorProfileComponent implements OnInit {
   tutorProfile = new Tutor();
-  s: any;
-
-
+  tutor_list_observable: any;
+  avatar: string;
 
   constructor(
     private alertService: AlertService,
@@ -27,10 +26,20 @@ export class TutorProfileComponent implements OnInit {
     this.tutorProfile.id = localStorage.getItem('currentUserToken');
     $('.tooltip').hide();
 
-    this.s = this.firebaseService.getTutor(this.tutorProfile.id)
+    // Calculate tutor age based on birth year
+    this.avatar = 'assets/img/avatar5.png';
+
+    this.tutor_list_observable = this.firebaseService.getTutor(this.tutorProfile.id)
       .subscribe(data => {
         this.tutorProfile = data;
-        console.log(this.tutorProfile);
+        const d = new Date();
+        const n = d.getFullYear();
+        this.tutorProfile.age = n - this.tutorProfile.byear;
+
+        if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
+          this.avatar = 'assets/img/avatar2.png';
+        }
+
       });
   }
 
