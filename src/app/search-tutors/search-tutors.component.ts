@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { State } from '../models/state';
 import { City } from '../models/city';
+import { Subject } from '../models/subject';
 
 @Component({
   selector: 'app-search-tutors',
@@ -15,6 +16,8 @@ import { City } from '../models/city';
 export class SearchTutorsComponent implements OnInit {
   states: State[] = [];
   cities: City[] = [];
+  subjects: Subject[] = [{id: 1, name: "testt", level: "qwerty"}];
+
   selectedState = '';
   selectedCity = '';
   selectedSubject = '';
