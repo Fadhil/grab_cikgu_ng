@@ -32,11 +32,10 @@ export class TutorLoginComponent implements OnInit {
     this.authenticationService.login(this.email, this.password)
       .subscribe(
         result => {
-          console.log("authenticating", result);
+          console.log("RESULT authenticating", result);
           localStorage.setItem('currentUserToken', result.data.token);
-          this.alertService.success('Successfully logged in.', true);
           this.router.navigate(['/tutor/profile']);
-
+          this.alertService.success('Successfully logged in.', true);
         },
         error => {
           this.alertService.error(error.error);
@@ -47,13 +46,14 @@ export class TutorLoginComponent implements OnInit {
   login2(): void {
     this.fbAuth.signInWithEmailAndPassword(this.email, this.password)
       .then( firebaseUser => {
-        console.log(firebaseUser);
+        console.log("RESULT: " + firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
-        this.alertService.success('Successfully logged in.', true);
+
         this.router.navigate(['/tutor/profile']);
+        this.alertService.success('Successfully logged in.', false);
       })
       .catch( error => {
-        this.alertService.error(error);
+        this.alertService.error(error, true);
       });
   }
 
