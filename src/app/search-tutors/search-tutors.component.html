@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <select id="subject" (change)="onSubjectChange($event.target.value)" class="form-control">
                         <option value="" disabled selected><strong>Subject</strong></option>
-                        <option *ngFor="let subject of subjects" value="{{subject.name}}">{{subject.name}}:{{subject.level}}</option>
+                        <option *ngFor="let subject of subjects" value="{{subject.name}}">{{subject.name}} : {{subject.level}}</option>
 
 
                     </select>
@@ -57,18 +57,17 @@
           <div class="input-group input-group-lg col-xs-offset-2 col-xs-4">
               <div class="dropdown">
                 <div class="form-group">
-                    <select id="rate" class="form-control">
+                    <select id="rate" (change)="onRateChange($event.target.value)" class="form-control">
                         <option value="" disabled selected>Rate</option>
-                        <option value="standard">Standard</option>
-                        <option value="premium">Premium</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Premium">Premium</option>
                     </select>
                   </div>
               </div>
            </div>
         </div>
         <br>
-        <button type="submit" name="search" (click)="search()" class="btn btn-primary">Search
-                </button>
+        <button type="submit" name="search" (click)="search()" class="btn btn-primary">Search</button>
       </form>
     </div>
 

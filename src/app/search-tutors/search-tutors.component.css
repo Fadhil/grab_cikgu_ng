@@ -4,29 +4,29 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
-    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-line-height:1em;
-text-align:center;
-paddding:0.5em;
+  text-transform: uppercase;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height:1em;
+  text-align:center;
+  paddding:0.5em;
   font-size:80px;
   color:#DDCCEE;
 }
 h1 {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-family: "Georgia";
-    letter-spacing: 2px;
-    font-size:4rem;
-    color:#000000;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: "Georgia";
+  letter-spacing: 2px;
+  font-size:4rem;
+  color:#000000;
 }
 .lead {
-    color:#FFFFFF;
-    font-family: "Helvetica";
-    font-weight: 600;
-    margin-bottom: 0;
+  color:#FFFFFF;
+  font-family: "Helvetica";
+  font-weight: 600;
+  margin-bottom: 0;
 }
 
 

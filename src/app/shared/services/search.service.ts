@@ -12,8 +12,14 @@ export class SearchService {
   apiUrl = environment.apiUrl;
   private tutorsUrl = this.apiUrl + '/api/tutors';
   private tutorUrl = this.apiUrl + '/api/tutor';
+  private searchUrl = this.apiUrl + '/api/search';
+
+  public data = {};
+
+
   constructor(
-    private http: HttpClient, private alertService: AlertService
+    private http: HttpClient,
+    private alertService: AlertService
   ) { }
 
   getTutors(state): Observable<any> {
@@ -21,4 +27,21 @@ export class SearchService {
     params = params.append('state', state);
     return this.http.get(this.tutorsUrl, {params: params});
   }
+
+  findTutor(searchParams): Observable<any> {
+    
+    console.log('searchurl - searchparams', searchParams);
+    return this.http.post(this.searchUrl, searchParams);
+  }
+
+  saveResults(results) {
+    this.data = results.data;
+  }
+
+  getResults() {
+    console.log('getresults thisdata', this.data);
+    return this.data;
+  }
+
+
 }

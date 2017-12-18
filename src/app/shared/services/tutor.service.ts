@@ -12,6 +12,7 @@ export class TutorService {
 apiUrl = environment.apiUrl;
 private tutorsUrl = this.apiUrl + '/api/tutors';
 private tutorUrl = this.apiUrl + '/api/tutor';
+private searchUrl = this.apiUrl + '/api/search';
 
 constructor(
   private http: HttpClient,

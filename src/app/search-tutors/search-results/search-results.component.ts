@@ -35,6 +35,9 @@ export class SearchResultsComponent implements OnInit {
         this.state = params['state'];
         this.getResults();
     });
+
+    let results = this.searchService.getResults();
+    console.log('got resultss', results);
   }
 
   getResults() {

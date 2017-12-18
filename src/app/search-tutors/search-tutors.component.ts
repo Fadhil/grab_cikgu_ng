@@ -73,7 +73,26 @@ export class SearchTutorsComponent implements OnInit {
     this.selectedSubject = subjectName;
   }
 
-  search() {
-    console.log ("thsi is : ", this);
+  onRateChange(rateName){
+    this.selectedRate = rateName;
   }
+
+  search() {
+    let params = {state: this.selectedState,
+                  city: this.selectedCity,
+                  subject: this.selectedSubject,
+                  rate: this.selectedRate}
+
+    console.log ("thsi is : ", params);
+
+    this.searchService.findTutor(params)
+    .subscribe(
+      results => {
+        console.log('found tutor');
+        this.searchService.saveResults(results);
+        this.router.navigateByUrl('/search/results?state=kuala-lumpur');
+      }
+    )
+  }
+
 }
