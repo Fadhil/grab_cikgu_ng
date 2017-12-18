@@ -3,6 +3,7 @@ import { AlertService } from './../../shared/services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../../models/student';
 import { StudentService } from '../../shared/services/student.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
 
 
 
@@ -14,28 +15,40 @@ import { StudentService } from '../../shared/services/student.service';
 export class StudentRegisterComponent implements OnInit {
 
   student = new Student();
-    submitted = false;
+  fbAuth: any;
+  submitted = false;
 
     submit(): void {
-      this.studentService.createStudent(this.student)
-        .subscribe(
-          result => {
-            this.router.navigate(['/student/login']);
-            this.alertService.success('Successfully registered as a Student. ');
-            this.student = result;
-          },
-          error => {
-            this.alertService.error(error.error);
-          }
-        );
-    }
+      this.fbAuth.createUserWithEmailAndPassword(this.student.email, this.student.password)
+      .then( firebaseUser => {
+        this.router.navigate(['/student/login']);
+        console.log ('User created with uid ' + firebaseUser.uid);
+        this.alertService.success('Successfully registered as a Student.');
+        this.student.id = firebaseUser.uid;
 
+        // remove fields to not be included into firebase
+        delete this.student['cpass'];
+        delete this.student['password'];
+
+        // save to firebase
+        this.firebaseService.addStudent(this.student);
+
+
+      })
+      .catch( error => {
+        this.alertService.error(error);
+        console.log(error);
+      });
+    }
 
     constructor(
       private alertService: AlertService,
       private studentService: StudentService,
-      private router: Router
-    ) { }
+      private router: Router,
+      public firebaseService: FirebaseService
+    ) {
+      this.fbAuth = this.firebaseService.sfAuth.auth;
+    }
 
     ngOnInit() {
     }

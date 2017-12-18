@@ -54,7 +54,7 @@ export class TutorLoginComponent implements OnInit {
       })
       .catch( error => {
         this.alertService.error(error);
-      })
+      });
   }
 
   logout(): void {

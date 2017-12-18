@@ -9,7 +9,8 @@ exports.config = {
     }
   },
   suites: {
-      registration: './e2e/registration/**/*-spec.ts',
+      tutor: './e2e/tutor/**/*-spec.ts',
+      student: './e2e/student/**/*-spec.ts',
       search: ['./e2e/search/**/*-spec.ts']
   },
   onPrepare: () => {

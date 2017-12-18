@@ -37,11 +37,11 @@ export class TutorRegisterComponent implements OnInit {
       this.alertService.success('Successfully registered as a Tutor.');
       this.tutor.id = firebaseUser.uid;
 
-      //remove fields to not be included into firebase
-      delete this.tutor["cpass"];
-      delete this.tutor["password"];
+      // remove fields to not be included into firebase
+      delete this.tutor['cpass'];
+      delete this.tutor['password'];
 
-      //save to firebase
+      // save to firebase
       this.firebaseService.addTutor(this.tutor);
     })
     .catch( error => {

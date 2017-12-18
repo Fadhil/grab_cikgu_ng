@@ -38,6 +38,14 @@ export class FirebaseService {
     return this.db.object('tutors/' + key + "/").valueChanges();
   }
 
+  addStudent(student): any {
+    return this.db.object('/students/' + student.id).set(student);
+  }
+
+  getStudent(key): any {
+    return this.db.object('students/' + key + '/').valueChanges();
+  }
+
 
   test(): any {
     return true;

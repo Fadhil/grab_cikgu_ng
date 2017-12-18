@@ -57,14 +57,7 @@ export class TutorProfileEditComponent implements OnInit {
   ngOnInit() {
     // Hides tooltip when switching between save/edit
 
-
-
     $('.tooltip').hide();
-    // this.tutorService.getTutorProfile()
-    // .subscribe(result => {
-    //   this.tutorProfile = result;
-    //   this.updateSelectedSubjects(this.tutorProfile.subjects);
-    // });
 
     this.locationService.getStates()
     .subscribe(results => {
@@ -81,7 +74,6 @@ export class TutorProfileEditComponent implements OnInit {
         const d = new Date();
         const n = d.getFullYear();
         this.tutorProfile.age = n - this.tutorProfile.byear;
-        console.log(this.tutorProfile);
         if (!this.tutorProfile.subjects) {
           this.resetSubjects();
         }
