@@ -69,10 +69,10 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tuition">
-                <div>
+                <div id="subjects">
                   <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
 
-                  <p class="text-muted" id="subjects">
+
                       <ul>
                       <span *ngFor="let subject of tutorProfile.subjects" >
                         <span *ngFor="let level of subject.levels; let i = index; let b=first; let c=last;">

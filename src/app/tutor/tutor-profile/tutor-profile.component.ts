@@ -32,6 +32,7 @@ export class TutorProfileComponent implements OnInit {
     this.tutor_list_observable = this.firebaseService.getTutor(this.tutorProfile.id)
       .subscribe(data => {
         this.tutorProfile = data;
+        this.firebaseService.tutorProfile = this.tutorProfile;
         const d = new Date();
         const n = d.getFullYear();
         this.tutorProfile.age = n - this.tutorProfile.byear;

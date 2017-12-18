@@ -1,4 +1,14 @@
 
+// at the top of the test spec:
+    var fs = require('fs');
+
+    // abstract writing screen shot to a file
+    function writeScreenShot(data, filename) {
+        var stream = fs.createWriteStream(filename);
+        stream.write(new Buffer(data, 'base64'));
+        stream.end();
+    }
+
 describe('grabcikgu tutor registration page', function() {
 
   beforeAll(() => {
@@ -157,7 +167,34 @@ describe('grabcikgu tutor registration page', function() {
     // Check for all the list of the subjects
     element(by.id('tuitionservicepanel')).click();
 
-    expect(element(by.id('subjects')).getText()).toContain('Bahasa Malaysia (Standard 1-3) Bahasa Malaysia (Standard 4-6)');
+    // browser.takeScreenshot().then(function (png) {
+    //         writeScreenShot(png, 'exception.png');
+    //     });
+
+    expect(element(by.id('subjects')).getText()).toContain('Bahasa Malaysia (Standard 1-3)');
+    expect(element(by.id('subjects')).getText()).toContain('Bahasa Malaysia (Standard 4-6)');
+
+  });
+
+  it('can logout successfully', function() {
+    console.log('Pending');
+
+    // Click on the username menu
+    element(by.id('profile-menu-dropdown')).click();
+    element(by.id('signOutButton')).click();
+
+    // Click on the logout menu
+
+    // Expect page to change url to login and display the successful signout message
+    const urlChanged2 = function() {
+      return browser.getCurrentUrl().then(function(url) {
+        return url === 'http://localhost:4200/tutor/login';
+      });
+    };
+
+    browser.wait(urlChanged2, 5000);
+
+    // expect(element(by.css('.alert')).getText()).toContain('Successfully Logged Out from GrabCikgu.');
 
   });
 

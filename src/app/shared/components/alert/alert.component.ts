@@ -21,6 +21,6 @@ export class AlertComponent implements OnInit {
   }
 
   fadeOutAndRemove() {
-    setTimeout(() => { $('.alert').addClass('fade out');}, 4000); setTimeout(() => { $('.alert').hide(); }, 4200);
+    setTimeout(() => { $('.alert').addClass('fade out'); }, 4000); setTimeout(() => { $('.alert').hide(); }, 4200);
   }
 }

@@ -110,6 +110,7 @@ export class TutorProfileEditComponent implements OnInit {
     // this.tutorProfile.subjects = null;
     // this.tutorProfile.subjects = this.subjects;
     // console.log(this.subjects);
+    console.log(this.tutorProfile);
     let c = this.firebaseService.addTutor(this.tutorProfile)
       .then(result => {
         this.router.navigateByUrl('/tutor/profile');

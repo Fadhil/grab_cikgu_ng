@@ -3,11 +3,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { Tutor } from './../../models/tutor';
 
 @Injectable()
 export class FirebaseService {
 
   public message = '';
+  public tutorProfile: Tutor;
 
   constructor(private db: AngularFireDatabase, public sfAuth: AngularFireAuth) {
     console.log('Firebase loaded');
@@ -26,12 +28,21 @@ export class FirebaseService {
       });
   }
 
+  login(email, password, type = 0): any {
+    console.log('Login to GrabCikgu thru Firebase');
+    return this.sfAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  logout(): any {
+    return this.sfAuth.auth.signOut();
+  }
+
   getsfAuth(): AngularFireAuth {
     return this.sfAuth;
   }
 
   addTutor(tutor): any {
-    return this.db.object('/tutors/'+ tutor.id).set(tutor);
+    return this.db.object('/tutors/' + tutor.id).set(tutor);
   }
 
   getTutor(key): any {
@@ -45,7 +56,6 @@ export class FirebaseService {
   getStudent(key): any {
     return this.db.object('students/' + key + '/').valueChanges();
   }
-
 
   test(): any {
     return true;

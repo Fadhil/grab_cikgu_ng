@@ -53,7 +53,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { FirebaseService } from './shared/services/firebase.service';
 
-
+import { AppSettings } from './app.settings';
 
 
 @NgModule({
@@ -77,7 +77,7 @@ import { FirebaseService } from './shared/services/firebase.service';
     studentRoutingComponents,
     DataFilterPipe,
     SplitSubjectsPipe,
-    EqualValidator
+    EqualValidator,
 ],
   imports: [
     BrowserModule,
@@ -94,6 +94,7 @@ import { FirebaseService } from './shared/services/firebase.service';
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,

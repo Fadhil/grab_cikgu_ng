@@ -13,7 +13,7 @@ export class TutorLoginComponent implements OnInit {
   email = '';
   password = '';
   token = '';
-  fbAuth: any;
+  // fbAuth: any;
 
 
   constructor(
@@ -22,7 +22,7 @@ export class TutorLoginComponent implements OnInit {
     private router: Router,
     public firebaseService: FirebaseService)
     {
-      this.fbAuth = this.firebaseService.sfAuth.auth;
+      // this.fbAuth = this.firebaseService.sfAuth.auth;
     }
 
   ngOnInit() {
@@ -44,12 +44,18 @@ export class TutorLoginComponent implements OnInit {
   }
 
   login2(): void {
-    this.fbAuth.signInWithEmailAndPassword(this.email, this.password)
+    this.firebaseService.login(this.email, this.password)
       .then( firebaseUser => {
-        console.log("RESULT: " + firebaseUser);
+        console.log("login2");
+        console.log(firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
 
-        this.router.navigate(['/tutor/profile']);
+        this.firebaseService.getTutor(firebaseUser.uid)
+          .subscribe(data => {
+            this.firebaseService.tutorProfile = data;
+          });
+
+        this.router.navigateByUrl('/tutor/profile');
         this.alertService.success('Successfully logged in.', false);
       })
       .catch( error => {
