@@ -76,8 +76,14 @@ describe('grabcikgu tutor registration page', function() {
     const condition = EC.and(urlChanged,
                     EC.textToBePresentInElement($('.profile-username'), browser.params.randomName));
 
-    browser.wait(condition, 5000);
 
+    browser.wait(urlChanged, 10000);
+
+    // browser.takeScreenshot().then(function (png) {
+    //         writeScreenShot(png, 'exception.png');
+    //     });
+
+    browser.wait(EC.textToBePresentInElement($('.profile-username'), browser.params.randomName), 5000);
     expect(element(by.id('ic_no')).getText()).toContain('780111-10-2332');
     expect(element(by.id('occupation')).getText()).toContain('Programmer');
     expect(element(by.id('gender')).getText()).toContain('Male');
@@ -119,8 +125,8 @@ describe('grabcikgu tutor registration page', function() {
     let condition = EC.and(urlChanged,
                     EC.textToBePresentInElement($('.profile-username'), browser.params.randomName));
 
-    browser.wait(condition, 5000);
-
+    browser.wait(urlChanged, 10000);
+    browser.wait(EC.textToBePresentInElement($('.profile-username'), browser.params.randomName), 5000);
     // click on the button
     element(by.id('saveprofile')).click();
 
