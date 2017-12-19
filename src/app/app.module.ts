@@ -54,6 +54,8 @@ import { environment } from '../environments/environment';
 import { FirebaseService } from './shared/services/firebase.service';
 
 import { AppSettings } from './app.settings';
+import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
+import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 
 
 @NgModule({
@@ -78,6 +80,8 @@ import { AppSettings } from './app.settings';
     DataFilterPipe,
     SplitSubjectsPipe,
     EqualValidator,
+    TutorSidebarComponent,
+    StudentSidebarComponent,
 ],
   imports: [
     BrowserModule,
