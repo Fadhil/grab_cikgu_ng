@@ -10,7 +10,8 @@ import { StudentComponent } from '../student.component';
 import { FooterComponent } from '../../shared/components/layouts/footer/footer.component';
 import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
 import { StudentRegisterComponent } from '../student-register/student-register.component';
-
+import { StudentProfileComponent } from '../student-profile/student-profile.component';
+import { StudentProfileEditComponent } from '../student-profile-edit/student-profile-edit.component';
 
 const routes: Routes = [
   {
@@ -32,10 +33,27 @@ const routes: Routes = [
       {
         path: 'register', component: StudentRegisterComponent,
         pathMatch: 'full'
-      }
+      },
     ]
   },
-  
+  {
+    path: 'student', component: StudentLayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        children: [
+          {
+            path: '', component:  StudentProfileComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: 'edit', component: StudentProfileEditComponent,
+            pathMatch: 'full'
+          }
+        ]
+      }
+    ]
+  }
   // {
   //   path: 'tutor', component: TutorLayoutComponent,
   //   children: [
@@ -64,5 +82,6 @@ export class StudentRoutingModule { }
 
 export const studentRoutingComponents = [
   StudentLayoutComponent,  HeaderComponent, SidebarComponent, FooterComponent,
-  ControlSidebarComponent, StudentLoginComponent, StudentRegisterComponent
+  ControlSidebarComponent, StudentLoginComponent, StudentRegisterComponent, StudentProfileComponent,
+  StudentProfileEditComponent
 ];

@@ -4,12 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Tutor } from './../../models/tutor';
+import { Student } from './../../models/student';
 
 @Injectable()
 export class FirebaseService {
 
   public message = '';
   public tutorProfile: Tutor;
+  public studentProfile: Student;
 
   constructor(private db: AngularFireDatabase, public sfAuth: AngularFireAuth) {
     console.log('Firebase loaded');

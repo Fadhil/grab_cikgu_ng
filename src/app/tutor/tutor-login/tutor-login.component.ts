@@ -1,6 +1,6 @@
 import { AlertService } from './../../shared/services/alert.service';
-import { AuthenticationService } from './../../shared/services/authentication.service';
-import { Component, OnInit } from '@angular/core';
+// import { AuthenticationService } from './../../shared/services/authentication.service';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../../shared/services/firebase.service';
 
@@ -17,10 +17,11 @@ export class TutorLoginComponent implements OnInit {
 
 
   constructor(
-    private authenticationService: AuthenticationService,
     private alertService: AlertService,
     private router: Router,
-    public firebaseService: FirebaseService)
+    public firebaseService: FirebaseService,
+    private zone: NgZone
+    )
     {
       // this.fbAuth = this.firebaseService.sfAuth.auth;
     }
@@ -28,43 +29,25 @@ export class TutorLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(): void {
-    this.authenticationService.login(this.email, this.password)
-      .subscribe(
-        result => {
-          console.log("RESULT authenticating", result);
-          localStorage.setItem('currentUserToken', result.data.token);
-          this.router.navigate(['/tutor/profile']);
-          this.alertService.success('Successfully logged in.', true);
-        },
-        error => {
-          this.alertService.error(error.error);
-        }
-      );
-  }
-
   login2(): void {
+
     this.firebaseService.login(this.email, this.password)
       .then( firebaseUser => {
         console.log("login2");
         console.log(firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
+        localStorage.setItem('loginType', 'tutor');
 
         this.firebaseService.getTutor(firebaseUser.uid)
           .subscribe(data => {
             this.firebaseService.tutorProfile = data;
           });
 
-        this.router.navigateByUrl('/tutor/profile');
-        this.alertService.success('Successfully logged in.', false);
+          location.assign('/tutor/profile');
+          this.alertService.success('Successfully logged in', true);
       })
       .catch( error => {
         this.alertService.error(error, true);
       });
   }
-
-  logout(): void {
-    this.authenticationService.logout();
-  }
-
 }

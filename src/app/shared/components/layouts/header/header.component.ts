@@ -13,11 +13,46 @@ export class HeaderComponent implements OnInit {
   name: string;
   email: string;
   avatar: string;
+  loginType: string;
 
   constructor(private router: Router, private alertService: AlertService, public firebaseService: FirebaseService) { }
 
   ngOnInit() {
+    this.loginType = localStorage.getItem('loginType');
+
     this.avatar = 'assets/img/avatar5.png';
+
+    switch (this.loginType) {
+      case 'tutor':
+        this.loadTutor();
+        break;
+      case 'student':
+        this.loadStudent();
+        break;
+    }
+
+    this.firebaseService.sfAuth.authState.subscribe( user => {
+      if (!user) {
+        switch (this.loginType) {
+          case 'tutor':
+            // this.router.navigateByUrl('/tutor/login');
+            location.assign("/tutor/login");
+            break;
+          case 'student':
+            // this.router.navigateByUrl('/student/login');
+            location.assign("/student/login");
+            break;
+          default:
+            location.assign('/tutor/login');
+            break;
+        }
+
+        localStorage.clear();
+      }
+    });
+  }
+
+  loadTutor() {
     this.firebaseService.getTutor(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         console.log(data);
@@ -29,15 +64,25 @@ export class HeaderComponent implements OnInit {
         if (this.firebaseService.tutorProfile.gender.toUpperCase() !== 'MALE') {
           this.avatar = 'assets/img/avatar2.png';
         }
-
       });
 
-    this.firebaseService.sfAuth.authState.subscribe( user => {
-      if (!user) {
-        localStorage.clear();
-        this.router.navigateByUrl('/tutor/login');
-      }
-    });
+  }
+
+  loadStudent() {
+    console.log(localStorage.getItem('currentUserToken'));
+    this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
+      .subscribe(data => {
+        console.log(data);
+        this.firebaseService.studentProfile = data;
+        const d = new Date();
+        const n = d.getFullYear();
+        this.name = this.firebaseService.studentProfile.name;
+        this.email = this.firebaseService.studentProfile.email;
+        this.avatar = 'assets/img/avatar5.png';
+        // if (this.firebaseService.studentProfile.gender.toUpperCase() !== 'MALE') {
+        //   this.avatar = 'assets/img/avatar2.png';
+        // }
+      });
   }
 
   logOut() {

@@ -13,26 +13,32 @@ export class StudentLoginComponent implements OnInit {
   email = '';
   password = '';
   token = '';
-  fbAuth: any;
 
   constructor(
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
     private router: Router,
     public firebaseService: FirebaseService) {
-      this.fbAuth = this.firebaseService.sfAuth.auth;
+      // this.fbAuth = this.firebaseService.sfAuth.auth;
     }
 
   ngOnInit() {
   }
 
   login(): void {
-    this.fbAuth.signInWithEmailAndPassword(this.email, this.password)
+    this.firebaseService.login(this.email, this.password)
       .then( firebaseUser => {
         console.log(firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
+        localStorage.setItem('loginType', 'student');
         this.alertService.success('Successfully logged in.', true);
-        this.router.navigate(['/student/profile']);
+
+        this.firebaseService.getStudent(firebaseUser.uid)
+          .subscribe(data => {
+            this.firebaseService.studentProfile = data;
+          });
+
+        this.router.navigateByUrl('/student/profile');
       })
       .catch( error => {
         this.alertService.error(error);
