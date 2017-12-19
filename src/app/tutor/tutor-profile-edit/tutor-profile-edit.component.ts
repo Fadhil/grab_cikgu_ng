@@ -138,10 +138,15 @@ export class TutorProfileEditComponent implements OnInit {
       return _.split(rep, ' =');
     });
 
+
     _.forEach(subjectsArray, function(x){
       let subject = _.find(that.subjects, { 'name': x[0]});
       let levelIndex = levelNames.indexOf(x[1]);
-      subject.levels[levelIndex] = true;
+
+      if(subject) {
+        subject.levels[levelIndex] = true;
+      }
+
     });
 
 
