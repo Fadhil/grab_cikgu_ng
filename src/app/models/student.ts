@@ -4,5 +4,4 @@ export class Student {
   email: string;
   password: string;
   gender: string;
-
 }

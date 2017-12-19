@@ -14,6 +14,7 @@ export class Tutor {
   qualification: string;
   phone_no: string;
   hourly_rate_cents: number;
+  hourlyRate: string;
   experience: string;
   description: string;
   subjects: any;
