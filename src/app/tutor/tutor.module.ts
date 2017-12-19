@@ -15,7 +15,12 @@ import { TutorRegisterComponent } from './tutor-register/tutor-register.componen
 import { TutorService } from '../shared/services/tutor.service';
 import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 import { TutorProfileEditComponent } from './tutor-profile-edit/tutor-profile-edit.component';
-
+import { TutorDashboardComponent } from './tutor-dashboard/tutor-dashboard.component';
+import { TutorPeopleComponent } from './tutor-people/tutor-people.component';
+import { TutorClassComponent } from './tutor-class/tutor-class.component';
+import { TutorMessageComponent } from './tutor-message/tutor-message.component';
+import { TutorAccountComponent } from './tutor-account/tutor-account.component';
+import { TutorReportComponent } from './tutor-report/tutor-report.component';
 
 @NgModule({
   imports: [
@@ -30,7 +35,13 @@ import { TutorProfileEditComponent } from './tutor-profile-edit/tutor-profile-ed
     TutorLoginComponent,
     TutorRegisterComponent,
     TutorProfileComponent,
-    TutorProfileEditComponent
+    TutorProfileEditComponent,
+    TutorDashboardComponent,
+    TutorPeopleComponent,
+    TutorClassComponent,
+    TutorMessageComponent,
+    TutorAccountComponent,
+    TutorReportComponent
 ]
 })
 export class TutorModule { }

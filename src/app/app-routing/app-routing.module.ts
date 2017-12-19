@@ -6,12 +6,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'search', pathMatch: 'full' },
-    ]//,
-    //{ enableTracing: true }   
+      { path: '', redirectTo: 'search', pathMatch: 'full' }
+    ], //,
+    //{ enableTracing: true }
   )
   ],
   declarations: [],

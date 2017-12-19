@@ -5,5 +5,13 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+  apiUrl: 'http://localhost:4000',
+  firebase: {
+      apiKey: "AIzaSyDjS3-Gyc47FMUzqfOCkk-oijh-xAf0FtI",
+      authDomain: "grabcikgu.firebaseapp.com",
+      databaseURL: "https://grabcikgu.firebaseio.com",
+      projectId: "grabcikgu",
+      storageBucket: "grabcikgu.appspot.com",
+      messagingSenderId: "615514819115"
+    }
 };

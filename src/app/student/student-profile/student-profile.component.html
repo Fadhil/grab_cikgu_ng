@@ -1,0 +1,53 @@
+<!-- Main content -->
+<section class="content">
+
+<div class="row">
+    <div class="col-md-4">
+
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <div class="box-tools pull-right">
+            <button id="saveprofile" routerLink="/student/profile/edit" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Edit Profile" data-original-title="Edit Profile">
+            <i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+          <div class="box-body box-profile">
+            <img class="profile-user-img img-responsive img-circle" [src]="avatar" alt="User profile picture">
+
+            <h3 class="profile-username text-center" id="username">{{studentProfile.name}}</h3>
+            <p class="text-muted text-center" id="ic_no"></p>
+
+            <p class="text-muted text-center" id="occupation"></p>
+
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Gender</b> <span class="pull-right" id="gender">{{studentProfile.gender}}</span>
+                </li>
+                <li class="list-group-item">
+                  <b>Age</b> <span class="pull-right" id="age"></span>
+                </li>
+                <li class="list-group-item">
+                  <b>Address</b> <span class="pull-right" id="address">{{studentProfile.address}}</span>
+                </li>
+                <li class="list-group-item">
+                  <b>State</b> <span class="pull-right" id="state">{{studentProfile.state}}</span>
+                </li>
+                <li class="list-group-item">
+                  <b>City</b> <span class="pull-right" id="city">{{studentProfile.city}}</span>
+                </li>
+                <li class="list-group-item">
+                  <b>Phone Number</b> <span class="pull-right" id="phone_no">{{studentProfile.phone_no}}</span>
+                </li>
+              </ul>
+
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </section>
+  <!-- /.content -->

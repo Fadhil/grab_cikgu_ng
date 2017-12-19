@@ -13,6 +13,12 @@ import { TutorComponent } from '../tutor.component';
 import { FooterComponent } from '../../shared/components/layouts/footer/footer.component';
 import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
 import { TutorRegisterComponent } from '../tutor-register/tutor-register.component';
+import { TutorDashboardComponent } from '../tutor-dashboard/tutor-dashboard.component';
+import { TutorPeopleComponent } from '../tutor-people/tutor-people.component';
+import { TutorClassComponent } from '../tutor-class/tutor-class.component';
+import { TutorMessageComponent } from '../tutor-message/tutor-message.component';
+import { TutorAccountComponent } from '../tutor-account/tutor-account.component';
+import { TutorReportComponent } from '../tutor-report/tutor-report.component';
 
 
 const routes: Routes = [
@@ -41,6 +47,7 @@ const routes: Routes = [
   {
     path: 'tutor', component: TutorLayoutComponent,
     children: [
+
       {
         path: 'profile',
         children: [
@@ -53,6 +60,30 @@ const routes: Routes = [
             pathMatch: 'full'
           }
         ]
+      },
+      {
+        path: 'dashboard', component: TutorDashboardComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'people', component: TutorPeopleComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'class', component: TutorClassComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'account', component: TutorAccountComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'message', component: TutorMessageComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'report', component: TutorReportComponent,
+        pathMatch: 'full'
       }
     ]
   }
@@ -67,5 +98,6 @@ export class TutorRoutingModule { }
 export const tutorRoutingComponents = [
   TutorComponent, TutorLayoutComponent, TutorListComponent, HeaderComponent, SidebarComponent, FooterComponent,
   ControlSidebarComponent, TutorLoginComponent, TutorRegisterComponent, TutorProfileComponent,
-  TutorProfileEditComponent
+  TutorProfileEditComponent, TutorDashboardComponent, TutorPeopleComponent, TutorClassComponent, TutorAccountComponent,
+  TutorReportComponent, TutorMessageComponent
 ];

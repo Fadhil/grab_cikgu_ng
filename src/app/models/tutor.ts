@@ -1,10 +1,12 @@
 export class Tutor {
-  id: number;
+  id: string;
   name: string;
   email: string;
   password: string;
+  confirm_password: string;
   gender: string;
   age: number;
+  byear: number;
   occupation: string;
   ic_no: string;
   tutor_license_no: string;
@@ -15,7 +17,7 @@ export class Tutor {
   hourlyRate: string;
   experience: string;
   description: string;
-  subjects: string;
+  subjects: any;
   bank_name: string;
   bank_acc_no: string;
   bank_acc_name: string;
@@ -25,4 +27,5 @@ export class Tutor {
   state: string;
   city: string;
   achievement: string;
+  status: string;
 }

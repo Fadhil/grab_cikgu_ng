@@ -8,12 +8,12 @@
               <div class="box box-primary">
                 <div class="box-header">
                   <div class="box-tools pull-right">
-                    <button (click)="saveProfile()" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Save Profile">
+                    <button id="saveprofile" (click)="saveProfile2()" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Save Profile">
                     <i class="fa fa-floppy-o"></i></button>
                   </div>
                 </div>
                 <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="assets/img/user4-128x128.jpg" alt="User profile picture">
+                  <img class="profile-user-img img-responsive img-circle" [src]="avatar" alt="User profile picture">
 
                   <input type="text" class="form-control text-center" id="name" name="name" [(ngModel)]="tutorProfile.name" required placeholder="Name">
                   <input type="text" class="form-control text-center" id="ic_no" name="ic_no" [(ngModel)]="tutorProfile.ic_no" required placeholder="IC Number">
@@ -23,8 +23,8 @@
                       <li class="list-group-item">
                         <b>Gender</b> <span class="pull-right"><div class="form-group">
                           <select id="gender" name="gender" class="form-control" [(ngModel)]="tutorProfile.gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                           </select>
                         </div></span>
                       </li>
@@ -35,7 +35,7 @@
                       </li>
                       <li class="list-group-item list-group-address-item">
                           <b>Address</b>
-                          <div><textarea class="form-control" rows="3" placeholder="Address" [(ngModel)]="tutorProfile.address" placeholder="Address"></textarea></div>
+                          <div><textarea id="address" class="form-control" rows="3" placeholder="Address" [(ngModel)]="tutorProfile.address" placeholder="Address"></textarea></div>
                       </li>
                       <li class="list-group-item">
                           <b>State</b>
@@ -53,7 +53,7 @@
                           <span class="pull-right">
                             <div class="form-group">
                               <select id="city" [(ngModel)]="tutorProfile.city" class="form-control">
-                                  <option value="" disabled selected>City</option>
+                                  <option value="">City</option>
                                   <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
                               </select>
                             </div>
@@ -87,9 +87,9 @@
                     <div>
                         <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
 
-                        <p class="text-muted">
+                        <!-- <p class="text-muted">
                            <input type="text" class="form-control text-right" id="subjects" name="subjects" [(ngModel)]="tutorProfile.subjects" required placeholder="Teaching Subjects">
-                        </p>
+                        </p> -->
                         <div class="row">
                           <div class="box-body">
                             <table class="table table-bordered">
@@ -101,109 +101,109 @@
                                 <th>Form 1 - 3</th>
                                 <th>Form 4 - 6</th>
                               </tr>
-                              <tr>
+                              <tr id="bm">
                                 <td>1.</td>
-                                <td>{{subjects[0].name}}</td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[0].levels[0]" /></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[0].levels[1]" /></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[0].levels[2]" /></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[0].levels[3]"/></td>
+                                <td>{{tutorProfile.subjects[0].name}}</td>
+                                <td><input class="s1_3" type="checkbox" [(ngModel)]="tutorProfile.subjects[0].levels[0]" /></td>
+                                <td><input class="s4_6" type="checkbox" [(ngModel)]="tutorProfile.subjects[0].levels[1]" /></td>
+                                <td><input class="f1_3" type="checkbox" [(ngModel)]="tutorProfile.subjects[0].levels[2]" /></td>
+                                <td><input class="f1_3" type="checkbox" [(ngModel)]="tutorProfile.subjects[0].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>2.</td>
-                                <td>{{subjects[1].name}}</td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[1].levels[0]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[1].levels[1]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[1].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[1].levels[3]"/></td>
+                                <td>{{tutorProfile.subjects[1].name}}</td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[1].levels[0]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[1].levels[1]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[1].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[1].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>3.</td>
-                                <td>{{subjects[2].name}}</td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[2].levels[0]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[2].levels[1]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[2].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[2].levels[3]"/></td>
+                                <td>{{tutorProfile.subjects[2].name}}</td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[2].levels[0]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[2].levels[1]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[2].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[2].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>4.</td>
-                                <td>{{subjects[3].name}}</td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[3].levels[0]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[3].levels[1]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[3].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[3].levels[3]"/></td>
+                                <td>{{tutorProfile.subjects[3].name}}</td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[3].levels[0]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[3].levels[1]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[3].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[3].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>5.</td>
-                                <td>{{subjects[4].name}}</td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[4].levels[4]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[4].levels[1]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[4].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[4].levels[3]"/></td>
+                                <td>{{tutorProfile.subjects[4].name}}</td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[4].levels[0]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[4].levels[1]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[4].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[4].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>6.</td>
-                                <td>{{subjects[5].name}}</td>
+                                <td>{{tutorProfile.subjects[5].name}}</td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[5].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[5].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[5].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[5].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>7.</td>
-                                <td>{{subjects[6].name}}</td>
+                                <td>{{tutorProfile.subjects[6].name}}</td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[6].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[6].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[6].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[6].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>8.</td>
-                                <td>{{subjects[7].name}}</td>
+                                <td>{{tutorProfile.subjects[7].name}}</td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[7].levels[2]"/></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[7].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[7].levels[2]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[7].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>9.</td>
-                                <td>{{subjects[8].name}}</td>
+                                <td>{{tutorProfile.subjects[8].name}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[8].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[8].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>10.</td>
-                                <td>{{subjects[9].name}}</td>
+                                <td>{{tutorProfile.subjects[9].name}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[9].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[9].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>11.</td>
-                                <td>{{subjects[10].name}}</td>
+                                <td>{{tutorProfile.subjects[10].name}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[10].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[10].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>12.</td>
-                                <td>{{subjects[11].name}}</td>
+                                <td>{{tutorProfile.subjects[11].name}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[11].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[11].levels[3]"/></td>
                               </tr>
                               <tr>
                                 <td>13.</td>
-                                <td>{{subjects[12].name}}</td>
+                                <td>{{tutorProfile.subjects[12].name}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="checkbox" [(ngModel)]="subjects[12].levels[3]"/></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[12].levels[3]"/></td>
                               </tr>
                             </table>
                           </div>
@@ -222,10 +222,14 @@
                           <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour</strong>
 
                           <p class="text-muted">
+
+                             <input type="text" class="form-control text-right" id="hourlyrate" name="hourlyrate" [(ngModel)]="tutorProfile.hourly_rate_cents" required placeholder="Teaching Subjects">
+
                              <select id="hourlyRate" name="hourlyRate" class="form-control" [(ngModel)]="tutorProfile.hourlyRate">
                               <option value="standard">Standard</option>
                               <option value="premium">Premium</option>
                             </select>
+
                           </p>
 
 
@@ -236,7 +240,7 @@
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <a (click)="saveProfile()" class="btn btn-primary btn-block"><b>Update Profile</b></a>
+                    <a (click)="saveProfile2()" class="btn btn-primary btn-block" id="saveprofilebutton2"><b>Update Profile</b></a>
                 </div>
               </div>
             </div>

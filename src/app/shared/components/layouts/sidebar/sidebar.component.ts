@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from './../../../services/firebase.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  name: string;
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
+
+    this.firebaseService.sfAuth.authState.subscribe(user => {
+      if (user) {
+        this.name = user.email;
+      }
+    });
   }
 
 }

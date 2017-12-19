@@ -12,11 +12,15 @@ export class AlertComponent implements OnInit {
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-    this.alertService.getMessage().subscribe(message => { this.message = message; this.fadeOutAndRemove(); });
-    // this.alertService.getMessage().subscribe(message => { this.message = message; ; });
+    this.alertService.getMessage().subscribe(message => {
+      $('.alert').show();
+      $('.alert').removeClass('fade out');
+      this.message = message;
+      this.fadeOutAndRemove();
+    });
   }
 
   fadeOutAndRemove() {
-    setTimeout(() => { $('.alert').addClass('fade out');}, 4000); setTimeout(() => { $('.alert').hide(); }, 4200);
+    setTimeout(() => { $('.alert').addClass('fade out'); }, 4000); setTimeout(() => { $('.alert').hide(); }, 4200);
   }
 }
