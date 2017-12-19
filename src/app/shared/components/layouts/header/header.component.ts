@@ -73,12 +73,14 @@ export class HeaderComponent implements OnInit {
     this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         console.log(data);
-        this.firebaseService.studentProfile = data;
-        const d = new Date();
-        const n = d.getFullYear();
-        this.name = this.firebaseService.studentProfile.name;
-        this.email = this.firebaseService.studentProfile.email;
-        this.avatar = 'assets/img/avatar5.png';
+        if (data) {
+          this.firebaseService.studentProfile = data;
+          const d = new Date();
+          const n = d.getFullYear();
+          this.name = this.firebaseService.studentProfile.name;
+          this.email = this.firebaseService.studentProfile.email;
+          this.avatar = 'assets/img/avatar5.png';
+        }
         // if (this.firebaseService.studentProfile.gender.toUpperCase() !== 'MALE') {
         //   this.avatar = 'assets/img/avatar2.png';
         // }

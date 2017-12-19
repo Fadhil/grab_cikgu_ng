@@ -31,14 +31,23 @@ export class StudentLoginComponent implements OnInit {
         console.log(firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
         localStorage.setItem('loginType', 'student');
-        this.alertService.success('Successfully logged in.', true);
+
 
         this.firebaseService.getStudent(firebaseUser.uid)
           .subscribe(data => {
-            this.firebaseService.studentProfile = data;
+            if(data){
+              this.alertService.success('Successfully logged in.', true);
+              location.assign('/student/profile');
+              this.firebaseService.studentProfile = data;
+            } else {
+              this.alertService.error("User is not a registered student");
+              // this.firebaseService.logout().then(result => {
+              //   this.alertService.error("User is not a registered student");
+              // });
+            }
           });
 
-        this.router.navigateByUrl('/student/profile');
+
       })
       .catch( error => {
         this.alertService.error(error);

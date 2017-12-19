@@ -1,3 +1,81 @@
-<p>
-  student-profile-edit works!
-</p>
+<!-- Main content -->
+<section class="content">
+
+          <div class="row">
+            <div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <div class="box-tools pull-right">
+                    <button id="saveprofile" (click)="saveProfile2()" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Save Profile">
+                    <i class="fa fa-floppy-o"></i></button>
+                  </div>
+                </div>
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" [src]="avatar" alt="User profile picture">
+
+                  <input type="text" class="form-control text-center" id="name" name="name" [(ngModel)]="studentProfile.name" required placeholder="Name">
+                  <input type="text" class="form-control text-center" id="ic_no" name="ic_no" [(ngModel)]="studentProfile.ic_no" required placeholder="IC Number">
+                  <input type="text" class="form-control text-center" id="occupation" name="occupation" [(ngModel)]="studentProfile.occupation" placeholder="Occupation">
+
+                  <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>Gender</b> <span><div class="form-group">
+                          <select id="gender" name="gender" class="form-control" [(ngModel)]="studentProfile.gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div></span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>Age</b> <span>
+                            <input type="number" class="form-control text-right" id="age" name="age" [(ngModel)]="studentProfile.age" placeholder="Age">
+                          </span>
+                      </li>
+                      <li class="list-group-item list-group-address-item">
+                          <b>Address</b>
+                          <div><textarea id="address" class="form-control" rows="3" placeholder="Address" [(ngModel)]="studentProfile.address" placeholder="Address"></textarea></div>
+                      </li>
+                      <li class="list-group-item">
+                          <b>State</b>
+                          <span>
+                            <div class="form-group">
+                              <select id="state" [(ngModel)]="studentProfile.state" (change)="onStateChange($event.target.value)" class="form-control">
+                                  <option value="" disabled selected>State</option>
+                                  <option *ngFor="let state of states" value="{{state.name}}">{{state.name}}</option>
+                              </select>
+                            </div>
+                          </span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>City</b>
+                          <span >
+                            <div class="form-group">
+                              <select id="city" [(ngModel)]="studentProfile.city" class="form-control">
+                                  <option value="">City</option>
+                                  <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
+                              </select>
+                            </div>
+                          </span>
+                      </li>
+                      <li class="list-group-item">
+                          <b>Phone Number</b> <span >
+                              <input type="text" class="form-control text-right" id="phone_no" name="phone_no" [(ngModel)]="studentProfile.phone_no" required placeholder="Phone Number">
+                            </span>
+                      </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- /.col -->
+
+          </div>
+          <!-- /.row -->
+
+        </section>
+        <!-- /.content -->

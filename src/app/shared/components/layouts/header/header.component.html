@@ -249,7 +249,8 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a routerLink="/tutor/profile" class="btn btn-default btn-flat">Profile</a>
+                <a *ngIf="loginType=='tutor'" routerLink="/tutor/profile" class="btn btn-default btn-flat">Profile</a>
+                <a *ngIf="loginType=='student'" routerLink="/student/profile" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a (click)="this.logOut()" class="btn btn-default btn-flat" id="signOutButton">Sign out</a>
