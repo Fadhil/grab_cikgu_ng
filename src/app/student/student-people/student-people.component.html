@@ -1,3 +1,112 @@
-<p>
-  student-people works!
-</p>
+<section class="content-header">
+  <h1>
+    Search for Tutors
+    <small>Control panel</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Dashboard</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Search</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+
+      <div class="box-body">
+        <b>State</b>
+          <div class="form-group">
+            <select id="state" [(ngModel)]="state" (change)="onStateChange($event.target.value)" class="form-control">
+                <option value="select" disabled selected>Please select state</option>
+                <option *ngFor="let state of states" value="{{state.name}}">{{state.name}}</option>
+            </select>
+          </div>
+
+          <b>City</b>
+
+          <div class="form-group">
+            <select id="city" [(ngModel)]="city" class="form-control">
+                <option value="select">Please select city</option>
+                <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
+            </select>
+          </div>
+
+          <b>Level</b>
+
+          <div class="form-group">
+            <select id="level" [(ngModel)]="level" class="form-control" (change)="onLevelChange($event.target.value)">
+                <option value="-1" disabled>Please select level</option>
+                <option *ngFor="let level of levels; let i=index;" value="{{i}}">{{level}}</option>
+            </select>
+          </div>
+
+          <b>Subject</b>
+
+          <div class="form-group">
+            <select id="subject" [(ngModel)]="subject" class="form-control">
+                <option value="select" disabled>Please select subject</option>
+                <option *ngFor="let subject of matapelajaran; let i = index;" value="{{i}}">{{subject.name}}</option>
+            </select>
+          </div>
+
+          <b>Rate</b>
+
+          <div class="form-group">
+            <select id="rate" [(ngModel)]="rate" class="form-control">
+                <option value="select" disabled>Please select rate</option>
+                <option value="normal">Normal</option>
+                <option value="premium">Premium</option>
+                <!-- <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option> -->
+            </select>
+          </div>
+          <div class="box-footer clearfix">
+            <a class="btn btn-info pull-right" id="searchButton" (click)="searchTutor()">Search</a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Matched Tutors ({{tutors? tutors.length : 0 }})</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <ul class="products-list product-list-in-box">
+        <li *ngFor="let tutor of tutors" class="item">
+          <div class="product-img">
+            <img src="assets/img/default-50x50.gif" alt="Product Image">
+          </div>
+          <div class="product-info">
+            <a href="javascript:void(0)" class="product-title">{{tutor.name}}
+                <span class="label label-warning pull-right">{{tutor.hourly_rate_cents? 'RM ' + (tutor.hourly_rate_cents/100) : 'NA'}}</span></a>
+            <span class="product-description">
+                    {{tutor.email}} {{tutor.phone_no}}
+                  </span>
+          </div>
+        </li>
+        <!-- /.item -->
+      </ul>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer text-center">
+      <a href="javascript:void(0)" class="uppercase">View All Products</a>
+    </div>
+    <!-- /.box-footer -->
+  </div>
+</section>

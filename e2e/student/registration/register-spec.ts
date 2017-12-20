@@ -99,7 +99,8 @@ describe('grabcikgu student registration page', function() {
     let condition = EC.and(urlChanged,
                     EC.textToBePresentInElement($('.profile-username'), browser.params.randomName));
 
-    browser.wait(condition, 5000);
+    browser.wait(urlChanged, 10000);
+    browser.wait(EC.textToBePresentInElement($('.profile-username'), browser.params.randomName), 5000);
 
     // click on the button
     element(by.id('saveprofile')).click();
@@ -122,14 +123,10 @@ describe('grabcikgu student registration page', function() {
 
     condition = EC.and(urlChanged, checkInputValue);
 
-    browser.wait(urlChanged, 5000);
+    browser.wait(urlChanged, 10000);
 
     // change some data
     element(by.id('address')).sendKeys('Lot 8919, Jalan Kambing');
-
-    // Register for the subjects
-    element(by.id('bm')).element(by.css('.s1_3')).click();
-    element(by.id('bm')).element(by.css('.s4_6')).click();
 
     // press save and expect to return successful alert
     element(by.id('saveprofile')).click();
@@ -140,7 +137,7 @@ describe('grabcikgu student registration page', function() {
       });
     };
 
-    browser.wait(urlChanged2, 5000);
+    browser.wait(urlChanged2, 10000);
 
     expect(element(by.css('.alert')).getText()).toContain('Successfully');
 
