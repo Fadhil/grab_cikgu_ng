@@ -24,7 +24,8 @@ const routes: Routes = [
     path: 'students', component: StudentLayoutComponent,
     children: [
       {
-        path: '', component: StudentLoginComponent,
+        path: '',
+        component: StudentLoginComponent,
         pathMatch: 'full'
       }
     ]
