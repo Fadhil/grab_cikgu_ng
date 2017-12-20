@@ -99,7 +99,11 @@ describe('grabcikgu student registration page', function() {
     let condition = EC.and(urlChanged,
                     EC.textToBePresentInElement($('.profile-username'), browser.params.randomName));
 
+<<<<<<< HEAD
+    browser.wait(urlChanged, 5000);
+=======
     browser.wait(urlChanged, 10000);
+>>>>>>> firebase-search
     browser.wait(EC.textToBePresentInElement($('.profile-username'), browser.params.randomName), 5000);
 
     // click on the button

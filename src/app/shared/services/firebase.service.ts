@@ -51,6 +51,11 @@ export class FirebaseService {
     return this.db.object('tutors/' + key + "/").valueChanges();
   }
 
+  searchTutor(city, level, subject) {
+    // return this.db.list('users', {query: {orderByChild : "type", equalTo:'customer'}});
+    return this.db.list('tutors', ref => ref.orderByChild('city').equalTo(city)).valueChanges();
+  }
+
   addStudent(student): any {
     return this.db.object('/students/' + student.id).set(student);
   }

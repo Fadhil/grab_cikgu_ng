@@ -53,7 +53,7 @@
                           <span class="pull-right">
                             <div class="form-group">
                               <select id="city" [(ngModel)]="tutorProfile.city" class="form-control">
-                                  <option value="">City</option>
+                                  <option value="select" disabled selected>Please select city</option>
                                   <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
                               </select>
                             </div>
@@ -204,6 +204,14 @@
                                 <td></td>
                                 <td></td>
                                 <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[12].levels[3]"/></td>
+                              </tr>
+                              <tr>
+                                <td>14.</td>
+                                <td>{{tutorProfile.subjects[13].name}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox" [(ngModel)]="tutorProfile.subjects[13].levels[3]"/></td>
                               </tr>
                             </table>
                           </div>
