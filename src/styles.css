@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #72afd2;
+    cursor: pointer;
+}
+
+.product-img {
+  margin: 0 auto;
+}
+
+.modal-content  {
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+}

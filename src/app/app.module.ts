@@ -1,3 +1,5 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { RequestModule } from './request/request.module';
 import { RequestService } from './shared/services/request.service';
 import { SearchResultsComponent } from './search-tutors/search-results/search-results.component';
@@ -98,7 +100,7 @@ import { StudentSidebarComponent } from './shared/components/layouts/sidebar/stu
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-
+    NgbModule.forRoot()
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
