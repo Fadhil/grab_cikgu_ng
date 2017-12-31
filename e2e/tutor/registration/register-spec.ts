@@ -166,6 +166,11 @@ describe('grabcikgu tutor registration page', function() {
       });
     };
 
+    browser.takeScreenshot().then(function (png) {
+            writeScreenShot(png, 'exception.png');
+        });
+
+
     browser.wait(urlChanged2, 5000);
 
     expect(element(by.css('.alert')).getText()).toContain('Successfully');
