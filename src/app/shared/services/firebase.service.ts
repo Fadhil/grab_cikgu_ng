@@ -44,7 +44,27 @@ export class FirebaseService {
   }
 
   addTutor(tutor): any {
-    return this.db.object('/tutors/' + tutor.id).set(tutor);
+    // Refactor to multiple location update
+
+    let newTutor = {};
+    let key = this.db.list('/tutors/').push(newTutor).key;
+
+    newTutor['/tutors/' + tutor.id] = tutor;
+
+    if (tutor.subjects) {
+      for (let subject of tutor.subjects) {
+        for (let x = 0; x < subject.levels.length; x++) {
+          if (subject.levels[x]) {
+            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name, email: tutor.email, rate: tutor.hourly_rate_cents};
+          } else {
+            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;
+          }
+        }
+      }
+    }
+    // return this.db.object('/tutors/' + tutor.id).set(tutor);
+
+    return this.db.object('/').update(newTutor);
   }
 
   getTutor(key): any {
@@ -54,6 +74,45 @@ export class FirebaseService {
   searchTutor(city, level, subject) {
     // return this.db.list('users', {query: {orderByChild : "type", equalTo:'customer'}});
     return this.db.list('tutors', ref => ref.orderByChild('city').equalTo(city)).valueChanges();
+  }
+
+  searchTutorBatch(batch, city, lastKey?) {
+    if (lastKey) {
+      console.log("Got last key");
+      return this.db.list('/tutors', ref => ref.limitToFirst(batch).startAt(lastKey)).valueChanges();
+    } else {
+      console.log("No last key");
+      return this.db.list('/tutors', ref => ref.limitToFirst(batch)).valueChanges();
+    }
+  }
+
+  bookTutor(tutor) {
+    // update bookTutor
+    // update students/$student/booking
+    // update students/$tutor/booking
+
+    console.log("Current Student: " + JSON.stringify(this.studentProfile));
+
+    // get push key
+    let newBooking = {};
+    let key = this.db.list('/tutorbooking/').push(newBooking).key;
+    console.log(key);
+
+    newBooking['/tutorbooking/'+ key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
+    newBooking['/tutors/'+ tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
+
+    console.log(tutor.id);
+
+    this.db.object('/').update(newBooking);
+
+    // var updateBooking = {}
+    //
+    // updateBooking['/tutorbooking/' + key + '/subject/'] = 'Bahasa Inggeris';
+    // updateBooking['/tutors/' + tutor.id + '/bookings/' + key + '/subject/'] = 'Bahasa Inggeris';
+
+    // this.db.object('/').update(updateBooking);
+
+    //How to update all keys with child to update
   }
 
   addStudent(student): any {

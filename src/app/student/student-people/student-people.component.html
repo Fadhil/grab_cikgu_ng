@@ -80,7 +80,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success">Request Tutor</button>
+            <button type="button" class="btn btn-success" (click)="bookTutor(selectedTutor)">Request Tutor</button>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -146,7 +146,7 @@
             </select>
           </div>
           <div class="box-footer clearfix">
-            <a class="btn btn-info pull-right" id="searchButton" (click)="searchTutor()">Search</a>
+            <a class="btn btn-info pull-right" id="searchButton" (click)="searchTutorBatch()">Search</a>
           </div>
 
       </div>
@@ -165,15 +165,15 @@
     <!-- /.box-header -->
     <div class="box-body">
       <ul class="products-list product-list-in-box">
-        <li *ngFor="let tutor of tutors" class="item">
+        <li *ngFor="let tutor of tutorsList | async" class="item">
           <div class="product-img">
             <img src="assets/img/default-50x50.gif" alt="Product Image">
           </div>
           <div class="product-info">
-            <a class="product-title" (click)="open(tutor)">{{tutor.name}}
-                <span class="label label-warning pull-right">{{tutor.hourly_rate_cents? 'RM ' + (tutor.hourly_rate_cents/100) : 'NA'}}</span></a>
+            <a class="product-title" (click)="open(tutor)">{{tutor?.name}}
+                <span class="label label-warning pull-right">{{tutor?.hourly_rate_cents? 'RM ' + (tutor?.hourly_rate_cents/100) : 'NA'}}</span></a>
             <span class="product-description">
-              {{tutor.email}} {{tutor.phone_no}}
+              {{tutor?.email}} {{tutor?.phone_no}}
             </span>
           </div>
         </li>

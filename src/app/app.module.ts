@@ -58,6 +58,7 @@ import { FirebaseService } from './shared/services/firebase.service';
 import { AppSettings } from './app.settings';
 import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { StudentSidebarComponent } from './shared/components/layouts/sidebar/stu
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    InfiniteScrollModule
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
