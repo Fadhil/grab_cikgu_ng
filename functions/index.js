@@ -12,25 +12,18 @@ admin.initializeApp(functions.config().firebase);
 
 exports.updateTutorProfile = functions.database.ref('/tutors/{tutorID}/city')
   .onWrite( event => {
-    const original  = event.data.val();
-    const previous = event.data.previous.val();
-    console.log('Uppercasing', event.params.tutorID, original);
-    // const uppercase = original.toUpperCase();
-    const uppercase = previous.toUpperCase();
-    // return event.data.ref.parent.child('uppercase').set(uppercase);
-    // return event.data.ref.parent.parent.parent.child('Location').child(previous).set(null);
+    // const originalCity  = event.data.val();
+    const previousCity = event.data.previous.val();
+
+    let newTutorData = {};
 
     return admin.database().ref('/tutors/' + event.params.tutorID + '/subjects/').once('value')
-      .then(function(snapshot){
-        // console.log(snapshot.val());
-        for (let subject of snapshot.val()){
-          // console.log(subject.levels);
+      .then(function(subjects){
+        for (let subject of subjects.val()){
           for (let x=0; x< subject.levels.length; x++) {
-            admin.database().ref('/Location/'+ previous + '/'+subject.name+'/levels/' + x + '/' + event.params.tutorID).set(null);
+            newTutorData['/Location/'+ previousCity + '/' + subject.name + '/levels/' + x + '/' + event.params.tutorID] = null;
           }
+          return admin.database().ref('/').update(newTutorData);
         }
-
       })
-
-
   });
