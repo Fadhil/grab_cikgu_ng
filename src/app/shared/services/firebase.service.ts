@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Tutor } from './../../models/tutor';
@@ -76,13 +77,16 @@ export class FirebaseService {
     return this.db.list('tutors', ref => ref.orderByChild('city').equalTo(city)).valueChanges();
   }
 
-  searchTutorBatch(batch, city, lastKey?) {
+  searchTutorBatch(city, subject, level, batch, lastKey?) {
+    console.log(city);
+    console.log(subject);
+    console.log(level);
     if (lastKey) {
-      console.log("Got last key");
-      return this.db.list('/tutors', ref => ref.limitToFirst(batch).startAt(lastKey)).valueChanges();
+      console.log("searchTutorBatch Firebase last key");
+      console.log(lastKey);
+      return this.db.list('/Location/' + city + '/' + subject + '/levels/' + level + '/', ref => ref.orderByKey().startAt(lastKey).limitToFirst(batch)).snapshotChanges();
     } else {
-      console.log("No last key");
-      return this.db.list('/tutors', ref => ref.limitToFirst(batch)).valueChanges();
+      return this.db.list('/Location/' + city + '/' + subject + '/levels/' + level + '/', ref => ref.limitToFirst(batch)).snapshotChanges();
     }
   }
 
@@ -98,8 +102,8 @@ export class FirebaseService {
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
     console.log(key);
 
-    newBooking['/tutorbooking/'+ key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
-    newBooking['/tutors/'+ tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
+    newBooking['/tutorbooking/' + key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
+    newBooking['/tutors/' + tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
 
     console.log(tutor.id);
 

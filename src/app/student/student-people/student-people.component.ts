@@ -8,7 +8,9 @@ import { FirebaseService } from '../../shared/services/firebase.service';
 import { Tutor } from './../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import 'rxjs/add/operator/do';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 import * as _ from 'lodash';
 
 declare var $: any;
@@ -37,7 +39,7 @@ export class StudentPeopleComponent implements OnInit {
 
   tutorsList = new BehaviorSubject([]);
 
-  batch = 5;         // size of each query
+  batch = 2;         // size of each query
   lastKey = '';      // key to offset next query from
   finished = false;  // boolean when end of database is reached
 
@@ -64,7 +66,7 @@ export class StudentPeopleComponent implements OnInit {
     this.rate = 'select';
     this.level = 0;
     this.onLevelChange(this.level);
-    this.subject = 0;
+    this.subject = 'select';
     this.selectedTutor = new Tutor();
   }
 
@@ -109,34 +111,54 @@ export class StudentPeopleComponent implements OnInit {
       });
   }
 
+  searchNewTutorBatch(){
+    this.finished = false;
+    this.tutorsList = new BehaviorSubject([]);
+    this.lastKey = '';
+    this.searchTutorBatch();
+  }
+
   searchTutorBatch() {
     console.log("SearchTutorBatch");
+    // this.tutorsList = [];
+    // this.tutorsList = new BehaviorSubject([]);
+
     if (this.finished) return;
+
+    console.log("finished == false");
 
     const s = this.subject;
     const l = this.level;
 
     this.firebaseService
-      .searchTutorBatch(this.batch, this.city, this.lastKey)
-      .do( tutors => {
-        this.lastKey = _.last(tutors)['$key'];
-        console.log(this.lastKey);
+      .searchTutorBatch(this.city, this.subject, this.level, this.batch + 1, this.lastKey)
+      .map( actions => {
+        return actions.map(action => ({key: action.key, ...action.payload.val()}));
+      })
+      .subscribe(tutors => {
+        this.lastKey = _.last(tutors).key;
+
         const newTutors = _.slice(tutors, 0, this.batch);
 
-        const currentTutors = this.tutorsList.getValue();
+        let currentTutors = tutors;
 
-        if (this.lastKey === _.last(newTutors)['$key']) {
+        if (this.lastKey === _.last(newTutors).key) {
           this.finished = true;
         }
+        this.tutorsList.next( _.concat(this.tutorsList.getValue(), newTutors));
 
-        this.tutorsList.next( _.concat(currentTutors, newTutors));
+        currentTutors = this.tutorsList.getValue();
 
-      })
-      .take(1)
-      .subscribe(tutors => {
-        // Remove this later.
-        console.log(tutors);
+        if (currentTutors.length > 0) {
+          this.alertService.success("Found " + currentTutors.length + " match");
+        }
+
       });
+  }
+
+
+  onScroll () {
+      this.searchTutorBatch();
   }
 
 
