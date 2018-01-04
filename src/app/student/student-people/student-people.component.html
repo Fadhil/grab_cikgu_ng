@@ -12,20 +12,6 @@
 
 <!-- Main content -->
 <section class="content">
-  <template ngbModalContainer #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h4 class="modal-title">Open staff window</h4>
-    </div>
-    <div class="modal-body">
-      <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    </div>
-  </template>
 
   <!-- Modal Dialogue Box -->
     <div class="modal fade" id="modal-default">
