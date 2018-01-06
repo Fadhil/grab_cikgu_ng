@@ -360,26 +360,6 @@
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.6.0.tgz#383f456b26bc96c7889f0332079f4358b16c58dc"
 
-"@types/bootstrap-datepicker@0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap-datepicker/-/bootstrap-datepicker-0.0.9.tgz#603bb1365a93fcb2676ecb421ecd5d7926b65cb9"
-  dependencies:
-    "@types/jquery" "*"
-
-"@types/bootstrap.v3.datetimepicker@^4.17.41":
-  version "4.17.46"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap.v3.datetimepicker/-/bootstrap.v3.datetimepicker-4.17.46.tgz#134cab6e978c791dc2a334bbda24a1e1267016d3"
-  dependencies:
-    "@types/jquery" "*"
-    moment ">=2.14.0"
-
-"@types/daterangepicker@^2.1.10":
-  version "2.1.17"
-  resolved "https://registry.yarnpkg.com/@types/daterangepicker/-/daterangepicker-2.1.17.tgz#79da9fba1e9f376f878d74f05d36f9ed54b4cc02"
-  dependencies:
-    "@types/jquery" "*"
-    moment ">=2.14.0"
-
 "@types/icheck@^0.8.29":
   version "0.8.29"
   resolved "https://registry.yarnpkg.com/@types/icheck/-/icheck-0.8.29.tgz#2633a76e2c3572300f5c8258dda2d207fc1bdc28"
@@ -414,9 +394,9 @@
   version "3.2.16"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.16.tgz#04419c404a3194350e7d3f339a90e72c88db3111"
 
-"@types/jquery@^2.0.47":
-  version "2.0.48"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.48.tgz#3e90d8cde2d29015e5583017f7830cb3975b2eef"
+"@types/jquery@^3.2.17":
+  version "3.2.17"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.17.tgz#01df9805dd5cf83a14cf5bfd81adced7d4fbd970"
 
 "@types/jqueryui@^1.11.35":
   version "1.11.37"
@@ -2120,9 +2100,9 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-daterangepicker@^2.1.25:
-  version "2.1.25"
-  resolved "https://registry.yarnpkg.com/daterangepicker/-/daterangepicker-2.1.25.tgz#f2926e9791b11e8117e893a0edfbff3cfe3e2f28"
+daterangepicker@^2.1.27:
+  version "2.1.27"
+  resolved "https://registry.yarnpkg.com/daterangepicker/-/daterangepicker-2.1.27.tgz#e2b6481ac7a5291c86d9c806d09ad79dc01c2c9d"
   dependencies:
     jquery ">=1.10"
     moment "^2.9.0"
@@ -5244,11 +5224,11 @@ modelo@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/modelo/-/modelo-4.2.0.tgz#3b4b420023a66ca7e32bdba16e710937e14d1b0b"
 
-moment@2.x.x:
+moment@2.x.x, moment@^2.9.0:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
-moment@>=2.14.0, moment@^2.18.1, moment@^2.9.0:
+moment@^2.18.1:
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.2.tgz#8a7f774c95a64550b4c7ebd496683908f9419dbe"
 
