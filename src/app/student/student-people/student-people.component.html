@@ -46,7 +46,31 @@
                 </div>
               </div>
               <div class="col-md-6">
+                <p><b>Tuition Details</b></p>
+                <p>Rate: RM{{selectedTutor.rate}}</p>
+                <p>Subject:
+                  <span *ngFor="let subject of selectedTutor.subjects" >
+                    <span *ngFor="let level of subject.levels; let i = index; let b=first; let c=last;">
+                        <span *ngIf="level">
+                          <li>
+                            {{subject.name}}
+                            <span [ngSwitch]="i">
+                              <span *ngSwitchCase="0"> (Standard 1-3)</span>
+                              <span *ngSwitchCase="1">(Standard 4-6)</span>
+                              <span *ngSwitchCase="2">(Form 1-3)</span>
+                              <span *ngSwitchCase="3">(Form 4-6)</span>
+                            </span>
+                          </li>
+                        </span>
+                    </span>
+                  </span>
+                </p>
+
                 <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
+                Remarks:<br>
+                <textarea>
+                </textarea>
               </div>
             </div>
           </div>
