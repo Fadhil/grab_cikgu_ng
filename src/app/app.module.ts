@@ -37,7 +37,6 @@ import { AdminLeftSideComponent } from './admin/admin-left-side/admin-left-side.
 import { AdminContentComponent } from './admin/admin-content/admin-content.component';
 import { AdminFooterComponent } from './admin/admin-footer/admin-footer.component';
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
-import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboard1.component';
 import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
 import { StudentRoutingModule, studentRoutingComponents } from './student/student-routing/student-routing.module';
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
@@ -59,7 +58,7 @@ import { AppSettings } from './app.settings';
 import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import * as $ from "jquery";
 
 @NgModule({
   declarations: [

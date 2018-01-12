@@ -12,20 +12,6 @@
 
 <!-- Main content -->
 <section class="content">
-  <template ngbModalContainer #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h4 class="modal-title">Open staff window</h4>
-    </div>
-    <div class="modal-body">
-      <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    </div>
-  </template>
 
   <!-- Modal Dialogue Box -->
     <div class="modal fade" id="modal-default">
@@ -60,29 +46,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <p><b>Tuition Details</b></p>
-                <p>Rate: RM{{selectedTutor.rate}}</p>
-                <p>Subject:
-                  <span *ngFor="let subject of selectedTutor.subjects" >
-                    <span *ngFor="let level of subject.levels; let i = index; let b=first; let c=last;">
-                        <span *ngIf="level">
-                          <li>
-                            {{subject.name}}
-                            <span [ngSwitch]="i">
-                              <span *ngSwitchCase="0"> (Standard 1-3)</span>
-                              <span *ngSwitchCase="1">(Standard 4-6)</span>
-                              <span *ngSwitchCase="2">(Form 1-3)</span>
-                              <span *ngSwitchCase="3">(Form 4-6)</span>
-                            </span>
-                          </li>
-                        </span>
-                    </span>
-                  </span>
-                </p>
-
-                Remarks:<br>
-                <textarea>
-                </textarea>
+                <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
               </div>
             </div>
           </div>
