@@ -56,7 +56,7 @@ export class FirebaseService {
       for (let subject of tutor.subjects) {
         for (let x = 0; x < subject.levels.length; x++) {
           if (subject.levels[x]) {
-            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name, email: tutor.email, rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
+            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name, email: tutor.email, rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0, occupation: tutor.occupation};
           } else {
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;
           }
@@ -122,6 +122,11 @@ export class FirebaseService {
   addStudent(student): any {
     return this.db.object('/students/' + student.id).set(student);
   }
+
+  loadStudentBookings(student): any {
+    return this.db.object('/students/' + student.id + '/bookings').valueChanges();
+  }
+
 
   getStudent(key): any {
     return this.db.object('students/' + key + '/').valueChanges();

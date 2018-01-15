@@ -2,3 +2,9 @@
   margin: 15px;
   border-radius: 10px
 }
+
+ngb-datepicker /deep/ .text-white {
+  color: red;
+  background: '#337ab7';
+  /* background: '#337ab7' !important; */
+}
