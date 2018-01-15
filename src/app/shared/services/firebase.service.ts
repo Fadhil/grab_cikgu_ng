@@ -56,9 +56,6 @@ export class FirebaseService {
       for (let subject of tutor.subjects) {
         for (let x = 0; x < subject.levels.length; x++) {
           if (subject.levels[x]) {
-<<<<<<< HEAD
-            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name, email: tutor.email, rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0, occupation: tutor.occupation};
-=======
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name,
                                                                                                           email: tutor.email,
                                                                                                           occupation: tutor.occupation,
@@ -67,10 +64,9 @@ export class FirebaseService {
                                                                                                           achievement: tutor.achievement,
                                                                                                           gender: tutor.gender,
                                                                                                           age: tutor.age,
-                                                                                                          
+
                                                                                                           experience: tutor.experience,
                                                                                                           rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
->>>>>>> e440af0d966fd37447f108679086700f2c1ef9fd
           } else {
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;
           }

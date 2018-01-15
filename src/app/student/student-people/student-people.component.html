@@ -45,14 +45,10 @@
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-              <div class="col-xs-6">
-                <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" class="tar"></ngb-datepicker>
-=======
               <div class="col-md-6">
                 <p><b>Tuition Details</b></p>
                 <p>Rate: RM{{selectedTutor.rate}}</p>
-                <p>Subject:
+                <!-- <p>Subject:
                   <span *ngFor="let subject of selectedTutor.subjects" >
                     <span *ngFor="let level of subject.levels; let i = index; let b=first; let c=last;">
                         <span *ngIf="level">
@@ -68,14 +64,10 @@
                         </span>
                     </span>
                   </span>
-                </p>
+                </p> -->
 
                 <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
 
-                Remarks:<br>
-                <textarea>
-                </textarea>
->>>>>>> e440af0d966fd37447f108679086700f2c1ef9fd
               </div>
             </div>
           </div>
