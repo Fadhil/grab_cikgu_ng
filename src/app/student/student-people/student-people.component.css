@@ -8,3 +8,7 @@ ngb-datepicker /deep/ .text-white {
   background: '#337ab7';
   /* background: '#337ab7' !important; */
 }
+
+::ng-deep .cdk-overlay-container{
+    z-index: 1200 !important;
+}

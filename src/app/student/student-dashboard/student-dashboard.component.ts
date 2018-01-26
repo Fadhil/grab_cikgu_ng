@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  constructor() { }
+  someData: integer;
+  otherData: integer;
+
+  constructor() {
+    this.someData = 0;
+   }
 
   ngOnInit() {
+  }
+
+  showdata(data) {
+    this.someData = data;
   }
 
 }

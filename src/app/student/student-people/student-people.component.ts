@@ -10,6 +10,9 @@ import { Subject, Subjects, Levels } from './../../models/subject';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/do';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {ViewEncapsulation} from '@angular/core';
+
+
 
 
 import * as _ from 'lodash';
@@ -19,7 +22,8 @@ declare var $: any;
 @Component({
   selector: 'app-student-people',
   templateUrl: './student-people.component.html',
-  styleUrls: ['./student-people.component.css']
+  styleUrls: ['./student-people.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class StudentPeopleComponent implements OnInit {
   states: State[] = [];
@@ -40,7 +44,7 @@ export class StudentPeopleComponent implements OnInit {
 
   tutorsList = new BehaviorSubject([]);
 
-  batch = 2;         // size of each query
+  batch = 5;         // size of each query
   lastKey = '';      // key to offset next query from
   finished = false;  // boolean when end of database is reached
 
@@ -189,6 +193,10 @@ export class StudentPeopleComponent implements OnInit {
   open(tutor){
     console.log(tutor);
     this.selectedTutor = tutor;
+    // $('#datetimepicker3').datetimepicker({
+    //     format: 'LT'
+    // });
+
     $("#modal-default").modal('show');
   }
 

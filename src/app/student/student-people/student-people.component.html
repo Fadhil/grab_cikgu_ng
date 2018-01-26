@@ -1,8 +1,20 @@
 
+<style>
+  .mat-datepicker-calendar-pane{
+  z-index: 1200}
+  .cdk-overlay-pane {
+    z-index: 1200 !important
+  }
+  .cdk-overlay-pane {
+    z-index: 1200 !important
+  }
+
+</style>
 <section class="content-header">
   <h1>
     Search for Tutors
     <small>Control panel</small>
+
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -48,6 +60,13 @@
               <div class="col-md-6">
                 <p><b>Tuition Details</b></p>
                 <p>Rate: RM{{selectedTutor.rate}}</p>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <!-- <mat-checkbox>Check me!</mat-checkbox> -->
+
                 <!-- <p>Subject:
                   <span *ngFor="let subject of selectedTutor.subjects" >
                     <span *ngFor="let level of subject.levels; let i = index; let b=first; let c=last;">
@@ -66,8 +85,7 @@
                   </span>
                 </p> -->
 
-                <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-
+                <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
               </div>
             </div>
           </div>
