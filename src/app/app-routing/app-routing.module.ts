@@ -4,12 +4,13 @@ import { AdminComponent } from './../admin/admin.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
+import { HomepageComponent }   from './../homepage/homepage.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'search', pathMatch: 'full' }
+      { path: '', redirectTo: 'search', pathMatch: 'full' },
+      { path: 'homepage', component: HomepageComponent },
     ], //,
     //{ enableTracing: true }
   )

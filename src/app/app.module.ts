@@ -59,6 +59,10 @@ import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import * as $ from "jquery";
+import { HomepageComponent } from './homepage/homepage.component';
+
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
 
 @NgModule({
   declarations: [
@@ -84,6 +88,7 @@ import * as $ from "jquery";
     EqualValidator,
     TutorSidebarComponent,
     StudentSidebarComponent,
+    HomepageComponent
 ],
   imports: [
     BrowserModule,
@@ -101,7 +106,8 @@ import * as $ from "jquery";
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     NgbModule.forRoot(),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
