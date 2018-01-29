@@ -55,6 +55,7 @@ export class StudentPeopleComponent implements OnInit {
 
   booking_date: any;
   booking_time: any;
+  booking_duration: any;
 
   avatar: string;
 
@@ -191,9 +192,10 @@ export class StudentPeopleComponent implements OnInit {
   bookTutor(tutor) {
 
     console.log(tutor);
+    console.log(this.booking_duration);
 
     const classInfo = {name: this.subject, level: this.level};
-    const bookingTime = {date: this.booking_date, time: this.booking_time};
+    const bookingTime = {date: this.booking_date, time: this.booking_time, duration: parseFloat(this.booking_duration) };
 
     const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, status: 'pending'};
     console.log(bookingInfo);

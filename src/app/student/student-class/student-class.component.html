@@ -27,10 +27,21 @@
         </ng-container>
 
 
+        <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.duration ? element.duration + ' hrs' : ''}} </mat-cell>
+        </ng-container>
+
+
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Class Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}}<br><small>{{element.level}}</small> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Level </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <small>{{element.level}}</small> </mat-cell>
         </ng-container>
 
         <!-- Weight Column -->
@@ -42,7 +53,24 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="label {{statusLabel(element.status)}}">{{element.status}}</span>
+            <span matTooltip="Cancel this class">
+              <button mat-icon-button (click)="deleteBooking(element)">
+                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+              </button>
+            </span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn">
+              <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+            </button>
+          </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

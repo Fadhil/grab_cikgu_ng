@@ -115,7 +115,13 @@ export class FirebaseService {
     newBooking['/tutorbooking/' + key] = {tutor: bookingInfo.tutor, subject: bookingInfo.class, student: bookingInfo.student, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
 
     //tutor
-    newBooking['/tutors/' + bookingInfo.tutor.key + '/bookings/' + key] = {student: bookingInfo.student, class: bookingInfo.class, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
+    newBooking['/tutors/' + bookingInfo.tutor.key + '/bookings/' + key] =
+    {
+      student: bookingInfo.student,
+      class: bookingInfo.class,
+      bookingTime: bookingInfo.bookingTime,
+      status: bookingInfo.status
+    };
 
     //student
     newBooking['/students/' + bookingInfo.student.id + '/bookings/' + key] = {tutor: bookingInfo.tutor, class: bookingInfo.class, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
@@ -142,8 +148,18 @@ export class FirebaseService {
     return this.db.object('/students/' + student.id + '/bookings').valueChanges();
   }
 
+  cancelStudentBooking(studentKey, bookingInfo): any {
+    console.log(studentKey);
+    console.log(bookingInfo);
+    let updateBooking = {};
+    updateBooking['/tutorbooking/' + bookingInfo.key] = null;
+    updateBooking['/tutors/' + bookingInfo.tutorkey + '/bookings/' + bookingInfo.key + '/status'] = 'cancelled';
+    updateBooking['/students/' + studentKey + '/bookings/' + bookingInfo.key] = null;
+    return this.db.object('/').update(updateBooking);
+  }
+
   loadTutorBookings(tutor): any {
-    return this.db.object('/tutors/' + tutor.key + '/bookings').valueChanges();
+    return this.db.object('/tutors/' + tutor.id + '/bookings').valueChanges();
   }
 
   getStudent(key): any {

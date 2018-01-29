@@ -4,6 +4,7 @@ import { FirebaseService } from '../../shared/services/firebase.service';
 import { AlertService } from './../../shared/services/alert.service';
 import { Router } from '@angular/router';
 import { Student } from './../../models/student';
+import { Subject, Subjects, Levels } from './../../models/subject';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,7 +13,7 @@ import * as _ from 'lodash';
   styleUrls: ['./student-class.component.css']
 })
 export class StudentClassComponent implements OnInit {
-  displayedColumns = ['date', 'time', 'name', 'tutor', 'status'];
+  displayedColumns = ['date', 'time', 'duration', 'name', 'tutor', 'status'];
   myDataSource = new MatTableDataSource();
   // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -51,9 +52,18 @@ export class StudentClassComponent implements OnInit {
 
             let i = 0 ;
             for (let item in da) {
-
-              returnArr.push({ date: da[item].bookingTime.date, time: da[item].bookingTime.time, name: da[item].class.name, tutor: da[item].tutor.name, status: da[item].status  });
-              i++;
+              if (item) {
+                returnArr.push({  key: item,
+                                  date: da[item].bookingTime.date,
+                                  time: da[item].bookingTime.time,
+                                  duration: da[item].bookingTime.duration,
+                                  name: da[item].class.name,
+                                  level: Levels[da[item].class.level],
+                                  tutorkey: da[item].tutor.key,
+                                  tutor: da[item].tutor.name,
+                                  status: da[item].status});
+                i++;
+              }
             }
 
             this.myDataSource.data = _.reverse(returnArr);
@@ -63,8 +73,31 @@ export class StudentClassComponent implements OnInit {
 
   }
 
-  sortData(event){
+  sortData(event) {
     console.log(event);
+  }
+
+  deleteBooking(bookingInfo) {
+    if (confirm("Are you sure?")) {
+      this.firebaseService.cancelStudentBooking(this.studentProfile.id, bookingInfo);
+    }
+  }
+
+  statusLabel(status) {
+    switch (status) {
+      case 'pending':
+        return 'label-danger';
+        break;
+      case 'confirmed':
+        return 'label-success';
+        break;
+        case 'completed':
+          return 'label-primary';
+          break;
+      default:
+        return 'label-default';
+    }
+
   }
 
   ngAfterViewInit() {
