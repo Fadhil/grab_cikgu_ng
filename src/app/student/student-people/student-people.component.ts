@@ -35,6 +35,8 @@ export class StudentPeopleComponent implements OnInit {
   levels: any;
   rate: string;
   level: number;
+  date: string;
+  time: string;
 
   tutors: any;
   selectedTutor: Tutor;
@@ -169,7 +171,10 @@ export class StudentPeopleComponent implements OnInit {
 
   bookTutor(tutor) {
 
-    this.firebaseService.bookTutor(tutor);
+    let bookingInfo = {tutor: tutor, date: this.date, time: this.time, subject: this.subject, level: this.level};
+    this.firebaseService.bookTutor(bookingInfo);
+    console.log(this.date);
+    console.log(this.time);
 
   }
 
@@ -196,6 +201,12 @@ export class StudentPeopleComponent implements OnInit {
     // $('#datetimepicker3').datetimepicker({
     //     format: 'LT'
     // });
+
+    this.firebaseService.getTutor(tutor.key)
+      .subscribe(a => {
+        this.selectedTutor = a;
+        console.log(a);
+      });
 
     $("#modal-default").modal('show');
   }

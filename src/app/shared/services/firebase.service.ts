@@ -100,7 +100,7 @@ export class FirebaseService {
     }
   }
 
-  bookTutor(tutor) {
+  bookTutor(bookingInfo) {
     // update bookTutor
     // update students/$student/booking
     // update students/$tutor/booking
@@ -109,13 +109,17 @@ export class FirebaseService {
 
     // get push key
     let newBooking = {};
+    let tutorBooking = {};
+    let studentBooking = {};
+
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
     console.log(key);
 
-    newBooking['/tutorbooking/' + key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
-    newBooking['/tutors/' + tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
+    newBooking['/tutorbooking/' + key] = bookingInfo;
+    newBooking['/tutors/' + bookingInfo.tutor.id + '/bookings/' + key] = tutorBooking;
+    // newBooking['/tutors/' + bookingInfo.tutor.id + '/bookings/' + key];
 
-    console.log(tutor.id);
+    console.log(bookingInfo.tutor.id);
 
     this.db.object('/').update(newBooking);
 
