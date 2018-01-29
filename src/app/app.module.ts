@@ -59,6 +59,7 @@ import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import {
   MatAutocompleteModule,
@@ -180,13 +181,16 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MatTooltipModule,
     MatStepperModule,
     MatFormFieldModule,
-    ScrollToModule.forRoot()
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
     exports: [
       MatNativeDateModule,
       MatDatepickerModule,
       MatFormFieldModule,
       MatInputModule,
+      MatTableModule,
+      MatSortModule
     ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,

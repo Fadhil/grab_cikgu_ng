@@ -10,11 +10,14 @@ import { StudentClassComponent } from './student-class/student-class.component';
 import { StudentMessageComponent } from './student-message/student-message.component';
 import { StudentAccountComponent } from './student-account/student-account.component';
 import { StudentReportComponent } from './student-report/student-report.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     NgbModule,
   ],
   declarations: [StudentComponent,

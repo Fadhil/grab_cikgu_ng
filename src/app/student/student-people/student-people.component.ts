@@ -11,9 +11,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/do';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {ViewEncapsulation} from '@angular/core';
-
-
-
+import { Student } from './../../models/student';
 
 import * as _ from 'lodash';
 
@@ -36,11 +34,12 @@ export class StudentPeopleComponent implements OnInit {
   rate: string;
   level: number;
 
-  date: string;
-  time: string;
+  public startAt = new Date(2019, 2, 15, 20, 30);
 
   tutors: any;
   selectedTutor: Tutor;
+  // selectedDateTime: Date();
+  // selectedTime: any;
 
   public modalref: any;
   closeResult: string;
@@ -50,6 +49,12 @@ export class StudentPeopleComponent implements OnInit {
   batch = 5;         // size of each query
   lastKey = '';      // key to offset next query from
   finished = false;  // boolean when end of database is reached
+
+  student_observable: any;
+  studentProfile = new Student();
+
+  booking_date: any;
+  booking_time: any;
 
   constructor(
     private alertService: AlertService,
@@ -76,6 +81,19 @@ export class StudentPeopleComponent implements OnInit {
     this.onLevelChange(this.level);
     this.subject = 'select';
     this.selectedTutor = new Tutor();
+
+    this.student_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
+      .subscribe(data => {
+        this.studentProfile = data;
+        this.avatar = 'assets/img/avatar5.png';
+      });
+  }
+
+  myFilter = (d: Date): boolean => {
+      const day = d.getDay();
+      // Prevent Saturday and Sunday from being selected.
+      // return day !== 0 && day !== 6;
+      return true;
   }
 
   onStateChange(state) {
@@ -169,14 +187,22 @@ export class StudentPeopleComponent implements OnInit {
   }
 
   bookTutor(tutor) {
-    this.date = $('#date');
-    this.time = $('#time');
 
-    //console.log("Book:"+tutor);
-    //console.log("Date:"+this.date);
-    //console.log("Time:"+this.time);
-    //console.log("Subject:"+this.subject);
-    this.firebaseService.bookTutor(tutor, this.subject);
+    console.log(tutor);
+
+    const classInfo = {name: this.subject, level: this.level};
+    const bookingTime = {date: this.booking_date, time: this.booking_time};
+
+    const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, status: 'pending'};
+    console.log(bookingInfo);
+
+    this.firebaseService.bookTutor(bookingInfo)
+      .then(result => {
+        this.close(); // close modal
+        this.router.navigateByUrl('/student/class');
+        this.alertService.success('Successfully Booked Class');
+      });
+
   }
 
   open2(content) {
