@@ -48,7 +48,7 @@ export class FirebaseService {
     // Refactor to multiple location update
 
     let newTutor = {};
-    let key = this.db.list('/tutors/').push(newTutor).key;
+    let key = this.db.list('/tutors/').push(newTutor).key; //this creates a key
 
     newTutor['/tutors/' + tutor.id] = tutor;
 
@@ -64,7 +64,6 @@ export class FirebaseService {
                                                                                                           achievement: tutor.achievement,
                                                                                                           gender: tutor.gender,
                                                                                                           age: tutor.age,
-
                                                                                                           experience: tutor.experience,
                                                                                                           rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
           } else {
@@ -96,6 +95,7 @@ export class FirebaseService {
       console.log(lastKey);
       return this.db.list('/Location/' + city + '/' + subject + '/levels/' + level + '/', ref => ref.orderByKey().startAt(lastKey).limitToFirst(batch)).snapshotChanges();
     } else {
+      //first time and when less < batch
       return this.db.list('/Location/' + city + '/' + subject + '/levels/' + level + '/', ref => ref.limitToFirst(batch)).snapshotChanges();
     }
   }
