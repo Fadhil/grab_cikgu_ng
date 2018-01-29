@@ -139,7 +139,7 @@ export class FirebaseService {
   }
 
   loadStudentBookings(student): any {
-    return this.db.object('/students/' + student.id + '/bookings', ref => ref.orderByChild('timestamp')).valueChanges();
+    return this.db.object('/students/' + student.id + '/bookings').valueChanges();
   }
 
   loadTutorBookings(tutor): any {

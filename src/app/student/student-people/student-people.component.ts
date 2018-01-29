@@ -56,6 +56,8 @@ export class StudentPeopleComponent implements OnInit {
   booking_date: any;
   booking_time: any;
 
+  avatar: string;
+
   constructor(
     private alertService: AlertService,
     private locationService: LocationService,
