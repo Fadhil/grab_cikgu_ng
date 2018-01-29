@@ -36,6 +36,9 @@ export class StudentPeopleComponent implements OnInit {
   rate: string;
   level: number;
 
+  date: string;
+  time: string;
+
   tutors: any;
   selectedTutor: Tutor;
 
@@ -95,7 +98,6 @@ export class StudentPeopleComponent implements OnInit {
   }
 
   searchTutor() {
-
     const s = this.subject;
     const l = this.level;
 
@@ -166,11 +168,15 @@ export class StudentPeopleComponent implements OnInit {
       this.searchTutorBatch();
   }
 
-
   bookTutor(tutor) {
+    this.date = $('#date');
+    this.time = $('#time');
 
-    this.firebaseService.bookTutor(tutor);
-
+    //console.log("Book:"+tutor);
+    //console.log("Date:"+this.date);
+    //console.log("Time:"+this.time);
+    //console.log("Subject:"+this.subject);
+    this.firebaseService.bookTutor(tutor, this.subject);
   }
 
   open2(content) {

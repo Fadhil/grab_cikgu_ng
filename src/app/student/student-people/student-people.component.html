@@ -61,9 +61,12 @@
                 <p><b>Tuition Details</b></p>
                 <p>Rate: RM{{selectedTutor.rate}}</p>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                  <input matInput id="date" [matDatepicker]="picker" placeholder="Choose a date">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput id="time" placeholder="Choose time">
                 </mat-form-field>
                 <!-- <mat-checkbox>Check me!</mat-checkbox> -->
 

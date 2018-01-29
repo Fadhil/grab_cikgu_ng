@@ -100,24 +100,23 @@ export class FirebaseService {
     }
   }
 
-  bookTutor(tutor) {
+  bookTutor(tutor, subject) {
     // update bookTutor
     // update students/$student/booking
     // update students/$tutor/booking
 
     console.log("Current Student: " + JSON.stringify(this.studentProfile));
-
+    console.log("Data: " + JSON.stringify(tutor));
     // get push key
     let newBooking = {};
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
     console.log(key);
 
-    newBooking['/tutorbooking/' + key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
-    newBooking['/tutors/' + tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
-
-    console.log(tutor.id);
-
-    this.db.object('/').update(newBooking);
+    newBooking['/tutorbooking/' + key] = {tutor: tutor.key, subject: subject, student: this.studentProfile.id, status: 0};
+    newBooking['/tutors/' + tutor.key + '/bookings/' + key] = {student: this.studentProfile.id, subject: subject, status: 0};
+    newBooking['/students/' + this.studentProfile.id + '/bookings/' + key] = {tutor: tutor.key, subject: subject, status: 0};
+    console.log(tutor.key);
+    return this.db.object('/').update(newBooking);
 
     // var updateBooking = {}
     //
@@ -137,6 +136,9 @@ export class FirebaseService {
     return this.db.object('/students/' + student.id + '/bookings').valueChanges();
   }
 
+  loadTutorBookings(tutor): any {
+    return this.db.object('/tutors/' + tutor.key + '/bookings').valueChanges();
+  }
 
   getStudent(key): any {
     return this.db.object('students/' + key + '/').valueChanges();
