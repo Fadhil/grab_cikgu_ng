@@ -95,6 +95,10 @@ import {
   MatFormFieldModule,
 } from '@angular/material';
 import * as $ from "jquery";
+import { HomepageComponent } from './homepage/homepage.component';
+
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
 
 @NgModule({
   declarations: [
@@ -120,6 +124,7 @@ import * as $ from "jquery";
     EqualValidator,
     TutorSidebarComponent,
     StudentSidebarComponent,
+    HomepageComponent
 ],
   imports: [
     BrowserModule,
@@ -175,6 +180,7 @@ import * as $ from "jquery";
     MatTooltipModule,
     MatStepperModule,
     MatFormFieldModule,
+    ScrollToModule.forRoot()
   ],
     exports: [
       MatNativeDateModule,
