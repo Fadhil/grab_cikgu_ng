@@ -100,24 +100,29 @@ export class FirebaseService {
     }
   }
 
-  bookTutor(tutor) {
+  bookTutor(bookingInfo) {
     // update bookTutor
     // update students/$student/booking
     // update students/$tutor/booking
 
-    console.log("Current Student: " + JSON.stringify(this.studentProfile));
+    // console.log("Current Student: " + JSON.stringify(this.studentProfile));
 
     // get push key
     let newBooking = {};
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
-    console.log(key);
 
-    newBooking['/tutorbooking/' + key] = {tutor: tutor.id, tutor_email: tutor.email, subject: 'Bahasa Malaysia', student: this.studentProfile.id, student_name: this.studentProfile.name };
-    newBooking['/tutors/' + tutor.id + '/bookings/' + key] = {subject: 'Bahasa Malaysia'};
+    //admin
+    newBooking['/tutorbooking/' + key] = {tutor: bookingInfo.tutor, subject: bookingInfo.class, student: bookingInfo.student, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
 
-    console.log(tutor.id);
+    //tutor
+    newBooking['/tutors/' + bookingInfo.tutor.key + '/bookings/' + key] = {student: bookingInfo.student, class: bookingInfo.class, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
 
-    this.db.object('/').update(newBooking);
+    //student
+    newBooking['/students/' + bookingInfo.student.id + '/bookings/' + key] = {tutor: bookingInfo.tutor, class: bookingInfo.class, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
+
+    // console.log(tutor.id);
+
+    return this.db.object('/').update(newBooking);
 
     // var updateBooking = {}
     //
@@ -134,12 +139,25 @@ export class FirebaseService {
   }
 
   loadStudentBookings(student): any {
-    return this.db.object('/students/' + student.id + '/bookings').valueChanges();
+    return this.db.object('/students/' + student.id + '/bookings', ref => ref.orderByChild('timestamp')).valueChanges();
   }
 
 
   getStudent(key): any {
     return this.db.object('students/' + key + '/').valueChanges();
+  }
+
+  createPayment(paymentInfo): any {
+    //example on how to update firebase
+    let newPayment = {};
+    newPayment['/Student/class/payment'] = paymentInfo;
+    newPayment['/Tutor/class/payment'] = paymentInfo;
+
+    this.db.object('/').update(newPayment);
+  }
+
+  getStudentClasses(studentkey): any {
+    return this.db.object('students/' + studentkey + '/bookings').valueChanges();
   }
 
   test(): any {

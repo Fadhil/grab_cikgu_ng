@@ -570,6 +570,24 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-calendar@^0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/angular-calendar/-/angular-calendar-0.23.2.tgz#23cbcef23a447df8f2ea21357ba934607067a24b"
+  dependencies:
+    angular-draggable-droppable "^2.0.0"
+    angular-resizable-element "^2.0.0"
+    calendar-utils "^0.1.0"
+    date-fns "^1.28.5"
+    positioning "^1.3.1"
+
+angular-draggable-droppable@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/angular-draggable-droppable/-/angular-draggable-droppable-2.0.0.tgz#6b3ca7a0ddf36c55c30cdebea9de0592de29d76f"
+
+angular-resizable-element@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/angular-resizable-element/-/angular-resizable-element-2.0.0.tgz#10a437cce317e459e07c3189519ef395e6b86130"
+
 angular2-datatable@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/angular2-datatable/-/angular2-datatable-0.6.0.tgz#ca008f74087f0cb87da5709ed2f2d1d061772632"
@@ -1311,6 +1329,10 @@ cacheable-request@^2.1.1:
     lowercase-keys "1.0.0"
     normalize-url "2.0.1"
     responselike "1.0.2"
+
+calendar-utils@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/calendar-utils/-/calendar-utils-0.1.0.tgz#a7fb28df12a5b109d1e2b4fbd29e02d356459a44"
 
 call-limit@~1.1.0:
   version "1.1.0"
@@ -2107,6 +2129,10 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
+
+date-fns@^1.28.5:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -5333,6 +5359,12 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
+ng-pick-datetime@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-5.1.2.tgz#e96aaab132569efa8bf6df0308196a5775af6510"
+  dependencies:
+    "@angular/cdk" "^5.1.0"
+
 ngx-infinite-scroll@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.7.2.tgz#c1f0e7fba4731a55f15557dc6fce2721fd562420"
@@ -6115,6 +6147,10 @@ portfinder@^1.0.9, portfinder@~1.0.12:
     async "^1.5.2"
     debug "^2.2.0"
     mkdirp "0.5.x"
+
+positioning@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/positioning/-/positioning-1.3.1.tgz#6ff15e9bf8d8fe341ba1b3900d587e977b5554ec"
 
 postcss-calc@^5.2.0:
   version "5.3.1"
