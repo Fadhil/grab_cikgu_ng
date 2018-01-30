@@ -87,13 +87,12 @@ export class StudentClassComponent implements OnInit {
     switch (status) {
       case 'pending':
         return 'label-danger';
-        break;
       case 'confirmed':
         return 'label-success';
-        break;
-        case 'completed':
-          return 'label-primary';
-          break;
+      case 'declined':
+        return 'label-warning';
+      case 'completed':
+        return 'label-primary';
       default:
         return 'label-default';
     }

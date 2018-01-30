@@ -46,6 +46,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
 import { DataTableModule } from 'angular2-datatable';
 import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
 import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
+import { RequestFilterPipe } from './shared/pipes/request-filter.pipe';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -122,10 +123,11 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     studentRoutingComponents,
     DataFilterPipe,
     SplitSubjectsPipe,
+    RequestFilterPipe,
     EqualValidator,
     TutorSidebarComponent,
     StudentSidebarComponent,
-    HomepageComponent
+    HomepageComponent,
 ],
   imports: [
     BrowserModule,

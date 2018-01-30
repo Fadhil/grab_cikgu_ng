@@ -61,23 +61,25 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-          <mat-cell *matCellDef="let element">
+          <mat-cell *matCellDef="let element" >
             <!-- <button mat-icon-button color="warn">
               <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
             </button> -->
-
-
-            <span matTooltip="Accept this class">
-              <button mat-icon-button color="primary" (click)="confirmClass(element)">
-                  <mat-icon aria-label="Example icon-button with a heart icon">check</mat-icon>
-              </button>
+            <span *ngIf="element.status=='pending'">
+              <span matTooltip="Accept this class">
+                <button mat-icon-button color="primary" (click)="confirmClass(element)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">check</mat-icon>
+                </button>
+              </span>
+              <span matTooltip="Decline this class">
+                <button mat-icon-button (click)="declineClass(element)" color="warn">
+                    <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+                </button>
+              </span>
             </span>
-            <span matTooltip="Decline this class">
-              <button mat-icon-button (click)="declineClass(element)" color="warn">
-                  <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
-              </button>
+            <span *ngIf="element.status == 'confirmed'">
+              <button mat-raised-button button color="primary" (click)="completeClass(element)">Completed</button>
             </span>
-
           </mat-cell>
         </ng-container>
 
