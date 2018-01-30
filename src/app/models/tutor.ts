@@ -28,4 +28,8 @@ export class Tutor {
   city: string;
   achievement: string;
   status: string;
+  cpass: string;
+  bday: number;
+  bmonth: number;
+  rate: number;
 }

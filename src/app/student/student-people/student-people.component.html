@@ -61,10 +61,26 @@
                 <p><b>Tuition Details</b></p>
                 <p>Rate: RM{{selectedTutor.rate}}</p>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Date" [(ngModel)]="booking_date" required>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+                <mat-form-field>
+                  <!-- <input matInput  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Time" [(ngModel)]="selectedTime">
+                  <owl-date-time [pickerType]="'timer'" #dt1 [startAt]="startAt"></owl-date-time> -->
+                  <input matInput type="time" placeholder="Time" [(ngModel)]="booking_time">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-select placeholder="Duration" [(ngModel)]="booking_duration">
+                    <mat-option value="1">1 hour</mat-option>
+                    <mat-option value="1.5">1.5 hours</mat-option>
+                    <mat-option value="2">2 hours</mat-option>
+                    <mat-option value="2.5">2.5 hours</mat-option>
+                    <mat-option value="3">3 hour</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!-- <owl-date-time-inline [(ngModel)]="selectedMoment" [pickerType]="'timer'"></owl-date-time-inline> -->
+
                 <!-- <mat-checkbox>Check me!</mat-checkbox> -->
 
                 <!-- <p>Subject:

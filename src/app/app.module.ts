@@ -46,6 +46,7 @@ import { MainHeaderComponent } from './shared/components/layouts/main-header/mai
 import { DataTableModule } from 'angular2-datatable';
 import { DataFilterPipe } from './shared/pipes/data-filter.pipe';
 import { SplitSubjectsPipe } from './shared/pipes/split-subjects.pipe';
+import { RequestFilterPipe } from './shared/pipes/request-filter.pipe';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -59,6 +60,7 @@ import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import {
   MatAutocompleteModule,
@@ -121,10 +123,11 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     studentRoutingComponents,
     DataFilterPipe,
     SplitSubjectsPipe,
+    RequestFilterPipe,
     EqualValidator,
     TutorSidebarComponent,
     StudentSidebarComponent,
-    HomepageComponent
+    HomepageComponent,
 ],
   imports: [
     BrowserModule,
@@ -180,14 +183,49 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MatTooltipModule,
     MatStepperModule,
     MatFormFieldModule,
-    ScrollToModule.forRoot()
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
     exports: [
       MatNativeDateModule,
       MatDatepickerModule,
       MatFormFieldModule,
       MatInputModule,
-    ],
+      BrowserAnimationsModule,
+      MatAutocompleteModule,
+      MatButtonModule,
+      MatButtonToggleModule,
+      MatCardModule,
+      MatCheckboxModule,
+      MatChipsModule,
+      MatDatepickerModule,
+      MatDialogModule,
+      MatExpansionModule,
+      MatGridListModule,
+      MatIconModule,
+      MatInputModule,
+      MatListModule,
+      MatMenuModule,
+      MatNativeDateModule,
+      MatPaginatorModule,
+      MatProgressBarModule,
+      MatProgressSpinnerModule,
+      MatRadioModule,
+      MatRippleModule,
+      MatSelectModule,
+      MatSidenavModule,
+      MatSliderModule,
+      MatSlideToggleModule,
+      MatSnackBarModule,
+      MatSortModule,
+      MatTableModule,
+      MatTabsModule,
+      MatToolbarModule,
+      MatTooltipModule,
+      MatStepperModule,
+      MatFormFieldModule,
+      OwlDateTimeModule,
+      OwlNativeDateTimeModule,    ],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
     RequestService, LocationService, FirebaseService

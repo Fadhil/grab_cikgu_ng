@@ -9,7 +9,7 @@ import { HomepageComponent }   from './../homepage/homepage.component';
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'search', pathMatch: 'full' },
+      { path: '', component: HomepageComponent },
       { path: 'homepage', component: HomepageComponent },
     ], //,
     //{ enableTracing: true }

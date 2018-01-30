@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatTableDataSource, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -7,15 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  someData: integer;
-  otherData: integer;
-
+  someData: number;
+  otherData: 2;
+  date = '' ;
+  time = '';
   constructor() {
     this.someData = 0;
    }
 
   ngOnInit() {
   }
+
 
   showdata(data) {
     this.someData = data;
