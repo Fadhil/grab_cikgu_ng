@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/index';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',

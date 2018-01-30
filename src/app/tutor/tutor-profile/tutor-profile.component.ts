@@ -38,9 +38,9 @@ export class TutorProfileComponent implements OnInit {
         this.tutorProfile.age = n - this.tutorProfile.byear;
 
         if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
-          this.avatar = 'assets/img/avatar2.png';
+          this.avatar = this.tutorProfile.picture;
         }
-
+        console.log(this.avatar = this.tutorProfile.picture);
       });
   }
 

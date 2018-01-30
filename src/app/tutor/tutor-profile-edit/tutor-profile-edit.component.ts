@@ -8,6 +8,7 @@ import { State } from '../../models/state';
 import { City } from '../../models/city';
 import * as _ from 'lodash';
 import { FirebaseService } from '../../shared/services/firebase.service';
+
 declare var $:JQueryStatic;
 
 @Component({
@@ -25,6 +26,9 @@ export class TutorProfileEditComponent implements OnInit {
   subjects = [];
   avatar: string;
   tutor_list_observable: any;
+  pic_msg: string;
+  profile_url: any;
+  pic_observable: any;
 
 
   constructor(private tutorService: TutorService,
@@ -68,6 +72,17 @@ export class TutorProfileEditComponent implements OnInit {
 
     this.avatar = 'assets/img/avatar5.png';
 
+    const ref = this.firebaseService.storage.ref('gambar/' + this.tutorProfile.id);
+    console.log(ref);
+    this.profile_url = ref.getDownloadURL();
+    console.log(this.profile_url);
+
+    this.pic_observable = this.profile_url.subscribe(d => {
+      console.log("has changed");
+      console.log(d);
+      this.avatar = d;
+    });
+
     this.tutor_list_observable = this.firebaseService.getTutor(this.tutorProfile.id)
       .subscribe(data => {
         this.tutorProfile = data;
@@ -79,7 +94,7 @@ export class TutorProfileEditComponent implements OnInit {
         }
 
         if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
-          this.avatar = 'assets/img/avatar2.png';
+          // this.avatar = 'assets/img/avatar2.png';
         }
 
         this.onStateChange(this.tutorProfile.state);
@@ -181,7 +196,43 @@ export class TutorProfileEditComponent implements OnInit {
       let levelIndex = levelNames.indexOf(x[1]);
       subject.levels[levelIndex] = true;
     });
+  }
 
+  uploadFile(event) {
+    console.log("upload file");
 
+    console.log(this.tutorProfile.picture);
+    const file = event.target.files[0];
+
+    // this.tutorProfile.picture = file;
+    console.log(file);
+    let s = [];
+    s = _.split(file.type, '/')
+    let filetype = _.split(file.name, '.');
+    console.log(s[0]);
+
+    if(s[0]=='image' && file.size <= 100000){
+      const filePath = 'gambar/' + this.tutorProfile.id;
+      const task = this.firebaseService.storage.upload(filePath, file);
+      console.log(task);
+      task.downloadURL().subscribe(s => {
+        this.tutorProfile.picture = s;
+        // this.firebaseService.updateTutorPic(this.profile)
+        this.avatar = s;
+      });
+      // this.avatar = task.downloadURL();
+    }
+    else {
+      $('#pic_avtr').val('');
+      if(s[0]!='image'){
+        console.log("File is not an image");
+        this.alertService.error('File is not an image');
+      }
+      else
+      {
+        console.log("Image size is too big");
+        this.alertService.error('Image size is too big');
+      }
+    }
   }
 }

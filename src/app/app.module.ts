@@ -51,6 +51,7 @@ import { RequestFilterPipe } from './shared/pipes/request-filter.pipe';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { environment } from '../environments/environment';
 import { FirebaseService } from './shared/services/firebase.service';
@@ -144,6 +145,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireStorageModule,
     NgbModule.forRoot(),
     InfiniteScrollModule,
     MatNativeDateModule,

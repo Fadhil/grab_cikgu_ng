@@ -14,7 +14,7 @@
                 </div>
                 <div class="box-body box-profile">
                   <img class="profile-user-img img-responsive img-circle" [src]="avatar" alt="User profile picture">
-
+                  <input id='pic_avtr' type="file" (change)="uploadFile($event)">
                   <input type="text" class="form-control text-center" id="name" name="name" [(ngModel)]="tutorProfile.name" required placeholder="Name">
                   <input type="text" class="form-control text-center" id="ic_no" name="ic_no" [(ngModel)]="tutorProfile.ic_no" required placeholder="IC Number">
                   <input type="text" class="form-control text-center" id="occupation" name="occupation" [(ngModel)]="tutorProfile.occupation" placeholder="Occupation">
@@ -259,7 +259,7 @@
                         </div>
 
                   </div>
-                  
+
 
                 </div>
 

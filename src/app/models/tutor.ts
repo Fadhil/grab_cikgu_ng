@@ -32,4 +32,5 @@ export class Tutor {
   bday: number;
   bmonth: number;
   rate: number;
+  picture: string;
 }

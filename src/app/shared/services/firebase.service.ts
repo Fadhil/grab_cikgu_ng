@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireStorage } from 'angularfire2/storage';
 import * as firebase from 'firebase/app';
 import { Tutor } from './../../models/tutor';
 import { Student } from './../../models/student';
@@ -14,7 +15,7 @@ export class FirebaseService {
   public tutorProfile: Tutor;
   public studentProfile: Student;
 
-  constructor(private db: AngularFireDatabase, public sfAuth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, public sfAuth: AngularFireAuth, public storage: AngularFireStorage) {
     console.log('Firebase loaded');
   }
 
@@ -45,8 +46,6 @@ export class FirebaseService {
   }
 
   addTutor(tutor): any {
-    // Refactor to multiple location update
-
     let newTutor = {};
     let key = this.db.list('/tutors/').push(newTutor).key; //this creates a key
 
@@ -57,7 +56,8 @@ export class FirebaseService {
         for (let x = 0; x < subject.levels.length; x++) {
           if (subject.levels[x]) {
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name,
-                                                                                                          email: tutor.email,
+                                                                                                          // email: tutor.email,
+                                                                                                          picture: tutor.picture,
                                                                                                           occupation: tutor.occupation,
                                                                                                           qualification: tutor.qualification,
                                                                                                           city: tutor.city,
@@ -75,6 +75,9 @@ export class FirebaseService {
     // return this.db.object('/tutors/' + tutor.id).set(tutor);
 
     return this.db.object('/').update(newTutor);
+
+    //upload picture to storage
+
   }
 
   getTutor(key): any {
@@ -180,6 +183,19 @@ export class FirebaseService {
   getStudentClasses(studentkey): any {
     return this.db.object('students/' + studentkey + '/bookings').valueChanges();
   }
+
+  updateTutorPic(tutorKey, picurl) {
+    let info = {};
+    info['/tutors/' + tutorKey + '/picurl'] = picurl;
+    return this.db.object('/').update(info);
+  };
+
+  updateStudentPic(studentKey, picurl) {
+    let info = {};
+    info['/students/' + studentKey + '/picurl'] = picurl;
+    return this.db.object('/').update(info);
+  };
+
 
   test(): any {
     return true;
