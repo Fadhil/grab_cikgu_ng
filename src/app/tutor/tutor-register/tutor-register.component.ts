@@ -41,7 +41,7 @@ export class TutorRegisterComponent implements OnInit {
       delete this.tutor['cpass'];
       delete this.tutor['password'];
 
-      this.tutor.dob = Date(this.tutor.bmonth + '/' + this.tutor.bday + '/' + this.tutor.byear);
+      this.tutor.dob = new Date(this.tutor.bmonth + '/' + this.tutor.bday + '/' + this.tutor.byear);
 
 
       const currentDate = new Date();
