@@ -56,15 +56,15 @@ export class FirebaseService {
         for (let x = 0; x < subject.levels.length; x++) {
           if (subject.levels[x]) {
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name,
-                                                                                                          // email: tutor.email,
-                                                                                                          picture: tutor.picture,
-                                                                                                          occupation: tutor.occupation,
-                                                                                                          qualification: tutor.qualification,
+                                                                                                          email: tutor.email? tutor.email : '',
+                                                                                                          picture: tutor.picture? tutor.picture : '',
+                                                                                                          occupation: tutor.occupation? tutor.occupation : '',
+                                                                                                          qualification: tutor.qualification? tutor.qualification : '',
                                                                                                           city: tutor.city,
-                                                                                                          achievement: tutor.achievement,
+                                                                                                          achievement: tutor.achievement? tutor.achievement : '',
                                                                                                           gender: tutor.gender,
                                                                                                           age: tutor.age,
-                                                                                                          experience: tutor.experience,
+                                                                                                          experience: tutor.experience? tutor.experience : '',
                                                                                                           rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
           } else {
             newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;

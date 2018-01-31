@@ -30,6 +30,7 @@ export class TutorProfileEditComponent implements OnInit {
   profile_url: any;
   pic_observable: any;
 
+  showSpinner: boolean = true;
 
   constructor(private tutorService: TutorService,
   private alertService: AlertService,
@@ -70,34 +71,42 @@ export class TutorProfileEditComponent implements OnInit {
 
     this.tutorProfile.id = localStorage.getItem('currentUserToken');
 
-    this.avatar = 'assets/img/avatar5.png';
-
-    const ref = this.firebaseService.storage.ref('gambar/' + this.tutorProfile.id);
-    console.log(ref);
-    this.profile_url = ref.getDownloadURL();
-    console.log(this.profile_url);
-
-    this.pic_observable = this.profile_url.subscribe(d => {
-      console.log("has changed");
-      console.log(d);
-      this.avatar = d;
-    });
+    // const ref = this.firebaseService.storage.ref('gambar/' + this.tutorProfile.id);
+    // console.log(ref);
+    // this.profile_url = ref.getDownloadURL();
+    // console.log(this.profile_url);
+    //
+    // this.pic_observable = this.profile_url.subscribe(d => {
+    //   console.log("has changed");
+    //   console.log(d);
+    //   this.avatar = d;
+    // });
 
     this.tutor_list_observable = this.firebaseService.getTutor(this.tutorProfile.id)
       .subscribe(data => {
+        console.log(data);
         this.tutorProfile = data;
-        const d = new Date();
-        const n = d.getFullYear();
-        this.tutorProfile.age = n - this.tutorProfile.byear;
+        // const d = new Date();
+        // const n = d.getFullYear();
+        // this.tutorProfile.age = n - this.tutorProfile.byear;
+
         if (!this.tutorProfile.subjects) {
           this.resetSubjects();
         }
 
-        if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
-          // this.avatar = 'assets/img/avatar2.png';
+        if (!this.tutorProfile.picture) {
+          if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
+            this.avatar = 'assets/img/avatar2.png';
+          }
+          else {
+            this.avatar = 'assets/img/avatar5.png';
+          }
+        } else {
+          this.avatar = this.tutorProfile.picture;
         }
 
         this.onStateChange(this.tutorProfile.state);
+        this.showSpinner = false;
 
       });
   }
@@ -126,7 +135,13 @@ export class TutorProfileEditComponent implements OnInit {
     // this.tutorProfile.subjects = this.subjects;
     // console.log(this.subjects);
     // console.log(this.tutorProfile);
-    let c = this.firebaseService.addTutor(this.tutorProfile)
+
+    const currentDate = new Date();
+    const dob = new Date(this.tutorProfile.dob);
+    const age = currentDate.getFullYear() - dob.getFullYear();
+    this.tutorProfile.age = age;
+
+    const c = this.firebaseService.addTutor(this.tutorProfile)
       .then(result => {
         this.router.navigateByUrl('/tutor/profile');
         this.alertService.success('Successfully Updated Profile');
@@ -138,6 +153,7 @@ export class TutorProfileEditComponent implements OnInit {
   }
 
   onStateChange(state) {
+    console.log(state);
     this.locationService.getCities(state)
       .subscribe(result => {
         this.cities = result;

@@ -41,6 +41,12 @@ export class TutorRegisterComponent implements OnInit {
       delete this.tutor['cpass'];
       delete this.tutor['password'];
 
+      this.tutor.dob = Date(this.tutor.bmonth + '/' + this.tutor.bday + '/' + this.tutor.byear);
+
+
+      const currentDate = new Date();
+      this.tutor.age = this.tutor.byear - currentDate.getFullYear();
+
       // save to firebase
       this.firebaseService.addTutor(this.tutor);
     })

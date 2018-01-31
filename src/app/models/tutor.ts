@@ -6,7 +6,6 @@ export class Tutor {
   confirm_password: string;
   gender: string;
   age: number;
-  byear: number;
   occupation: string;
   ic_no: string;
   tutor_license_no: string;
@@ -31,6 +30,8 @@ export class Tutor {
   cpass: string;
   bday: number;
   bmonth: number;
+  byear: number;
   rate: number;
   picture: string;
+  dob: Date;
 }

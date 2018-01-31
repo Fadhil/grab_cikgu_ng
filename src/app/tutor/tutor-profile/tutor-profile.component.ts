@@ -14,6 +14,7 @@ export class TutorProfileComponent implements OnInit {
   tutorProfile = new Tutor();
   tutor_list_observable: any;
   avatar: string;
+  showSpinner: boolean = true;
 
   constructor(
     private alertService: AlertService,
@@ -33,14 +34,19 @@ export class TutorProfileComponent implements OnInit {
       .subscribe(data => {
         this.tutorProfile = data;
         this.firebaseService.tutorProfile = this.tutorProfile;
-        const d = new Date();
-        const n = d.getFullYear();
-        this.tutorProfile.age = n - this.tutorProfile.byear;
 
-        if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
+        if(!this.tutorProfile.picture) {
+          if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
+            this.avatar = 'assets/img/avatar2.png';
+          }
+          else {
+            this.avatar = 'assets/img/avatar5.png';
+          }
+        } else {
           this.avatar = this.tutorProfile.picture;
         }
-        console.log(this.avatar = this.tutorProfile.picture);
+
+        this.showSpinner = false;
       });
   }
 

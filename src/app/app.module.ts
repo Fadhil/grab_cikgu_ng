@@ -101,6 +101,7 @@ import * as $ from "jquery";
 import { HomepageComponent } from './homepage/homepage.component';
 
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     TutorSidebarComponent,
     StudentSidebarComponent,
     HomepageComponent,
+    LoadingSpinnerComponent,
 ],
   imports: [
     BrowserModule,
