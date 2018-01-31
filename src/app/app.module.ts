@@ -37,6 +37,7 @@ import { AdminLeftSideComponent } from './admin/admin-left-side/admin-left-side.
 import { AdminContentComponent } from './admin/admin-content/admin-content.component';
 import { AdminFooterComponent } from './admin/admin-footer/admin-footer.component';
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
+import { AdminRoutingModule, adminRoutingComponents } from './admin/admin-routing/admin-routing.module';
 import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
 import { StudentRoutingModule, studentRoutingComponents } from './student/student-routing/student-routing.module';
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
@@ -123,6 +124,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
+    adminRoutingComponents,
     DataFilterPipe,
     SplitSubjectsPipe,
     RequestFilterPipe,
@@ -138,6 +140,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     FormsModule,
     TutorRoutingModule,
     StudentRoutingModule,
+    AdminRoutingModule,
     RequestRoutes,
     SearchTutorRoutes,
     HttpClientModule,
@@ -229,7 +232,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
       MatStepperModule,
       MatFormFieldModule,
       OwlDateTimeModule,
-      OwlNativeDateTimeModule,    ],
+      OwlNativeDateTimeModule],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
     RequestService, LocationService, FirebaseService
