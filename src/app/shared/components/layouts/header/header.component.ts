@@ -29,9 +29,14 @@ export class HeaderComponent implements OnInit {
       case 'student':
         this.loadStudent();
         break;
+      case 'admin':
+        this.loadAdmin();
+        break;
     }
 
     this.firebaseService.sfAuth.authState.subscribe( user => {
+      console.log("authState");
+
       if (!user) {
         switch (this.loginType) {
           case 'tutor':
@@ -41,6 +46,9 @@ export class HeaderComponent implements OnInit {
           case 'student':
             // this.router.navigateByUrl('/student/login');
             location.assign("/student/login");
+            break;
+          case 'admin':
+            location.assign("/admin/login");
             break;
           default:
             location.assign('/tutor/login');
@@ -85,6 +93,11 @@ export class HeaderComponent implements OnInit {
         //   this.avatar = 'assets/img/avatar2.png';
         // }
       });
+  }
+
+  loadAdmin(email, name) {
+    this.name = "Admin";
+    this.email = "Admin";
   }
 
   logOut() {

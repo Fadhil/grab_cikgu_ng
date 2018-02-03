@@ -61,8 +61,10 @@ import { AppSettings } from './app.settings';
 import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 import {
   MatAutocompleteModule,
@@ -192,6 +194,8 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     MatFormFieldModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatDialogModule,
+    AdminModule
   ],
     exports: [
       MatNativeDateModule,
@@ -232,11 +236,13 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
       MatStepperModule,
       MatFormFieldModule,
       OwlDateTimeModule,
-      OwlNativeDateTimeModule],
+      OwlNativeDateTimeModule,
+      MatDialogModule],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
     RequestService, LocationService, FirebaseService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }

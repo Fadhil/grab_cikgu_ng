@@ -18,5 +18,4 @@ export class TutorLayoutComponent implements OnInit {
     this.body.classList.add('skin-blue');
     this.body.classList.add('sidebar-mini');
   }
-
 }

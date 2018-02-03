@@ -196,6 +196,21 @@ export class FirebaseService {
     return this.db.object('/').update(info);
   };
 
+  loadAdminStudents() {
+    return this.db.object('/students/').valueChanges();
+  }
+
+  loadAdminTutors() {
+    return this.db.object('/tutors/').valueChanges();
+  }
+
+  getAdmin(adminKey) {
+    console.log(adminKey);
+  }
+
+  // loadTutorBookings() {
+  //   return this.db.object('/tutors/').valueChanges();
+  // }
 
   test(): any {
     return true;

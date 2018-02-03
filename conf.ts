@@ -11,7 +11,8 @@ exports.config = {
   suites: {
       tutor: './e2e/tutor/**/*-spec.ts',
       student: './e2e/student/**/*-spec.ts',
-      search: ['./e2e/search/**/*-spec.ts']
+      search: ['./e2e/search/**/*-spec.ts'],
+      admin: './e2e/admin/**/*-spec.ts'
   },
   onPrepare: () => {
     browser.waitForAngularEnabled(false);

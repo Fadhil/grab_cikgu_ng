@@ -11,7 +11,9 @@ import { AdminFooterComponent } from './../admin-footer/admin-footer.component';
 import { AdminContentComponent } from './../admin-content/admin-content.component';
 import { AdminLeftSideComponent } from './../admin-left-side/admin-left-side.component';
 import { AdminHeaderComponent } from './../admin-header/admin-header.component';
-
+import { AdminLoginComponent } from './../admin-login/admin-login.component';
+import { SimpleLayoutComponent } from '../../shared/layouts/simple-layout/simple-layout.component';
+import { AdminRegisterComponent, DialogOverviewExampleDialog } from './../admin-register/admin-register.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,18 @@ import { AdminHeaderComponent } from './../admin-header/admin-header.component';
             path: 'bookings',
             component: AdminBookingsComponent
           },
+          {
+            path: 'register',
+            component: AdminRegisterComponent
+          }
+        ]
+      },
+      {
+        path: 'admin', component: SimpleLayoutComponent,
+        children: [{
+          path: 'login',
+          component: AdminLoginComponent
+          }
         ]
       }
     ])
@@ -55,5 +69,6 @@ export const adminRoutingComponents = [
   AdminComponent, AdminDashboard2Component, AdminStudentsComponent,
   AdminTutorsComponent, AdminBookingsComponent, AdminHeaderComponent,
   AdminControlSidebarComponent, AdminFooterComponent, AdminContentComponent,
-  AdminLeftSideComponent, AdminHeaderComponent
+  AdminLeftSideComponent, AdminHeaderComponent, AdminLoginComponent, AdminRegisterComponent,
+  DialogOverviewExampleDialog
 ];

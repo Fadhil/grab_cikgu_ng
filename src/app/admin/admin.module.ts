@@ -12,13 +12,17 @@ import { CommonModule } from '@angular/common';
 // import { AdminStudentsComponent } from './admin-students/admin-students.component';
 // import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
 import { AlertComponent } from '../shared/components/alert/alert.component';
+import { DialogOverviewExampleDialog } from './admin-register/admin-register.component';
+// import { AdminLoginComponent } from './admin-login/admin-login.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule
   ],
-  declarations: [
+  declarations: [],
+  entryComponents: [DialogOverviewExampleDialog]
 
     // AdminComponent,
     // AdminHeaderComponent,
@@ -31,6 +35,6 @@ import { AlertComponent } from '../shared/components/alert/alert.component';
     // AdminStudentsComponent,
     // AdminBookingsComponent,
     // AlertComponent
-  ]
+  // AdminLoginComponent]
 })
 export class AdminModule { }
