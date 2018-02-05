@@ -166,6 +166,7 @@ export class StudentPeopleComponent implements OnInit {
         return actions.map(action => ({key: action.key, ...action.payload.val()}));
       })
       .subscribe(tutors => {
+        console.log(tutors);
         this.lastKey = _.last(tutors).key;
 
         const newTutors = _.slice(tutors, 0, this.batch);

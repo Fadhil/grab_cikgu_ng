@@ -33,6 +33,9 @@ describe('grabcikgu tutor registration page', function() {
     element(by.id('day')).element(by.cssContainingText('option', '27')).click();
     element(by.id('month')).element(by.cssContainingText('option', '1')).click();
     element(by.id('year')).sendKeys('1978');
+
+    // elemet(by.id)
+
     element(by.id('occupation')).sendKeys('Programmer');
     element(by.id('status')).element(by.cssContainingText('option', 'Full-Time')).click();
     element(by.id('state')).element(by.cssContainingText('option', 'Selangor')).click();
@@ -125,7 +128,12 @@ describe('grabcikgu tutor registration page', function() {
     let condition = EC.and(urlChanged,
                     EC.textToBePresentInElement($('.profile-username'), browser.params.randomName));
 
+    browser.takeScreenshot().then(function (png) {
+            writeScreenShot(png, 'exception.png');
+        });
+
     browser.wait(urlChanged, 10000);
+
     browser.wait(EC.textToBePresentInElement($('.profile-username'), browser.params.randomName), 5000);
     // click on the button
     element(by.id('saveprofile')).click();

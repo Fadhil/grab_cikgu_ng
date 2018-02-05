@@ -5,3 +5,12 @@
 .list-group-address-item {
   height: 12rem;
 }
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}

@@ -37,6 +37,7 @@ import { AdminLeftSideComponent } from './admin/admin-left-side/admin-left-side.
 import { AdminContentComponent } from './admin/admin-content/admin-content.component';
 import { AdminFooterComponent } from './admin/admin-footer/admin-footer.component';
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
+import { AdminRoutingModule, adminRoutingComponents } from './admin/admin-routing/admin-routing.module';
 import { TutorRoutingModule, tutorRoutingComponents } from './tutor/tutor-routing/tutor-routing.module';
 import { StudentRoutingModule, studentRoutingComponents } from './student/student-routing/student-routing.module';
 import { TutorLayoutComponent } from './tutor/tutor-layout/tutor-layout.component';
@@ -51,6 +52,7 @@ import { RequestFilterPipe } from './shared/pipes/request-filter.pipe';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { environment } from '../environments/environment';
 import { FirebaseService } from './shared/services/firebase.service';
@@ -59,8 +61,10 @@ import { AppSettings } from './app.settings';
 import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
 import { StudentSidebarComponent } from './shared/components/layouts/sidebar/student-sidebar/student-sidebar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 import {
   MatAutocompleteModule,
@@ -100,6 +104,7 @@ import * as $ from "jquery";
 import { HomepageComponent } from './homepage/homepage.component';
 
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -121,6 +126,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MainHeaderComponent,
     tutorRoutingComponents,
     studentRoutingComponents,
+    adminRoutingComponents,
     DataFilterPipe,
     SplitSubjectsPipe,
     RequestFilterPipe,
@@ -128,6 +134,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     TutorSidebarComponent,
     StudentSidebarComponent,
     HomepageComponent,
+    LoadingSpinnerComponent,
 ],
   imports: [
     BrowserModule,
@@ -135,6 +142,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     FormsModule,
     TutorRoutingModule,
     StudentRoutingModule,
+    AdminRoutingModule,
     RequestRoutes,
     SearchTutorRoutes,
     HttpClientModule,
@@ -144,6 +152,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireStorageModule,
     NgbModule.forRoot(),
     InfiniteScrollModule,
     MatNativeDateModule,
@@ -185,6 +194,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MatFormFieldModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatDialogModule,
+    AdminModule
   ],
     exports: [
       MatNativeDateModule,
@@ -225,11 +236,13 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
       MatStepperModule,
       MatFormFieldModule,
       OwlDateTimeModule,
-      OwlNativeDateTimeModule,    ],
+      OwlNativeDateTimeModule,
+      MatDialogModule],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
     RequestService, LocationService, FirebaseService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }
