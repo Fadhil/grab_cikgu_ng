@@ -31,20 +31,6 @@ export class AdminRegisterComponent implements OnInit {
       if (result) {
         console.log(da);
 
-        //Check if it's duplicate
-
-        // this.firebaseService.DuplicateAdmin(da.email).subscribe(res => {
-        //   if(!res.length) {
-        //
-        //   }
-        // })
-
-        // const a = this.firebaseService.addAdmin(da)
-        // .then(rslt => {
-        //   this.alertService.success('Successfully registered new admin ' + da.email);
-        // }).catch(error => {
-        //   this.alertService.error('The email address has already been registered');
-        // });
       }
     });
   }

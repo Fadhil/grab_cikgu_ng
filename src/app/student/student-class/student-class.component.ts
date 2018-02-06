@@ -42,6 +42,7 @@ export class StudentClassComponent implements OnInit {
         console.log(data);
         this.studentProfile = data;
         this.avatar = 'assets/img/avatar5.png';
+
         this.firebaseService.getStudentClasses(this.studentProfile.id)
           .subscribe(da => {
             console.log(da);
@@ -102,7 +103,6 @@ export class StudentClassComponent implements OnInit {
   ngAfterViewInit() {
     this.myDataSource.sort = this.sort;
     this.myDataSource.paginator = this.paginator;
-
   }
 
 }
