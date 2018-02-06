@@ -29,7 +29,7 @@ export class StudentClassComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private router: Router,
-    public firebaseService: FirebaseService,
+    public firebaseService: FirebaseService
 
   ) {
     this.JSON = JSON;
