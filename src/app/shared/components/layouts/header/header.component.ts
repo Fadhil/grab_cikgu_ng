@@ -95,7 +95,7 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  loadAdmin(email, name) {
+  loadAdmin() {
     this.name = "Admin";
     this.email = "Admin";
   }

@@ -1,5 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { AlertService } from './../../shared/services/alert.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
+
+// import {ErrorStateMatcher} from '@angular/material/core';
+
+/** Error when invalid control is dirty, touched, or submitted. */
 
 @Component({
   selector: 'app-admin-register',
@@ -8,21 +15,36 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AdminRegisterComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private alertService: AlertService, public firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
 
   openDialog() {
-    let da = {name: 'Hazim', animal: 'Kucing'};
+    let da = {email: ''};
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: da;
+      width: '500px',
+      data: da
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        console.log('Save the data');
+      if (result) {
+        console.log(da);
+
+        //Check if it's duplicate
+
+        // this.firebaseService.DuplicateAdmin(da.email).subscribe(res => {
+        //   if(!res.length) {
+        //
+        //   }
+        // })
+
+        // const a = this.firebaseService.addAdmin(da)
+        // .then(rslt => {
+        //   this.alertService.success('Successfully registered new admin ' + da.email);
+        // }).catch(error => {
+        //   this.alertService.error('The email address has already been registered');
+        // });
       }
     });
   }
@@ -31,19 +53,17 @@ export class AdminRegisterComponent implements OnInit {
 
 @Component({
   selector: 'dialog-overview-example-dialog',
-  template: `
-  <h1 mat-dialog-title>hello</h1>
-  <mat-dialog-content>
-  Isi Kandungan dialog
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="onNoClick()">No</button>
-    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-    <button mat-button [mat-dialog-close]="true">Yes</button>
-  </mat-dialog-actions>
-  `,
+  templateUrl: 'dialog-overview-example-dialog.component.html',
+  styleUrls: ['dialog-overview-example-dialog.component.css']
 })
 export class DialogOverviewExampleDialog {
+
+  // emailFormControl = new FormControl('', [
+  //   Validators.required,
+  //   Validators.email,
+  // ]);
+  //
+  // matcher = new MyErrorStateMatcher();
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -54,7 +74,12 @@ export class DialogOverviewExampleDialog {
     }
 
     onNoClick(): void {
-      this.data.animal = "Kambing";
+      this.dialogRef.close();
+    }
+
+    submit() {
+      // console.log(this.data.email);
+      // this.data.email = "dsadsa.com"
       this.dialogRef.close();
     }
 

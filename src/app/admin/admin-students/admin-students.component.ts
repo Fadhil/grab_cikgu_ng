@@ -31,7 +31,6 @@ export class AdminStudentsComponent implements OnInit {
     this.students_observable = this.firebaseService.loadAdminStudents()
       .subscribe(data => {
         console.log(data);
-        
       })
   }
 

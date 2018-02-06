@@ -208,6 +208,19 @@ export class FirebaseService {
     console.log(adminKey);
   }
 
+  addAdmin(admin) {
+    // this.DuplicateAdmin(admin.email).then(result => {
+    //   console.log(result);
+    //   if (!result) {
+    //     return this.db.list('/admins/').push(admin);
+    //   }
+    // });
+  }
+
+  DuplicateAdmin(adminEmail) {
+    return this.db.list('/admins/', ref => ref.orderByChild('email').equalTo(adminEmail)).snapshotChanges();
+  }
+
   // loadTutorBookings() {
   //   return this.db.object('/tutors/').valueChanges();
   // }
