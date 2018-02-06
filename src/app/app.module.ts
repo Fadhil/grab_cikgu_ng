@@ -64,7 +64,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
-import { MatDialogModule } from '@angular/material/dialog';
+// import { MatDialogModule } from '@angular/material/dialog';
 
 import {
   MatAutocompleteModule,

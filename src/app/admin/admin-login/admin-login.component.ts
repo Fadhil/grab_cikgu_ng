@@ -33,9 +33,9 @@ export class AdminLoginComponent implements OnInit {
         localStorage.setItem('loginType', 'admin');
 
         this.firebaseService.getAdmin(firebaseUser.uid)
-          .subscribe(data => {
-
-          });
+          // .subscribe(data => {
+          //
+          // });
       })
       .catch( error => {
         this.alertService.error(error, true);
