@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AdminDashboard2Component } from './../admin-dashboard2/admin-dashboard2.component';
 import { AdminComponent } from './../admin.component';
 import { AdminStudentsComponent, StudentDialog } from './../admin-students/admin-students.component';
-import { AdminTutorsComponent } from './../admin-tutors/admin-tutors.component';
+import { AdminTutorsComponent, TutorDialog } from './../admin-tutors/admin-tutors.component';
 import { AdminBookingsComponent } from './../admin-bookings/admin-bookings.component';
 import { AdminControlSidebarComponent } from './../admin-control-sidebar/admin-control-sidebar.component';
 import { AdminFooterComponent } from './../admin-footer/admin-footer.component';
@@ -70,5 +70,5 @@ export const adminRoutingComponents = [
   AdminTutorsComponent, AdminBookingsComponent, AdminHeaderComponent,
   AdminControlSidebarComponent, AdminFooterComponent, AdminContentComponent,
   AdminLeftSideComponent, AdminHeaderComponent, AdminLoginComponent, AdminRegisterComponent,
-  DialogOverviewExampleDialog, StudentDialog
+  DialogOverviewExampleDialog, StudentDialog, TutorDialog
 ];

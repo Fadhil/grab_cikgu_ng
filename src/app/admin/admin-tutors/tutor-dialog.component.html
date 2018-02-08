@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<mat-dialog-content>
+  <mat-tab-group>
+  <mat-tab label="Details">
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <p>Name: {{data.name}}</p>
+      <p>Email: {{data.email}}</p>
+      <p>City: {{data.city}}</p>
+
+    </div>
+  </div>
+  </mat-tab>
+
+  <mat-tab label="Wallet">Wallet</mat-tab>
+</mat-tab-group>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <!-- <button mat-button mat-dialog-close color="warn">Delete</button> -->
+</mat-dialog-actions>
