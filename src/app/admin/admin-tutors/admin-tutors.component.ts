@@ -15,7 +15,7 @@ import * as _ from 'lodash';
   styleUrls: ['./admin-tutors.component.css']
 })
 export class AdminTutorsComponent implements OnInit {
-  displayedColumns = ['name', 'email', 'actions'];
+  displayedColumns = ['name', 'email', 'phone_no', 'actions'];
   myDataSource = new MatTableDataSource();
   tutor_observable: any;
 
@@ -39,6 +39,7 @@ export class AdminTutorsComponent implements OnInit {
           returnArr.push({key: item,
                           name: data[item].name,
                           email: data[item].email,
+                          phone_no: data[item].phone_no,
                           city: data[item].city});
                         }
         this.myDataSource.data = _.reverse(returnArr);
