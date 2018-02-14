@@ -15,6 +15,7 @@ import * as _ from 'lodash';
   styleUrls: ['./admin-tutors.component.css']
 })
 export class AdminTutorsComponent implements OnInit {
+  
   displayedColumns = ['name', 'email', 'phone_no', 'actions'];
   myDataSource = new MatTableDataSource();
   tutor_observable: any;

@@ -207,6 +207,10 @@ export class FirebaseService {
     return this.db.object('/tutors/').valueChanges();
   }
 
+  loadAdminTutorBookings() {
+    return this.db.object('/tutorbooking/').valueChanges();
+  }
+
   getAdmin(adminKey) {
     console.log(adminKey);
   }
