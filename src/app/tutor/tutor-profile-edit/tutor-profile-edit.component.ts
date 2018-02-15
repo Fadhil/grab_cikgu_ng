@@ -105,6 +105,7 @@ export class TutorProfileEditComponent implements OnInit {
           this.avatar = this.tutorProfile.picture;
         }
 
+        this.tutorProfile.previous_state = this.tutorProfile.state;
         this.onStateChange(this.tutorProfile.state);
         this.showSpinner = false;
 
@@ -113,6 +114,7 @@ export class TutorProfileEditComponent implements OnInit {
 
   display_change(newValue) {
     console.log(newValue);
+
   }
 
   saveProfile() {
@@ -134,7 +136,7 @@ export class TutorProfileEditComponent implements OnInit {
     // this.tutorProfile.subjects = null;
     // this.tutorProfile.subjects = this.subjects;
     // console.log(this.subjects);
-    // console.log(this.tutorProfile);
+    console.log(this.tutorProfile);
 
     const currentDate = new Date();
     const dob = new Date(this.tutorProfile.dob);
@@ -153,13 +155,15 @@ export class TutorProfileEditComponent implements OnInit {
   }
 
   onStateChange(state) {
-    console.log(state);
+    console.log(state, this.tutorProfile.state);
+    // this.tutorProfile.previous_state = this.tutorProfile.state;
     this.locationService.getCities(state)
       .subscribe(result => {
         this.cities = result;
       }, error => {
          this.alertService.error('Failed to find cities for ' + state);
       });
+    console.log(this.tutorProfile);
   }
 
   summarizeSubjects(subjects) {
@@ -212,6 +216,28 @@ export class TutorProfileEditComponent implements OnInit {
       let levelIndex = levelNames.indexOf(x[1]);
       subject.levels[levelIndex] = true;
     });
+  }
+
+  addToAreaCovered(city) {
+    console.log(city);
+    console.log(this.tutorProfile.area_covered);
+    var result = _.find(this.tutorProfile.area_covered, function(o){
+      // console.log(o);
+      return o === city;
+    });
+    if (!result) {
+        console.log("adding city to covered area");
+        if (this.tutorProfile.area_covered) {
+          this.tutorProfile.area_covered.push(city);
+          console.log(this.tutorProfile.area_covered);
+        } else {
+          this.tutorProfile.area_covered = [city];
+        }
+
+    }
+
+    this.onStateChange(this.tutorProfile.state);
+
   }
 
   uploadFile(event) {

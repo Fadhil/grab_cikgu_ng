@@ -21,7 +21,7 @@ export class Tutor {
   bank_acc_no: string;
   bank_acc_name: string;
   availability: string;
-  area_covered: string;
+  area_covered: any;
   address: string;
   state: string;
   city: string;
@@ -34,4 +34,5 @@ export class Tutor {
   rate: number;
   picture: string;
   dob: Date;
+  previous_state: string;
 }
