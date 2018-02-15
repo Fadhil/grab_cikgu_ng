@@ -150,6 +150,9 @@ export class FirebaseService {
 
     // get push key
     let newBooking = {};
+    let tutorBooking = {};
+    let studentBooking = {};
+
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
 
     //admin
@@ -242,6 +245,10 @@ export class FirebaseService {
 
   loadAdminTutors() {
     return this.db.object('/tutors/').valueChanges();
+  }
+
+  loadAdminTutorBookings() {
+    return this.db.object('/tutorbooking/').valueChanges();
   }
 
   getAdmin(adminKey) {

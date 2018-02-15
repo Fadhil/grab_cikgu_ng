@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import { DialogOverviewExampleDialog } from './admin-register/admin-register.component';
 import { StudentDialog } from './admin-students/admin-students.component';
+import { TutorDialog } from './admin-tutors/admin-tutors.component';
+import { BookingDialog } from './admin-bookings/admin-bookings.component';
 // import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
@@ -23,7 +25,11 @@ import { StudentDialog } from './admin-students/admin-students.component';
     AdminRoutingModule
   ],
   declarations: [],
-  entryComponents: [DialogOverviewExampleDialog, StudentDialog]
+  entryComponents: [DialogOverviewExampleDialog,
+                    StudentDialog,
+                    TutorDialog,
+                    BookingDialog
+                    ]
 
     // AdminComponent,
     // AdminHeaderComponent,

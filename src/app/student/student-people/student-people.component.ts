@@ -33,6 +33,8 @@ export class StudentPeopleComponent implements OnInit {
   levels: any;
   rate: string;
   level: number;
+  date: string;
+  time: string;
 
   public startAt = new Date(2019, 2, 15, 20, 30);
 
@@ -233,6 +235,12 @@ export class StudentPeopleComponent implements OnInit {
     // $('#datetimepicker3').datetimepicker({
     //     format: 'LT'
     // });
+
+    this.firebaseService.getTutor(tutor.key)
+      .subscribe(a => {
+        this.selectedTutor = a;
+        console.log(a);
+      });
 
     $("#modal-default").modal('show');
   }

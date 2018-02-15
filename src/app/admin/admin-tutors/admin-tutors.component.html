@@ -1,3 +1,67 @@
-<p>
-  admin-tutors works!
-</p>
+<section class="content-header">
+  <h1>
+    List of Tutors
+    <small>Control panel</small>
+
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Dashboard</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="box box-success">
+    <div class="example-container mat-elevation-z8">
+
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+      <mat-table #table [dataSource]="myDataSource" matSort>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Tutor Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+        <!-- Phone No Column -->
+        <ng-container matColumnDef="phone_no">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Phone No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.phone_no}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openDialog(element)">
+              <mat-icon aria-label="Info">info</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteTutor(element.key)">
+              <mat-icon aria-label="Cancel">cancel</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 20]">
+      </mat-paginator>
+    </div>
+  </div>
+</section>
