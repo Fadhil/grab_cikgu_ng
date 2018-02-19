@@ -256,8 +256,15 @@ export class FirebaseService {
   }
 
   loadTutorBalance(tutor): any {
-    console.log(tutor);
     return this.db.object('/tutors/' + tutor.id + '/wallet/').valueChanges();
+  }
+
+  loadStudentAccount(student): any {
+    return this.db.list('/students/' + student.id + '/wallet/transactions').valueChanges();
+  }
+
+  loadStudentBalance(student): any {
+    return this.db.object('/students/' + student.id + '/wallet/').valueChanges();
   }
 
   getAdmin(adminKey) {
