@@ -7,6 +7,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import * as firebase from 'firebase/app';
 import { Tutor } from './../../models/tutor';
 import { Student } from './../../models/student';
+import * as _ from 'lodash';
+import { LocationService } from './location.service';
 
 @Injectable()
 export class FirebaseService {
@@ -15,7 +17,10 @@ export class FirebaseService {
   public tutorProfile: Tutor;
   public studentProfile: Student;
 
-  constructor(private db: AngularFireDatabase, public sfAuth: AngularFireAuth, public storage: AngularFireStorage) {
+  constructor(private db: AngularFireDatabase,
+    public sfAuth: AngularFireAuth,
+    private locationService: LocationService,
+    public storage: AngularFireStorage) {
     console.log('Firebase loaded');
   }
 
@@ -49,32 +54,67 @@ export class FirebaseService {
     let newTutor = {};
     let key = this.db.list('/tutors/').push(newTutor).key; //this creates a key
 
-    newTutor['/tutors/' + tutor.id] = tutor;
-
     if (tutor.subjects) {
       for (let subject of tutor.subjects) {
         for (let x = 0; x < subject.levels.length; x++) {
           if (subject.levels[x]) {
-            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = {name: tutor.name,
-                                                                                                          email: tutor.email? tutor.email : '',
-                                                                                                          picture: tutor.picture? tutor.picture : '',
-                                                                                                          occupation: tutor.occupation? tutor.occupation : '',
-                                                                                                          qualification: tutor.qualification? tutor.qualification : '',
-                                                                                                          city: tutor.city,
-                                                                                                          achievement: tutor.achievement? tutor.achievement : '',
-                                                                                                          gender: tutor.gender,
-                                                                                                          age: tutor.age,
-                                                                                                          experience: tutor.experience? tutor.experience : '',
-                                                                                                          rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
+            // console.log(tutor.area_covered);
+            // console.log(this.locationService.CITIES.length);
+
+            this.locationService.getCities(tutor.state)
+              .subscribe(cities => {
+                for (let city in cities) {
+                  //if the city is in the covered area then update
+                  let result = _.find(tutor.area_covered, function(o){
+                    return o == cities[city].name;
+                  });
+                  if(result){
+                      // console.log(tutor.area_covered[city]);
+                      //Update all the cities if cities = true then add newtutor
+                      newTutor['/Location/' + cities[city].name + '/' +
+                      subject.name + '/levels/'
+                      + x + '/' + tutor.id] = {name: tutor.name,
+                                              email: tutor.email? tutor.email : '',
+                                              picture: tutor.picture? tutor.picture : '',
+                                              occupation: tutor.occupation? tutor.occupation : '',
+                                              qualification: tutor.qualification? tutor.qualification : '',
+                                              city: tutor.city,
+                                              achievement: tutor.achievement? tutor.achievement : '',
+                                              gender: tutor.gender,
+                                              age: tutor.age,
+                                              experience: tutor.experience? tutor.experience : '',
+                                              rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
+                  } else {
+                    newTutor['/Location/' + cities[city].name + '/' +
+                    subject.name + '/levels/'
+                    + x + '/' + tutor.id] = null;
+                  }
+                }
+              });
+
           } else {
-            newTutor['/Location/' + tutor.city + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;
+            this.locationService.getCities(tutor.state)
+              .subscribe(cities => {
+                  for (let city in cities) {
+                    newTutor['/Location/' + cities[city].name + '/' + subject.name + '/levels/' + x + '/' + tutor.id] = null;
+                  }
+              });
+            }
           }
         }
       }
-    }
+
     // return this.db.object('/tutors/' + tutor.id).set(tutor);
 
+    //clear up all cities in the state other than the ones selected
+
+    //if there was a change of state then, clear up all other states then the one selected
+
+    console.log("Updating tutor");
+    tutor.previous_state = null;
+    newTutor['/tutors/' + tutor.id] = tutor;
     return this.db.object('/').update(newTutor);
+
 
     //upload picture to storage
 

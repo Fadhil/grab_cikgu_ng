@@ -40,13 +40,13 @@
               <input id="address" matInput type="area" placeholder="Address" required [(ngModel)]="tutorProfile.address">
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="State" [(ngModel)]="tutorProfile.state" (change)="onStateChange($event.value)" id="state" required>
+              <mat-select placeholder="State" [(ngModel)]="tutorProfile.state" #state (change)="onStateChange($event.value)" id="state" required>
                 <mat-option value="" disabled selected>Please select state</mat-option>
                 <mat-option *ngFor="let state of states" [value]="state.name">{{state.name}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="City" [(ngModel)]="tutorProfile.city" id="city" required>
+              <mat-select placeholder="City" [(ngModel)]="tutorProfile.city" id="city" (change)="addToAreaCovered($event.value)" required>
                 <mat-option value="select" disable selected>Please select city</mat-option>
                 <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
               </mat-select>
@@ -90,12 +90,17 @@
 
             <hr>
             <div>
-                <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour</strong>
+                <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour (RM)</strong>
                 <p class="text-muted">
                    <input type="number" class="form-control text-right" id="hourlyrate" name="hourlyrate" [(ngModel)]="tutorProfile.hourly_rate_cents" required placeholder="Rate">
                 </p>
             </div>
-            <hr>
+            <mat-form-field class="example-container">
+              <mat-select placeholder="Coverage Areas" id="tutorcity" [(ngModel)]="tutorProfile.area_covered" required multiple>
+                <mat-option value="select" disable selected>Please select city</mat-option>
+                <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
             <div>
                 <strong><i class="fa fa-book margin-r-5"></i>Subjects</strong>
 
