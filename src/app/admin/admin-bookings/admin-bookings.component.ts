@@ -49,9 +49,8 @@ export class AdminBookingsComponent implements OnInit {
                           status: data[item].status,
                           city: data[item].city});
                         }
-        this.myDataSource.data = _.reverse(returnArr);
-
-  });
+          this.myDataSource.data = _.reverse(returnArr);
+        });
   }
 
   ngAfterViewInit() {
