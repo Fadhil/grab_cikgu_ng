@@ -1,3 +1,115 @@
-<p>
-  tutor-account works!
-</p>
+<section class="content-header">
+  <h1>
+    My Account
+    <small>Control panel</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <h4><b>Account Balance :
+    <span class="pull-right"> RM {{tutorProfile.balance}} </span></b></h4>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="box box-success">
+    <div class="example-container mat-elevation-z8">
+
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+      <mat-table #table [dataSource]="myDataSource" matSort>
+
+        <!-- Tutor Name Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+
+        <!-- Student Column -->
+        <!-- <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.student}} </mat-cell>
+        </ng-container> -->
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="remark">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Remark </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.remark}} </mat-cell>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="balance">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Balance </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+        </ng-container> -->
+
+        <!-- View Column -->
+        <!-- <ng-container matColumnDef="view">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openDialog(element)">
+              <mat-icon aria-label="Info">info</mat-icon>
+            </button> -->
+
+            <!-- <button mat-icon-button color="warn" (click)="deleteTutor(element.key)">
+              <mat-icon aria-label="Cancel">cancel</mat-icon>
+            </button> -->
+          <!-- </mat-cell>
+        </ng-container> -->
+
+        <!-- Status Column -->
+        <!-- <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="label {{statusLabel(element.status)}}">{{element.status}}</span>
+          </mat-cell>
+        </ng-container> -->
+
+        <!-- Action Column -->
+        <!-- <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell *matCellDef="let element" > -->
+            <!-- <button mat-icon-button color="warn">
+              <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+            </button> -->
+            <!-- <span *ngIf="element.status=='pending'">
+              <span matTooltip="Accept this class">
+                <button mat-icon-button color="primary" (click)="confirmClass(element)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">check</mat-icon>
+                </button>
+              </span>
+              <span matTooltip="Decline this class">
+                <button mat-icon-button (click)="declineClass(element)" color="warn">
+                    <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+                </button>
+              </span>
+            </span>
+            <span *ngIf="element.status == 'confirmed'">
+              <button mat-raised-button button color="primary" (click)="completeClass(element)">Completed</button>
+            </span>
+          </mat-cell>
+        </ng-container> -->
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 20]">
+      </mat-paginator>
+    </div>
+  </div>
+</section>

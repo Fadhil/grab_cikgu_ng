@@ -251,6 +251,22 @@ export class FirebaseService {
     return this.db.object('/tutorbooking/').valueChanges();
   }
 
+  loadTutorAccount(tutor): any {
+    return this.db.list('/tutors/' + tutor.id + '/wallet/transactions').valueChanges();
+  }
+
+  loadTutorBalance(tutor): any {
+    return this.db.object('/tutors/' + tutor.id + '/wallet/').valueChanges();
+  }
+
+  loadStudentAccount(student): any {
+    return this.db.list('/students/' + student.id + '/wallet/transactions').valueChanges();
+  }
+
+  loadStudentBalance(student): any {
+    return this.db.object('/students/' + student.id + '/wallet/').valueChanges();
+  }
+
   getAdmin(adminKey) {
     console.log(adminKey);
   }

@@ -36,6 +36,8 @@ export class AdminLoginComponent implements OnInit {
           // .subscribe(data => {
           //
           // });
+          location.assign('/admin/students');
+          this.alertService.success('Successfully logged in', true);
       })
       .catch( error => {
         this.alertService.error(error, true);
