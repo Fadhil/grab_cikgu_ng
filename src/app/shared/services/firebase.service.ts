@@ -147,7 +147,7 @@ export class FirebaseService {
     // update bookTutor
     // update students/$student/booking
     // update students/$tutor/booking
-
+    console.log(bookingInfo);
     // get push key
     let newBooking = {};
     let tutorBooking = {};
@@ -159,7 +159,7 @@ export class FirebaseService {
     newBooking['/tutorbooking/' + key] = {tutor: bookingInfo.tutor, subject: bookingInfo.class, student: bookingInfo.student, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
 
     //tutor
-    newBooking['/tutors/' + bookingInfo.tutor.key + '/bookings/' + key] =
+    newBooking['/tutors/' + bookingInfo.tutor.id + '/bookings/' + key] =
     {
       student: bookingInfo.student,
       class: bookingInfo.class,
