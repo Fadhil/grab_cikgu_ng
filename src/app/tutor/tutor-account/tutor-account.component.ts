@@ -72,6 +72,11 @@ export class TutorAccountComponent implements OnInit {
               this.tutorProfile = dataa;
                console.log(dataa);
              });
+
+         this.firebaseService.loadTutorWallet(this.tutorProfile)
+          .subscribe(d => {
+            console.log(d);
+          });
       });
   }
 

@@ -174,6 +174,10 @@ export class FirebaseService {
 
   }
 
+  confirmClass(){
+
+  }
+
   addStudent(student): any {
     return this.db.object('/students/' + student.id).set(student);
   }
@@ -253,6 +257,10 @@ export class FirebaseService {
 
   loadTutorAccount(tutor): any {
     return this.db.list('/tutors/' + tutor.id + '/wallet/transactions').valueChanges();
+  }
+
+  loadTutorWallet(tutor): any {
+    return this.db.object('/tutors/' + tutor.id + '/wallet').valueChanges();
   }
 
   loadTutorBalance(tutor): any {
