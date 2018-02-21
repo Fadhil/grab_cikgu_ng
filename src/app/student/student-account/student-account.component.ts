@@ -35,7 +35,7 @@ export class StudentAccountComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.tutor_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
+    this.student_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         console.log(data);
         this.studentProfile = data;
