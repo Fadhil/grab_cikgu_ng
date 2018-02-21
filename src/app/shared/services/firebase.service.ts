@@ -174,6 +174,10 @@ export class FirebaseService {
 
   }
 
+  confirmClass(){
+
+  }
+
   addStudent(student): any {
     return this.db.object('/students/' + student.id).set(student);
   }
@@ -231,13 +235,13 @@ export class FirebaseService {
     let info = {};
     info['/tutors/' + tutorKey + '/picurl'] = picurl;
     return this.db.object('/').update(info);
-  };
+  }
 
   updateStudentPic(studentKey, picurl) {
     let info = {};
     info['/students/' + studentKey + '/picurl'] = picurl;
     return this.db.object('/').update(info);
-  };
+  }
 
   loadAdminStudents() {
     return this.db.object('/students/').valueChanges();
@@ -253,6 +257,10 @@ export class FirebaseService {
 
   loadTutorAccount(tutor): any {
     return this.db.list('/tutors/' + tutor.id + '/wallet/transactions').valueChanges();
+  }
+
+  loadTutorWallet(tutor): any {
+    return this.db.object('/tutors/' + tutor.id + '/wallet').valueChanges();
   }
 
   loadTutorBalance(tutor): any {
@@ -272,16 +280,22 @@ export class FirebaseService {
   }
 
   addAdmin(admin) {
-    // this.DuplicateAdmin(admin.email).then(result => {
-    //   console.log(result);
-    //   if (!result) {
-    //     return this.db.list('/admins/').push(admin);
-    //   }
-    // });
+    return this.db.list('/admins/').push(admin);
   }
 
-  DuplicateAdmin(adminEmail) {
+  checkAdmin(adminEmail) {
     return this.db.list('/admins/', ref => ref.orderByChild('email').equalTo(adminEmail)).snapshotChanges();
+  }
+
+  loadAdmins() {
+    return this.db.list('/admins/').snapshotChanges()
+      .map(actions => {
+        return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+      });
+  }
+
+  deleteAdmin(key) {
+    return this.db.object('/admins/' + key).set(null);
   }
 
   // loadTutorBookings() {
