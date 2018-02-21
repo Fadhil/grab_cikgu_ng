@@ -86,9 +86,33 @@
                 <input type="text" class="form-control text-right" id="experience" name="experience" [(ngModel)]="tutorProfile.experience" required placeholder="Experience">
             </p>
             <!-- <hr> -->
+
           </div>
 
             <hr>
+            <div class="row">
+              <div class="box-body">
+                <strong><i class="fa fa-graduation-cap margin-r-5"></i>Qualification</strong>
+                <table class="table table-bordered">
+                  <tr>
+                    <th>PT3/PMR</th>
+                    <th>SPM</th>
+                  </tr>
+                  <tr>
+                    <th><input id='pic_avtr' type="file" (change)="uploadPMR($event)" placeholder="Picture"></th>
+                    <th><input id='pic_avtr' type="file" (change)="uploadSPM($event)" placeholder="Picture"></th>
+                  </tr>
+                  <tr>
+                    <th>Diploma/Degree</th>
+                    <th>Master/PhD</th>
+                  </tr>
+                  <tr>
+                    <th><input id='pic_avtr' type="file" (change)="uploadDipDeg($event)" placeholder="Picture"></th>
+                    <th><input id='pic_avtr' type="file" (change)="uploadMasPhd($event)" placeholder="Picture"></th>
+                  </tr>
+                </table>
+              </div>
+            </div>
             <div>
                 <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour (RM)</strong>
                 <p class="text-muted">
