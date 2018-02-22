@@ -35,6 +35,10 @@ export class StudentPeopleComponent implements OnInit {
   level: number;
   date: string;
   time: string;
+  pmr:string;
+  spm: string;
+  dipdeg: string;
+  masphd: string;
 
   public startAt = new Date(2019, 2, 15, 20, 30);
 
@@ -236,9 +240,14 @@ export class StudentPeopleComponent implements OnInit {
     //     format: 'LT'
     // });
 
+
     this.firebaseService.getTutor(tutor.key)
       .subscribe(a => {
         this.selectedTutor = a;
+        this.pmr = this.selectedTutor.pmr;
+        this.spm = this.selectedTutor.spm;
+        this.dipdeg = this.selectedTutor.dipdeg;
+        this.masphd = this.selectedTutor.masphd;
         console.log(a);
       });
 
