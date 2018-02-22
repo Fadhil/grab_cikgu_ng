@@ -33,6 +33,10 @@ export class Tutor {
   byear: number;
   rate: number;
   picture: string;
+  spm: string;
+  pmr: string;
+  dipdeg: string;
+  masphd: string;
   dob: Date;
   previous_state: string;
 }

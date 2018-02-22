@@ -243,6 +243,12 @@ export class FirebaseService {
     return this.db.object('/').update(info);
   }
 
+  updateDipDeg(tutorKey,picurl) {
+    let info = {};
+    info['/tutors/' + tutorKey + '/file/dipdeg'] = picurl;
+    return this.db.object('/').update(info);
+  }
+
   loadAdminStudents() {
     return this.db.object('/students/').valueChanges();
   }
