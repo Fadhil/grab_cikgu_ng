@@ -10,7 +10,7 @@ import { Subject, Subjects, Levels } from './../../models/subject';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/do';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import {ViewEncapsulation} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 import { Student } from './../../models/student';
 
 import * as _ from 'lodash';
@@ -62,6 +62,7 @@ export class StudentPeopleComponent implements OnInit {
   booking_date: any;
   booking_time: any;
   booking_duration: any;
+  booking_remark: any;
 
   avatar: string;
 
@@ -204,7 +205,7 @@ export class StudentPeopleComponent implements OnInit {
     const classInfo = {name: this.subject, level: this.level};
     const bookingTime = {date: this.booking_date, time: this.booking_time, duration: parseFloat(this.booking_duration) };
 
-    const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, status: 'pending'};
+    const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, booking_remark: this.booking_remark, status: 'pending'};
     console.log(bookingInfo);
 
     this.firebaseService.bookTutor(bookingInfo)

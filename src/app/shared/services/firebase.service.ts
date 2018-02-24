@@ -149,6 +149,7 @@ export class FirebaseService {
     // update students/$tutor/booking
     console.log(bookingInfo);
     // get push key
+    console.log(bookingInfo);
     let newBooking = {};
     let tutorBooking = {};
     let studentBooking = {};
@@ -156,7 +157,15 @@ export class FirebaseService {
     let key = this.db.list('/tutorbooking/').push(newBooking).key;
 
     //admin
-    newBooking['/tutorbooking/' + key] = {tutor: bookingInfo.tutor, subject: bookingInfo.class, student: bookingInfo.student, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
+    newBooking['/tutorbooking/' + key] =
+    {
+      tutor: bookingInfo.tutor,
+      subject: bookingInfo.class,
+      student: bookingInfo.student,
+      bookingTime: bookingInfo.bookingTime,
+      booking_remark: bookingInfo.booking_remark,
+      status: bookingInfo.status
+    };
 
     //tutor
     newBooking['/tutors/' + bookingInfo.tutor.id + '/bookings/' + key] =
@@ -164,11 +173,19 @@ export class FirebaseService {
       student: bookingInfo.student,
       class: bookingInfo.class,
       bookingTime: bookingInfo.bookingTime,
+      booking_remark: bookingInfo.booking_remark,
       status: bookingInfo.status
     };
 
     //student
-    newBooking['/students/' + bookingInfo.student.id + '/bookings/' + key] = {tutor: bookingInfo.tutor, class: bookingInfo.class, bookingTime: bookingInfo.bookingTime, status: bookingInfo.status};
+    newBooking['/students/' + bookingInfo.student.id + '/bookings/' + key] =
+    {
+      tutor: bookingInfo.tutor,
+      class: bookingInfo.class,
+      bookingTime: bookingInfo.bookingTime,
+      booking_remark: bookingInfo.booking_remark,
+      status: bookingInfo.status
+    };
 
     return this.db.object('/').update(newBooking);
 

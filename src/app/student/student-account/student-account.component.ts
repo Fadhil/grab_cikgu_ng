@@ -75,4 +75,15 @@ export class StudentAccountComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    this.myDataSource.sort = this.sort;
+    this.myDataSource.paginator = this.paginator;
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.myDataSource.filter = filterValue;
+  }
+
 }
