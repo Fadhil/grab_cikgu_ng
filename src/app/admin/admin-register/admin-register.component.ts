@@ -6,17 +6,10 @@ import { FirebaseService } from '../../shared/services/firebase.service';
 import { ConfigService } from '../../shared/services/config.service';
 import { MailService } from '../../shared/services/mail.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-
-// const sgMail = require('@sendgrid/mail');
-
-
-
 import { Response, URLSearchParams } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
-// import {ErrorStateMatcher} from '@angular/material/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 
@@ -55,21 +48,8 @@ export class AdminRegisterComponent implements OnInit {
       this.myDataSource.data = returnArr;
 
       this.showConfig();
-      this.mailService.sendMail();
     })
 
-    console.log('sendgrid api key');
-
-
-    // sgMail.setApiKey("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");
-    // const msg = {
-    //   to: 'hazim@p2digital.com',
-    //   from: 'test@example.com',
-    //   subject: 'Sending with SendGrid is Fun',
-    //   text: 'and easy to do anywhere, even with Node.js',
-    //   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-    // };
-    // sgMail.send(msg);
   }
 
   deleteAdmin(adminKey) {
@@ -110,45 +90,11 @@ export class AdminRegisterComponent implements OnInit {
                         if (!result.length) {
                           this.firebaseService.addAdmin(da)
                             .then(result => {
-                              console.log('Completed added admin');
-                              console.log(result);
-
-                              // headers.set('Content-Type', 'application/json');
-                              // headers.set('Access-Control-Allow-Origin', '*');
-                              let h = new HttpHeaders();
-                              // h = h.set('Content-Type', 'application/json');
-                              h = h.set('Access-Control-Allow-Origin', '*');
-
-                              const httpOptions = {
-                                headers: h,
-                                responseType: 'text'
-                              };
-
-                              // const options = new RequestOptions({headers: h});
-
-                              params.set('to', da.email);
-                              params.set('from', 'you@yoursupercoolapp.com');
-                              params.set('subject', 'test-email');
-                              params.set('content', 'Hello World');
-
-                              console.log(httpOptions);
-
-                              let form = {
-                                'to': da.email,
-                                'from': 'you@yoursupercoolapp.com',
-                                'subject': 'Grab Cikgu Test E-mail',
-                                'content': 'Hello world!'
-                              }
-
-                              this.http.post(url, form)
-                                              .subscribe(res => {
-                                                console.log(res);
-                                              })
+                              this.mailService.mailAdminRegister(da.email)
+                                .subscribe(res => {
+                                  console.log(res);
+                                })
                             });
-                          // .then(
-                          //   console.log("Successfully added admin");
-                          //   // TODO: Send email to the admin and provide link to register.
-                          // );
                         } else {
                           console.log("The user has already been registered");
                         }
@@ -186,8 +132,6 @@ export class DialogOverviewExampleDialog {
     }
 
     submit() {
-      // console.log(this.data.email);
-      // this.data.email = "dsadsa.com"
       this.dialogRef.close();
     }
 
