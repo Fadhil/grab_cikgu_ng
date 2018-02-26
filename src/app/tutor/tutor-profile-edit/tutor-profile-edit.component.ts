@@ -29,6 +29,10 @@ export class TutorProfileEditComponent implements OnInit {
   pic_msg: string;
   profile_url: any;
   pic_observable: any;
+  spm: string;
+  pmr: string;
+  dipdeg: string;
+  masphd: string;
 
   showSpinner: boolean = true;
 
@@ -295,11 +299,12 @@ export class TutorProfileEditComponent implements OnInit {
       const filePath = 'file/spm/' + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
       console.log(task);
-      //task.downloadURL().subscribe(s => {
-        //this.tutorProfile.picture = s;
-        // this.firebaseService.updateTutorPic(this.profile)
+      task.downloadURL().subscribe(s => {
+        this.tutorProfile.spm = s;
+
+         //this.firebaseService.updateTutorPic(this.profile)
         //this.avatar = s;
-    //  });
+      });
       // this.avatar = task.downloadURL();
     }
     else {
@@ -333,11 +338,11 @@ export class TutorProfileEditComponent implements OnInit {
       const filePath = 'file/pmr/' + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
       console.log(task);
-      //task.downloadURL().subscribe(s => {
-        //this.tutorProfile.picture = s;
+      task.downloadURL().subscribe(s => {
+        this.tutorProfile.pmr = s;
         // this.firebaseService.updateTutorPic(this.profile)
         //this.avatar = s;
-    //  });
+      });
       // this.avatar = task.downloadURL();
     }
     else {
@@ -371,11 +376,11 @@ export class TutorProfileEditComponent implements OnInit {
       const filePath = 'file/DipDeg/' + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
       console.log(task);
-      //task.downloadURL().subscribe(s => {
-        //this.tutorProfile.picture = s;
+      task.downloadURL().subscribe(s => {
+        this.tutorProfile.dipdeg = s;
         // this.firebaseService.updateTutorPic(this.profile)
         //this.avatar = s;
-    //  });
+      });
       // this.avatar = task.downloadURL();
     }
     else {
@@ -409,11 +414,11 @@ export class TutorProfileEditComponent implements OnInit {
       const filePath = 'file/MasPhd/' + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
       console.log(task);
-      //task.downloadURL().subscribe(s => {
-        //this.tutorProfile.picture = s;
+      task.downloadURL().subscribe(s => {
+        this.tutorProfile.masphd = s;
         // this.firebaseService.updateTutorPic(this.profile)
         //this.avatar = s;
-    //  });
+      });
       // this.avatar = task.downloadURL();
     }
     else {

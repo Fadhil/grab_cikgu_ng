@@ -15,7 +15,10 @@ export class TutorProfileComponent implements OnInit {
   tutor_list_observable: any;
   avatar: string;
   showSpinner: boolean = true;
-
+  pmr: string;
+  spm: string;
+  dipdeg: string;
+  masphd: string;
   constructor(
     private alertService: AlertService,
     private tutorService: TutorService,
@@ -34,6 +37,10 @@ export class TutorProfileComponent implements OnInit {
       .subscribe(data => {
         this.tutorProfile = data;
         this.firebaseService.tutorProfile = this.tutorProfile;
+        this.pmr = this.tutorProfile.pmr;
+        this.spm = this.tutorProfile.spm;
+        this.dipdeg = this.tutorProfile.dipdeg;
+        this.masphd = this.tutorProfile.masphd;
 
         if(!this.tutorProfile.picture) {
           if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
