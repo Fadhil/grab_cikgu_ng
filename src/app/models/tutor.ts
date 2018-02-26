@@ -35,4 +35,5 @@ export class Tutor {
   picture: string;
   dob: Date;
   previous_state: string;
+  balance: number;
 }

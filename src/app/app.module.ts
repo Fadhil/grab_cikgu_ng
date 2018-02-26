@@ -56,6 +56,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { environment } from '../environments/environment';
 import { FirebaseService } from './shared/services/firebase.service';
+import { ConfigService } from './shared/services/config.service';
+import { MailService } from './shared/services/mail.service';
 
 import { AppSettings } from './app.settings';
 import { TutorSidebarComponent } from './shared/components/layouts/sidebar/tutor-sidebar/tutor-sidebar.component';
@@ -240,7 +242,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
       MatDialogModule],
   providers: [
     AlertService, TutorService, StudentService, AuthenticationService, SearchService,
-    RequestService, LocationService, FirebaseService
+    RequestService, LocationService, FirebaseService, ConfigService, MailService
   ],
   bootstrap: [AppComponent],
   // entryComponents: [DialogOverviewExampleDialog]
