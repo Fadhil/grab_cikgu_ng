@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 
 const express = require("express")
 
-var whitelist = ['http://localhost:5600', 'https://grabcikgu.firebaseapp.com']
+var whitelist = ['http://localhost:4200', 'https://grabcikgu.firebaseapp.com']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
