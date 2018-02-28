@@ -28,31 +28,31 @@ export class AdminLoginComponent implements OnInit {
   login() {
 
     // Check whether this is an admin or not?
-    this.firebaseService.checkAdmin(this.email)
-      .subscribe(res => {
-        console.log(res);
-        if (res.length>0){
-          console.log("it's an admin");
-          this.firebaseService.login(this.email, this.password)
-            .then( firebaseUser => {
-              console.log(firebaseUser);
-              localStorage.setItem('currentUserToken', firebaseUser.uid);
-              localStorage.setItem('loginType', 'admin');
-
-              this.firebaseService.getAdmin(firebaseUser.uid)
-                // .subscribe(data => {
-                //
-                // });
+          // console.log("it's an admin");
+    this.firebaseService.login(this.email, this.password)
+      .then( firebaseUser => {
+        console.log(firebaseUser);
+        localStorage.setItem('currentUserToken', firebaseUser.uid);
+        localStorage.setItem('loginType', 'admin');
+        // this.firebaseService.getAdmin(firebaseUser.uid);
+          // .subscribe(data => {
+          //
+          // });
+          this.firebaseService.checkAdmin(this.email)
+            .subscribe(res => {
+              if (res.length > 0) {
                 location.assign('/admin/students');
                 this.alertService.success('Successfully logged in', true);
-            })
-            .catch( error => {
-              this.alertService.error(error, true);
+              } else {
+                this.alertService.success("Sorry buddy, you're not a admin", true);
+                //perform firebase logout
+              }
             });
-        } else {
-          this.alertService.error("Sorry buddy, you're not a admin", false);
-        }
+      })
+      .catch( error => {
+        this.alertService.error(error, true);
       });
+
 
   }
 }
