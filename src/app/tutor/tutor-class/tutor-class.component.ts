@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { AlertService } from './../../shared/services/alert.service';
+import { MailService } from '../../shared/services/mail.service';
 import { Router } from '@angular/router';
 import { Student } from './../../models/student';
 import { Tutor } from '../../models/tutor';
@@ -30,7 +31,8 @@ export class TutorClassComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private router: Router,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public mailService: MailService,
   ) {
     this.JSON = JSON;
   }
@@ -61,11 +63,11 @@ export class TutorClassComponent implements OnInit {
                                   level: da[item].class ? Levels[da[item].class.level] : null,
                                   student: da[item].student ? da[item].student.name : null,
                                   studentKey: da[item].student ? da[item].student.id : null,
+                                  email: da[item].student ? da[item].student.email : null,
                                   status: da[item].status});
                 i++;
               }
             }
-
             this.myDataSource.data = _.reverse(returnArr);
           });
       });
@@ -89,16 +91,19 @@ export class TutorClassComponent implements OnInit {
 
   confirmClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'confirmed');
-    console.log(a);
+    this.mailService.mailAcceptedNotif(bookingInfo.email);
+    console.log("Info:"+ JSON.stringify(bookingInfo.email));
   }
 
   declineClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'declined');
+    this.mailService.mailDeclinedNotif(bookingInfo.email)
     console.log(a);
   }
 
   completeClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'completed');
+    this.mailService.mailCompletedNotif(bookingInfo.email)
   }
 
 }
