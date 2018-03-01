@@ -10,6 +10,7 @@ import { Response, URLSearchParams } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {Md5} from 'ts-md5/dist/md5';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 
@@ -70,11 +71,7 @@ export class AdminRegisterComponent implements OnInit {
 
   openDialog() {
 
-    let url = `https://us-central1-grabcikgu.cloudfunctions.net/api/sendMail`;
-    let params: URLSearchParams = new URLSearchParams();
-    // let headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-
-    let da = {email: ''};
+    let da = {email: '', code: ''};
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '500px',
       data: da
@@ -82,7 +79,11 @@ export class AdminRegisterComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
         console.log(da);
+
+        // da.code = Md5.hashStr(da.email);
+
         let res = this.firebaseService.checkAdmin(da.email)
                     .subscribe(result => {
                         console.log(result);
@@ -90,7 +91,9 @@ export class AdminRegisterComponent implements OnInit {
                         if (!result.length) {
                           this.firebaseService.addAdmin(da)
                             .then(result => {
-                              this.mailService.mailAdminRegister(da.email)
+                              console.log(result.key);
+                              da.code = result.key;
+                              this.mailService.mailAdminRegister(da)
                                 .subscribe(res => {
                                   console.log(res);
                                 })

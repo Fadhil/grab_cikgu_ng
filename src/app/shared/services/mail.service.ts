@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class MailService {
   hdr: HttpHeaders = new HttpHeaders();
   httpOptions = {};
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
     this.hdr = this.hdr.set('Content-Type', 'application/json');
     this.httpOptions = {
       headers: this.hdr,
@@ -18,23 +18,30 @@ export class MailService {
     return this.http.post(this.sendMailUrl, mail, this.httpOptions);
   }
 
-  mailAdminRegister(email) {
+  mailAdminRegister(da) {
+    let urlc;
+
+    if (isDevMode()){
+      urlc = "http://localhost:4200/admin/invite?code";
+    } else {
+      urlc = "https://grabcikgu.firebaseapp.com/admin/invite?code";
+    }
 
     let msg = `
-      <p>Dear ${email},</p>
+      <p>Dear ${da.email},</p>
       <p>You have been registered as an admin at TutorGo. Please visit
-      http://grabcikgu.firebaseapp.com/register to register and accept. </p>
+      ${urlc}=${da.code} to register and accept. </p>
       <p>TutorGo Admin</p>
     `
-    let msgn = `Dear ${email}\n
+    let msgn = `Dear ${da.email}\n
                 You have been registered as an admin at TutorGo. Please visit \n
-                https://grabcikgu.firebaseapp.com/register to register and accept.
+                ${urlc}=${da.code} to register and accept.
                 \n
                 TutorGo Admin
     `
 
     let mail_message = {
-      'to': email,
+      'to': da.email,
       'from': 'tutorgo@ptpc.com',
       'subject': 'You have been registered as an admin',
       'content': msgn,

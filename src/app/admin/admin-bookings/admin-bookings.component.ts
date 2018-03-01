@@ -43,13 +43,16 @@ export class AdminBookingsComponent implements OnInit {
 
         var returnArr = [];
         for (let item in data) {
-          returnArr.push({key: item,
-                          tutor: data[item].tutor.name,
-                          student: data[item].student.name,
-                          status: data[item].status,
-                          city: data[item].city});
-                        }
-          this.myDataSource.data = _.reverse(returnArr);
+          console.log(data[item]);
+          if(data[item].tutor && data[item].student){
+            returnArr.push({key: item,
+                            tutor: data[item].tutor.name ? data[item].tutor.name : '' ,
+                            student: data[item].student.name,
+                            status: data[item].status,
+                            city: data[item].city});
+                          }
+            this.myDataSource.data = _.reverse(returnArr);
+          }
         });
   }
 

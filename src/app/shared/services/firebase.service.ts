@@ -300,6 +300,10 @@ export class FirebaseService {
       });
   }
 
+  loadAdminByCode(code) {
+    return this.db.object('/admins/' + code + '/email/').valueChanges();
+  }
+
   deleteAdmin(key) {
     return this.db.object('/admins/' + key).set(null);
   }
