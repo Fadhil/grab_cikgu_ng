@@ -10,7 +10,7 @@ import { Response, URLSearchParams } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Md5} from 'ts-md5/dist/md5';
+//import {Md5} from 'ts-md5/dist/md5';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 

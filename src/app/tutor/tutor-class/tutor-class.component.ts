@@ -91,19 +91,31 @@ export class TutorClassComponent implements OnInit {
 
   confirmClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'confirmed');
-    this.mailService.mailAcceptedNotif(bookingInfo.email);
+    this.mailService.mailAcceptedNotif(bookingInfo.email)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
     console.log("Info:"+ JSON.stringify(bookingInfo.email));
   }
 
   declineClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'declined');
     this.mailService.mailDeclinedNotif(bookingInfo.email)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
     console.log(a);
   }
 
   completeClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'completed');
     this.mailService.mailCompletedNotif(bookingInfo.email)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
   }
 
 }

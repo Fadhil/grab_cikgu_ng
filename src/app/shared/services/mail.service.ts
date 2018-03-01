@@ -107,7 +107,7 @@ export class MailService {
   }
 
   mailAcceptedNotif(email) {
-
+    console.log(email);
     let msg = `
       <p>Dear ${email},</p>
       <p>Your request have been accepted at TutorGo. Please visit
@@ -160,7 +160,7 @@ export class MailService {
 
   }
 
-  mailCompleteNotif(email) {
+  mailCompletedNotif(email) {
 
     let msg = `
       <p>Dear ${email},</p>
