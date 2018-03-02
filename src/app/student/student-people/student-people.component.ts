@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { State } from '../../models/state';
 import { City } from '../../models/city';
 import { FirebaseService } from '../../shared/services/firebase.service';
+import { MailService } from '../../shared/services/mail.service';
 import { Tutor } from './../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -39,6 +40,7 @@ export class StudentPeopleComponent implements OnInit {
   spm: string;
   dipdeg: string;
   masphd: string;
+  admins: any;
 
   public startAt = new Date(2019, 2, 15, 20, 30);
 
@@ -70,6 +72,7 @@ export class StudentPeopleComponent implements OnInit {
     private locationService: LocationService,
     private router: Router,
     public firebaseService: FirebaseService,
+    public mailService: MailService,
     private modalService: NgbModal
     ) {
         this.matapelajaran = Subjects;
@@ -198,7 +201,7 @@ export class StudentPeopleComponent implements OnInit {
 
   bookTutor(tutor) {
 
-    console.log(tutor);
+    console.log("Tutor: "+JSON.stringify(this.studentProfile.email));
     console.log(this.booking_duration);
 
     const classInfo = {name: this.subject, level: this.level};
@@ -206,6 +209,38 @@ export class StudentPeopleComponent implements OnInit {
 
     const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, status: 'pending'};
     console.log(bookingInfo);
+
+    this.mailService.mailTutorNotif(tutor.email)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
+
+    this.mailService.mailStudentNotif(this.studentProfile.email)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
+
+    // this.firebaseService.getAdmins()
+    //   .subscribe(list => {
+    //     var returnArr = [];
+    //     let i = 0 ;
+    //     for (let item in list) {
+    //      if (item) {
+    //        console.log(list[item].email);
+    //        returnArr.push({ email: list[item].email});
+    //        i++;
+    //      }
+    //     }
+    //    this.admins = _.reverse(returnArr);
+    //  });
+    //  console.log(this.admins);
+    // this.mailService.mailAdminNotif(li.email)
+    //   .subscribe(res => {
+    //     console.log("Triggered");
+    //     console.log(res);
+    //   });
 
     this.firebaseService.bookTutor(bookingInfo)
       .then(result => {

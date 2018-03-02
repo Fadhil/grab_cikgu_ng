@@ -52,6 +52,33 @@ export class MailService {
 
   }
 
+  mailAdminNotif(email) {
+
+    let msg = `
+      <p>Dear ${email},</p>
+      <p>A Tutor has been requested at TutorGo. Please visit
+      http://grabcikgu.firebaseapp.com/admin/login to view.</p>
+      <p>TutorGo</p>
+    `
+    let msgn = `Dear ${email}\n
+                A Tutor has been requested at TutorGo. Please visit \n
+                https://grabcikgu.firebaseapp.com/admin/login to view.
+                \n
+                TutorGo
+    `
+
+    let mail_message = {
+      'to': email,
+      'from': 'tutorgo@ptpc.com',
+      'subject': 'You have a request',
+      'content': msgn,
+      'htmlcontent': msg
+    }
+
+    return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
+
+  }
+  
   mailTutorNotif(email) {
 
     let msg = `
@@ -133,6 +160,33 @@ export class MailService {
 
   }
 
+  mailTAcceptedNotif(email) {
+    console.log(email);
+    let msg = `
+      <p>Dear ${email},</p>
+      <p>Your request have been accepted at TutorGo. Please visit
+      http://grabcikgu.firebaseapp.com/tutor/login to view your request.</p>
+      <p>TutorGo</p>
+    `
+    let msgn = `Dear ${email}\n
+                Your request have been accepted at TutorGo. Please visit \n
+                https://grabcikgu.firebaseapp.com/tutor/login to view your request.
+                \n
+                TutorGo
+    `
+
+    let mail_message = {
+      'to': email,
+      'from': 'tutorgo@ptpc.com',
+      'subject': 'Your request have been accepted',
+      'content': msgn,
+      'htmlcontent': msg
+    }
+
+    return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
+
+  }
+
   mailDeclinedNotif(email) {
 
     let msg = `
@@ -144,6 +198,33 @@ export class MailService {
     let msgn = `Dear ${email}\n
                 Your request have been declined at TutorGo. Please visit \n
                 https://grabcikgu.firebaseapp.com/student/login to view your request.
+                \n
+                TutorGo
+    `
+
+    let mail_message = {
+      'to': email,
+      'from': 'tutorgo@ptpc.com',
+      'subject': 'Your request have been declined',
+      'content': msgn,
+      'htmlcontent': msg
+    }
+
+    return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
+
+  }
+
+  mailTDeclinedNotif(email) {
+
+    let msg = `
+      <p>Dear ${email},</p>
+      <p>Your request have been declined at TutorGo. Please visit
+      http://grabcikgu.firebaseapp.com/tutor/login to view your request.</p>
+      <p>TutorGo</p>
+    `
+    let msgn = `Dear ${email}\n
+                Your request have been declined at TutorGo. Please visit \n
+                https://grabcikgu.firebaseapp.com/tutor/login to view your request.
                 \n
                 TutorGo
     `

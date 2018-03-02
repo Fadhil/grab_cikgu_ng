@@ -249,6 +249,10 @@ export class FirebaseService {
     return this.db.object('/').update(info);
   }
 
+  getAdmins() {
+    return this.db.object('/admins/').valueChanges();
+  }
+
   loadAdminStudents() {
     return this.db.object('/students/').valueChanges();
   }
