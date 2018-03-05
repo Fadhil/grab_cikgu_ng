@@ -66,6 +66,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
+
+
 // import { MatDialogModule } from '@angular/material/dialog';
 
 import {
@@ -107,6 +109,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { DateformatPipe } from './shared/pipes/dateformat.pipe';
 
 
 @NgModule({
@@ -137,6 +140,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     StudentSidebarComponent,
     HomepageComponent,
     LoadingSpinnerComponent,
+    DateformatPipe,
 ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@
         <!-- Session Column -->
         <ng-container matColumnDef="session">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Session </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.bookingTime}} <br> {{element.bookingDate}} </mat-cell>
+          <mat-cell *matCellDef="let element">{{element.bookingDate | date: 'fullDate'}} <strong>({{element.bookingTime | dateformat | date: 'shortTime' }})</strong> </mat-cell>
         </ng-container>
 
         <!-- View Column -->

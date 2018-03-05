@@ -236,6 +236,13 @@ export class FirebaseService {
     updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/date'] = bookingInfo.bookingDate;
     updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/time'] = bookingInfo.bookingTime;
     // updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/'] = status;
+
+    // Tutor branch perlu di update
+
+
+    // Student perlu diupdate
+
+
     return this.db.object('/').update(updateBooking);
   }
 
