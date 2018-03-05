@@ -39,4 +39,5 @@ export class Tutor {
   masphd: string;
   dob: Date;
   previous_state: string;
+  balance: number;
 }

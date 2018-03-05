@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FirebaseService } from '../../shared/services/firebase.service';
+import { MailService } from '../../shared/services/mail.service';
 import { AlertService } from './../../shared/services/alert.service';
 import { Router } from '@angular/router';
 import { Student } from './../../models/student';
@@ -31,6 +32,7 @@ export class AdminBookingsComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     public firebaseService: FirebaseService,
+    public mailService: MailService,
     public dialog: MatDialog,
   ) {
     this.JSON = JSON;
@@ -43,13 +45,18 @@ export class AdminBookingsComponent implements OnInit {
 
         var returnArr = [];
         for (let item in data) {
-          returnArr.push({key: item,
-                          tutor: data[item].tutor.name,
-                          student: data[item].student.name,
-                          status: data[item].status,
-                          city: data[item].city});
-                        }
-          this.myDataSource.data = _.reverse(returnArr);
+          console.log(data[item]);
+          if(data[item].tutor && data[item].student){
+            returnArr.push({key: item,
+                            tutor: data[item].tutor.name ? data[item].tutor.name : '' ,
+                            tmail: data[item].tutor.email,
+                            student: data[item].student.name,
+                            smail: data[item].student.email,
+                            status: data[item].status,
+                            city: data[item].city});
+                          }
+            this.myDataSource.data = _.reverse(returnArr);
+          }
         });
   }
 
@@ -94,11 +101,31 @@ export class AdminBookingsComponent implements OnInit {
 
   confirmClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'confirmed');
+    this.mailService.mailAcceptedNotif(bookingInfo.smail)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
+    this.mailService.mailTAcceptedNotif(bookingInfo.tmail)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
     console.log(a);
   }
 
   declineClass(bookingInfo) {
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'declined');
+    this.mailService.mailDeclinedNotif(bookingInfo.smail)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
+    this.mailService.mailTDeclinedNotif(bookingInfo.tmail)
+      .subscribe(res => {
+        console.log("Triggered");
+        console.log(res);
+      });
     console.log(a);
   }
 

@@ -3,9 +3,14 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { AlertService } from './../../shared/services/alert.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
+import { ConfigService } from '../../shared/services/config.service';
+import { MailService } from '../../shared/services/mail.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-
-// import {ErrorStateMatcher} from '@angular/material/core';
+import { Response, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+//import {Md5} from 'ts-md5/dist/md5';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 
@@ -19,11 +24,21 @@ export class AdminRegisterComponent implements OnInit {
   displayedColumns = ['email', 'actions'];
   myDataSource = new MatTableDataSource();
   admins_observable: any;
+  config: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog, private alertService: AlertService, public firebaseService: FirebaseService) { }
+  constructor(public dialog: MatDialog,
+    private alertService: AlertService,
+    public firebaseService: FirebaseService,
+    private http: HttpClient,
+    private configService: ConfigService,
+    private mailService: MailService) { }
+
+  handleError(d,y) {
+    console.log(d,y);
+  }
 
   ngOnInit() {
     this.admins_observable = this.firebaseService.loadAdmins().subscribe(admins => {
@@ -32,7 +47,10 @@ export class AdminRegisterComponent implements OnInit {
         returnArr.push(admins[admin]);
       }
       this.myDataSource.data = returnArr;
-    });
+
+      this.showConfig();
+    })
+
   }
 
   deleteAdmin(adminKey) {
@@ -41,8 +59,19 @@ export class AdminRegisterComponent implements OnInit {
     }
   }
 
+  showConfig() {
+    this.configService.getConfig()
+      .subscribe(data => {
+        this.config = {
+          sendmailUrl: data['sendmailUrl']
+        }
+        console.log(this.config.sendmailUrl);
+      });
+  }
+
   openDialog() {
-    let da = {email: ''};
+
+    let da = {email: '', code: ''};
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '500px',
       data: da
@@ -50,7 +79,11 @@ export class AdminRegisterComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
         console.log(da);
+
+        // da.code = Md5.hashStr(da.email);
+
         let res = this.firebaseService.checkAdmin(da.email)
                     .subscribe(result => {
                         console.log(result);
@@ -58,12 +91,13 @@ export class AdminRegisterComponent implements OnInit {
                         if (!result.length) {
                           this.firebaseService.addAdmin(da)
                             .then(result => {
-                              console.log(result);
+                              console.log(result.key);
+                              da.code = result.key;
+                              this.mailService.mailAdminRegister(da)
+                                .subscribe(res => {
+                                  console.log(res);
+                                })
                             });
-                          // .then(
-                          //   console.log("Successfully added admin");
-                          //   // TODO: Send email to the admin and provide link to register.
-                          // );
                         } else {
                           console.log("The user has already been registered");
                         }
@@ -101,8 +135,6 @@ export class DialogOverviewExampleDialog {
     }
 
     submit() {
-      // console.log(this.data.email);
-      // this.data.email = "dsadsa.com"
       this.dialogRef.close();
     }
 

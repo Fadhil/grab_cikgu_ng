@@ -26,21 +26,34 @@ export class AdminLoginComponent implements OnInit {
   }
 
   login() {
+
     this.firebaseService.login(this.email, this.password)
       .then( firebaseUser => {
         console.log(firebaseUser);
         localStorage.setItem('currentUserToken', firebaseUser.uid);
         localStorage.setItem('loginType', 'admin');
 
-        this.firebaseService.getAdmin(firebaseUser.uid)
-          // .subscribe(data => {
-          //
-          // });
-          location.assign('/admin/students');
-          this.alertService.success('Successfully logged in', true);
+          let s_observable = this.firebaseService.checkAdmin(this.email)
+            .subscribe(res => {
+              if (res.length > 0) {
+                location.assign('/admin/students');
+                this.alertService.success('Successfully logged in', true);
+              } else {
+                this.alertService.error("Sorry buddy, you're not a admin", true);
+                //perform firebase logout
+
+                s_observable.unsubscribe();
+                this.firebaseService.logout().then(result => {
+                  // this.alertService.success('Successfully Logged Out from GrabCikgu.');
+                });
+
+              }
+            });
       })
       .catch( error => {
         this.alertService.error(error, true);
       });
+
+
   }
 }
