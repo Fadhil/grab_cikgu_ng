@@ -24,19 +24,35 @@
 
         <!-- Tutor Name Column -->
         <ng-container matColumnDef="tutor">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Tutor Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.tutor}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Tutor </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.tutorName}} </mat-cell>
         </ng-container>
 
         <!-- Student Column -->
         <ng-container matColumnDef="student">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.student}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Student </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.studentName}} </mat-cell>
+        </ng-container>
+
+        <!-- Class Column -->
+        <ng-container matColumnDef="class">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Class </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.subject}}
+            <br>
+            {{element.level}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Session Column -->
+        <ng-container matColumnDef="session">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Session </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.bookingTime}} <br> {{element.bookingDate}} </mat-cell>
         </ng-container>
 
         <!-- View Column -->
         <ng-container matColumnDef="view">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> View </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <button mat-icon-button color="primary" (click)="openDialog(element)">
               <mat-icon aria-label="Info">info</mat-icon>
@@ -58,7 +74,7 @@
 
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
           <mat-cell *matCellDef="let element" >
             <!-- <button mat-icon-button color="warn">
               <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
@@ -87,7 +103,7 @@
       </mat-table>
 
       <mat-paginator #paginator
-                       [pageSize]="10"
+                       [pageSize]="5"
                        [pageSizeOptions]="[5, 10, 20]">
       </mat-paginator>
     </div>

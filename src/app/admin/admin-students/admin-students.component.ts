@@ -39,8 +39,15 @@ export class AdminStudentsComponent implements OnInit {
         for(let item in data) {
           returnArr.push({key: item,
                           name: data[item].name,
-                          phone: data[item].phone_no,
-                          email: data[item].email});
+                          phone_no: data[item].phone_no,
+                          email: data[item].email,
+                          city: data[item].city,
+                          gender: data[item].gender,
+                          grade: data[item].occupation,
+                          age: data[item].age,
+                          address: data[item].address,
+                          balance: data[item].wallet ? data[item].wallet.balance : null
+                          });
         }
 
         this.myDataSource.data = _.reverse(returnArr);

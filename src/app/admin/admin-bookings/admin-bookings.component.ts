@@ -17,7 +17,7 @@ import * as _ from 'lodash';
 })
 export class AdminBookingsComponent implements OnInit {
 
-  displayedColumns = ['tutor', 'student', 'status', 'view', 'action'];
+  displayedColumns = ['tutor', 'student', 'class', 'session', 'status', 'view', 'action'];
   myDataSource = new MatTableDataSource();
 
   tutor_observable: any;
@@ -45,19 +45,39 @@ export class AdminBookingsComponent implements OnInit {
 
         var returnArr = [];
         for (let item in data) {
-          console.log(data[item]);
-          if(data[item].tutor && data[item].student){
-            returnArr.push({key: item,
-                            tutor: data[item].tutor.name ? data[item].tutor.name : '' ,
-                            tmail: data[item].tutor.email,
-                            student: data[item].student.name,
-                            smail: data[item].student.email,
-                            status: data[item].status,
-                            city: data[item].city});
-                          }
-            this.myDataSource.data = _.reverse(returnArr);
-          }
+          returnArr.push({key: item,
+                          tutorName: data[item].tutor ? data[item].tutor.name : null,
+                          tutorPhone: data[item].tutor ? data[item].tutor.phone_no : null,
+                          tutorEmail: data[item].tutor ? data[item].tutor.email : null,
+                          tutorOccupation: data[item].tutor ? data[item].tutor.occupation : null,
+                          tutorLicense: data[item].tutor ? data[item].tutor.tutor_license_no : null,
+                          tutorStatus: data[item].tutor ? data[item].tutor.status : null,
+
+                          studentName: data[item].student ? data[item].student.name : null,
+                          studentGrade: data[item].student ? data[item].student.occupation : null,
+                          studentAge: data[item].student ? data[item].student.age : null,
+                          studentPhone: data[item].student ? data[item].student.phone_no : null,
+                          studentEmail: data[item].student ? data[item].student.email : null,
+                          studentAddress: data[item].student ? data[item].student.address : null,
+                          studentCity: data[item].student ? data[item].student.city : null,
+
+                          subject: data[item].subject ? data[item].subject.name : null, //class
+                          level: data[item].subject ? Levels[data[item].subject.level] : null, //class
+                          bookingDate: data[item].bookingTime ? data[item].bookingTime.date : null, //session
+                          bookingTime: data[item].bookingTime ? data[item].bookingTime.time : null, //session
+                          bookingRemark: data[item].booking_remark,
+                          status: data[item].status
+                          });
+                        }
+          this.myDataSource.data = _.reverse(returnArr);
         });
+  }
+
+  myFilter = (d: Date): boolean => {
+      const day = d.getDay();
+      // Prevent Saturday and Sunday from being selected.
+      // return day !== 0 && day !== 6;
+      return true;
   }
 
   ngAfterViewInit() {
@@ -142,12 +162,53 @@ export class AdminBookingsComponent implements OnInit {
   })
   export class BookingDialog {
 
+    tutor_observable: any;
+    tutorProfile = new Tutor();
+
     constructor(
+      public firebaseService: FirebaseService,
+      private alertService: AlertService,
+      private router: Router,
       public dialogRef: MatDialogRef<BookingDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any) { }
 
       ngOnInit() {
           console.log(this.data);
+      }
+
+      updateClass(bookingInfo, element) {
+        let c = this.firebaseService.adminAddClass(bookingInfo, element.bookingDate);
+        console.log(c);
+        // this.tutorProfile.subjects = null;
+        // this.tutorProfile.subjects = this.subjects;
+        // console.log(this.subjects);
+        // let c = this.firebaseService.addClass(this.data)
+        //   .then(result => {
+        //     this.router.navigateByUrl('/admin/booking');
+        //     this.alertService.success('Successfully Added Class');
+        //   })
+        //   .catch(error => {
+        //     // this.router.navigateByUrl('/tutor/profile');
+        //     this.alertService.error(error);
+        //   });
+
+
+
+      }
+
+      cancelClass(bookingInfo){
+        let c = this.firebaseService.adminCancelClass(bookingInfo);
+        console.log(c);
+      }
+
+      confirmClass(bookingInfo) {
+        let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'confirmed');
+        console.log(a);
+      }
+
+      declineClass(bookingInfo) {
+        let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'declined');
+        console.log(a);
       }
 
       onNoClick(): void {

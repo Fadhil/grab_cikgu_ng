@@ -1,11 +1,39 @@
-<h1 mat-dialog-title>{{data.name}}</h1>
+<h1 mat-dialog-title>Student Details</h1>
 <mat-dialog-content>
   <mat-tab-group>
-  <mat-tab label="Details">Student Details</mat-tab>
-  <mat-tab label="Wallet">Wallet</mat-tab>
+  <mat-tab label="Details">
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <p>Name: <strong> {{data.name}} </strong></p>
+        <p>Email: <strong> {{data.email}} </strong></p>
+        <p>Phone No: <strong> {{data.phone_no}} </strong></p>
+        <p>Gender: <strong> {{data.gender}} </strong></p>
+        <p>Grade | Age: <strong> {{data.grade}} | {{data.age}} years old</strong></p>
+        <p>Address: <strong> {{data.address}}, {{data.city}}</strong></p>
+    </div>
+  </div>
+  </mat-tab>
+
+
+
+  <mat-tab label="Wallet">
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <p>Balance: <strong> {{data.balance}} </strong></p>
+        <!-- <p>Transactions: <strong> {{data.email}} </strong></p> -->
+
+      </div>
+    </div>
+  </mat-tab>
+
+
 </mat-tab-group>
+
+
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
-  <button mat-button mat-dialog-close color="warn">Delete</button>
+  <!-- <button mat-button mat-dialog-close color="warn">Delete</button> -->
 </mat-dialog-actions>

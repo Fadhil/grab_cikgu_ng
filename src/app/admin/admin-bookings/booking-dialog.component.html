@@ -1,26 +1,67 @@
-<h1 mat-dialog-title>{{data.status}}</h1>
+<h1 mat-dialog-title>Class Request Details</h1>
 <mat-dialog-content>
   <mat-tab-group>
-  <mat-tab label="Details">
-  <br>
+  <mat-tab label="Class">
   <div class="row">
-    <div class="col-md-12">
-      <p>Tutor Name: <strong> {{data.tutor}} </strong></p>
-      <p>Student Name: <strong> {{data.student}} </strong></p>
-      <p>Request Status: <strong> {{data.status}} </strong></p>
-      <p>City: <strong> {{data.city}} </strong></p>
-
+    <div class="col-md-12"><br>
+      <p>Subject: {{data.subject}} </p>
+      <p>Grade: {{data.level}} </p>
+      <p><b>Date:
+        <mat-form-field>
+          <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker"
+          id="date" name="date" [(ngModel)]="data.bookingDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </b></p>
+      <p><b>Time:
+        <mat-form-field>
+          <input matInput type="time" id="time"
+        name="time" [(ngModel)]="data.bookingTime">
+        </mat-form-field>
+      </b></p>
+      <p><b>Status: {{data.status | uppercase}} </b></p>
+      <p>Remark: {{data.bookingRemark}} </p>
     </div>
   </div>
   </mat-tab>
 
-  <mat-tab label="Wallet">Wallet</mat-tab>
+  <mat-tab label="Tutor">
+    <div class="row">
+      <div class="col-md-12"><br>
+        <p>Tutor Name: <strong> {{data.tutorName}} </strong></p>
+        <p>Phone No: <strong> {{data.tutorPhone}} </strong></p>
+        <p>Email: <strong> {{data.tutorEmail}} </strong></p>
+        <p>Occupation: <strong> {{data.tutorOccupation}} </strong></p>
+        <p>License: <strong> {{data.tutorLicense}} </strong></p>
+        <p>Status: <strong> {{data.tutorStatus}} </strong></p>
+    </div>
+  </div>
+  </mat-tab>
+
+  <mat-tab label="Student">
+    <div class="row">
+      <div class="col-md-12"><br>
+        <p>Student Name: <strong> {{data.studentName}} </strong></p>
+        <p>Grade: <strong> {{data.studentGrade}}</strong></p>
+        <p>Age: <strong> {{data.studentAge}} years old </strong></p>
+        <p>Phone No: <strong> {{data.studentPhone}} </strong></p>
+        <p>Email: <strong> {{data.studentEmail}} </strong></p>
+        <p>Address: <strong> {{data.studentAddress}}, {{data.studentCity}} </strong></p>
+      </div>
+    </div>
+  </mat-tab>
+
 </mat-tab-group>
 
 
 </mat-dialog-content>
 <mat-dialog-actions>
+
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="declineClass(element)" color="warn">Reject</button>
   <span class="example-fill-remaining-space"></span>
-  <button mat-button mat-dialog-close color="primary">Close</button>
+  <button mat-raised-button color="primary" (click)="updateClass()">Set Class</button>
+
   <!-- <button mat-button mat-dialog-close color="warn">Delete</button> -->
 </mat-dialog-actions>

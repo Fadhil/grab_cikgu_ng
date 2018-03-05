@@ -231,6 +231,24 @@ export class FirebaseService {
 
   }
 
+  adminAddClass(bookingInfo, bookingDate): any {
+    let updateBooking = {};
+    updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/date'] = bookingDate;
+    // updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/time'] = bookingTime;
+    // updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/'] = status;
+    return this.db.object('/').update(updateBooking);
+  }
+
+  adminCancelClass(bookingInfo): any {
+    
+    console.log(bookingInfo);
+    let updateBooking = {};
+    updateBooking['/tutorbooking/' + bookingInfo.key] = null;
+    // updateBooking['/tutors/' + bookingInfo.tutorkey + '/bookings/' + bookingInfo.key + '/status'] = 'cancelled';
+    // updateBooking['/students/' + studentKey + '/bookings/' + bookingInfo.key] = null;
+    return this.db.object('/').update(updateBooking);
+  }
+
   getStudent(key): any {
     return this.db.object('students/' + key + '/').valueChanges();
   }

@@ -3,3 +3,12 @@
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
+
+.mat-datepicker-calendar-pane{
+z-index: 1200}
+.cdk-overlay-pane {
+  z-index: 1200 !important
+}
+.cdk-overlay-pane {
+  z-index: 1200 !important
+}
