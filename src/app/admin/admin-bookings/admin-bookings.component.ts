@@ -45,29 +45,31 @@ export class AdminBookingsComponent implements OnInit {
 
         var returnArr = [];
         for (let item in data) {
-          returnArr.push({key: item,
-                          tutorName: data[item].tutor ? data[item].tutor.name : null,
-                          tutorPhone: data[item].tutor ? data[item].tutor.phone_no : null,
-                          tutorEmail: data[item].tutor ? data[item].tutor.email : null,
-                          tutorOccupation: data[item].tutor ? data[item].tutor.occupation : null,
-                          tutorLicense: data[item].tutor ? data[item].tutor.tutor_license_no : null,
-                          tutorStatus: data[item].tutor ? data[item].tutor.status : null,
+          if (data[item].tutor && data[item].student){
+            returnArr.push({key: item,
+                            tutorName: data[item].tutor ? data[item].tutor.name : null,
+                            tutorPhone: data[item].tutor ? data[item].tutor.phone_no : null,
+                            tutorEmail: data[item].tutor ? data[item].tutor.email : null,
+                            tutorOccupation: data[item].tutor ? data[item].tutor.occupation : null,
+                            tutorLicense: data[item].tutor ? data[item].tutor.tutor_license_no : null,
+                            tutorStatus: data[item].tutor ? data[item].tutor.status : null,
 
-                          studentName: data[item].student ? data[item].student.name : null,
-                          studentGrade: data[item].student ? data[item].student.occupation : null,
-                          studentAge: data[item].student ? data[item].student.age : null,
-                          studentPhone: data[item].student ? data[item].student.phone_no : null,
-                          studentEmail: data[item].student ? data[item].student.email : null,
-                          studentAddress: data[item].student ? data[item].student.address : null,
-                          studentCity: data[item].student ? data[item].student.city : null,
+                            studentName: data[item].student ? data[item].student.name : null,
+                            studentGrade: data[item].student ? data[item].student.occupation : null,
+                            studentAge: data[item].student ? data[item].student.age : null,
+                            studentPhone: data[item].student ? data[item].student.phone_no : null,
+                            studentEmail: data[item].student ? data[item].student.email : null,
+                            studentAddress: data[item].student ? data[item].student.address : null,
+                            studentCity: data[item].student ? data[item].student.city : null,
 
-                          subject: data[item].subject ? data[item].subject.name : null, //class
-                          level: data[item].subject ? Levels[data[item].subject.level] : null, //class
-                          bookingDate: data[item].bookingTime ? data[item].bookingTime.date : null, //session
-                          bookingTime: data[item].bookingTime ? data[item].bookingTime.time : null, //session
-                          bookingRemark: data[item].booking_remark,
-                          status: data[item].status
-                          });
+                            subject: data[item].subject ? data[item].subject.name : null, //class
+                            level: data[item].subject ? Levels[data[item].subject.level] : null, //class
+                            bookingDate: data[item].bookingTime ? data[item].bookingTime.date : null, //session
+                            bookingTime: data[item].bookingTime ? data[item].bookingTime.time : null, //session
+                            bookingRemark: data[item].booking_remark,
+                            status: data[item].status
+                            });
+                          }
                         }
           this.myDataSource.data = _.reverse(returnArr);
         });
@@ -176,8 +178,10 @@ export class AdminBookingsComponent implements OnInit {
           console.log(this.data);
       }
 
-      updateClass(bookingInfo, element) {
-        let c = this.firebaseService.adminAddClass(bookingInfo, element.bookingDate);
+      updateClass() {
+        console.log(this.data);
+
+        let c = this.firebaseService.adminAddClass(this.data);
         console.log(c);
         // this.tutorProfile.subjects = null;
         // this.tutorProfile.subjects = this.subjects;
