@@ -79,10 +79,10 @@
                     <mat-option value="3">3 hour</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <a class="btn btn-primary btn-block" [href]="pmr">PMR / PT3</a>
-                <a class="btn btn-primary btn-block" [href]="spm">SPM</a>
-                <a class="btn btn-primary btn-block" [href]="dipdeg">Diploma / Degree</a>
-                <a class="btn btn-primary btn-block" [href]="masphd">Master / PhD</a>
+                <a class="btn btn-primary btn-block" (click)="openCert('pmr')" *ngIf="pmr">PMR / PT3</a>
+                <a class="btn btn-primary btn-block" (click)="openCert('spm')" *ngIf="spm">SPM</a>
+                <a class="btn btn-primary btn-block" (click)="openCert('dipdeg')" *ngIf="dipdeg">Diploma / Degree</a>
+                <a class="btn btn-primary btn-block" (click)="openCert('masphd')" *ngIf="masphd">Master / PhD</a>
 
                 <mat-form-field>
                   <input matInput type="text" placeholder="Remark" [(ngModel)]="booking_remark">
@@ -126,6 +126,23 @@
     </div>
   <!-- /.modal -->
 
+  <div class="modal fade" id="modal-default-cert">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="closeCert()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Qualification</h4>
+          <img [src]="cert" width="500px" alt="Tutor Image" class="img-fluid center-block tutor-image">
+        </div>
+        <!-- /.modal-header -->
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+
+  </div>
+<!-- /.modal -->
   <div class="box box-success">
     <div class="box-header with-border">
       <h3 class="box-title">Search</h3>
