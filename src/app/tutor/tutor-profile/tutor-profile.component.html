@@ -18,6 +18,7 @@
             </div>
           </div>
             <div class="box-body box-profile">
+              <h4 id="profilepagetitle">Profile</h4>
               <img class="profile-user-img img-responsive img-circle" [src]="avatar" alt="User profile picture">
 
               <h3 class="profile-username text-center" id="username">{{tutorProfile.name}}</h3>
@@ -159,7 +160,7 @@
           <div class="row">
               <div class="col-md-6 col-md-offset-3">
 
-                  <a routerLink="/tutor/profile/edit" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                  <a routerLink="/tutor/profile/edit" class="btn btn-primary btn-block" id="editprofilebutton"><b>Edit Profile</b></a>
               </div>
             </div>
         </div>
