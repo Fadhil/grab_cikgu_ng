@@ -17,10 +17,6 @@ describe('grabcikgu tutor registration page', function() {
     browser.params.randomEmail = Faker.internet.email();
   });
 
-  beforeEach(function() {
-
-  });
-
   it('should allow a tutor to register successfully', function() {
     browser.get('http://localhost:4200/tutor/register');
     expect(element(by.id('register-form-link')).getText()).toContain('Register');
@@ -171,13 +167,12 @@ describe('grabcikgu tutor registration page', function() {
     let urlChanged2 = function() {
       return browser.getCurrentUrl().then(function(url) {
         return url === 'http://localhost:4200/tutor/profile';
+      });
     };
 
     browser.takeScreenshot().then(function (png) {
             writeScreenShot(png, 'exception.png');
           });
-        });
-
 
     browser.wait(urlChanged2, 5000);
 
