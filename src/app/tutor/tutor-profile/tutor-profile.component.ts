@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Tutor } from '../../models/tutor';
 import { FirebaseService } from '../../shared/services/firebase.service';
 
-
 @Component({
   selector: 'app-tutor-profile',
   templateUrl: './tutor-profile.component.html',
@@ -73,6 +72,7 @@ export class TutorProfileComponent implements OnInit {
     }
     $("#modal-default").modal('show');
   }
+  
   close(){
     $("#modal-default").modal('hide');
   }

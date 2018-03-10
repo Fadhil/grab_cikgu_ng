@@ -295,7 +295,7 @@ export class TutorProfileEditComponent implements OnInit {
     let filetype = _.split(file.name, '.');
     console.log(s[0]);
 
-    if(s[0]=='image' && file.size <= 100000){
+    if(s[0]=='image' && file.size <= 1000000){
       const filePath = link + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
       console.log(filePath);
@@ -322,7 +322,7 @@ export class TutorProfileEditComponent implements OnInit {
       }
       else
       {
-        console.log("Image size is too big");
+        console.log("Image size is too big (1MB)");
         this.alertService.error('Image size is too big');
       }
     }
