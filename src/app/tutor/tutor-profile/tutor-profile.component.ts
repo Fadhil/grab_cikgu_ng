@@ -70,10 +70,10 @@ export class TutorProfileComponent implements OnInit {
     }else if(type=="masphd"){
       this.cert = this.masphd;
     }
-    $("#modal-default").modal('show');
+    //$("#modal-default").modal('show');
   }
-  
+
   close(){
-    $("#modal-default").modal('hide');
+    //$("#modal-default").modal('hide');
   }
 }

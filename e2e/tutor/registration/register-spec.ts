@@ -168,14 +168,14 @@ describe('grabcikgu tutor registration page', function() {
     // press save and expect to return successful alert
     element(by.id('saveprofile')).click();
 
-    urlChanged2 = function() {
+    let urlChanged2 = function() {
       return browser.getCurrentUrl().then(function(url) {
         return url === 'http://localhost:4200/tutor/profile';
-      });
     };
 
     browser.takeScreenshot().then(function (png) {
             writeScreenShot(png, 'exception.png');
+          });
         });
 
 
