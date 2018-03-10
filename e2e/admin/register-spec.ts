@@ -9,7 +9,7 @@ it('should allow an admin to register successfully', function() {
   // link must come from an e-mail invite
   // check to see if the email and code is valid
 
-  browser.get('http://localhost:4200/admin/invite');
+  browser.get('/admin/invite');
   expect(element(by.id('title')).getText()).toContain('Admin Registration');
 })
 

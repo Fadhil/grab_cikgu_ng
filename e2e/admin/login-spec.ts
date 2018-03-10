@@ -6,7 +6,7 @@ describe('TutorGo admin login page', function() {
   });
 
   it('should allow an admin to login successfully', function() {
-    browser.get('http://localhost:4200/admin/login');
+    browser.get('/admin/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -15,7 +15,7 @@ describe('TutorGo admin login page', function() {
 
     var urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/admin/bookings';
+        return url === browser.baseUrl + '/admin/bookings';
       });
     };
   });
@@ -25,7 +25,7 @@ describe('TutorGo admin login page', function() {
   });
 
   it('should not allow unauthorized access', function() {
-    browser.get('http://localhost:4200/admin/login');
+    browser.get('/admin/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('nopass');
     element(by.id('login-submit')).click();

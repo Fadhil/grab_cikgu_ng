@@ -18,7 +18,7 @@ describe('grabcikgu tutor registration page', function() {
   });
 
   it('should allow a tutor to register successfully', function() {
-    browser.get('http://localhost:4200/tutor/register');
+    browser.get('/tutor/register');
     expect(element(by.id('register-form-link')).getText()).toContain('Register');
     element(by.id('name')).sendKeys(browser.params.randomName);
     element(by.id('email')).sendKeys(browser.params.randomEmail);
@@ -42,11 +42,11 @@ describe('grabcikgu tutor registration page', function() {
       return element(by.css('.alert')).isPresent();
     }, 5000);
     expect(element(by.css('.alert')).getText()).toContain("Successfully registered as a Tutor.");
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/tutor/login');
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/tutor/login');
   });
 
   it('should not allow duplicate registration', function() {
-    browser.get('http://localhost:4200/tutor/register');
+    browser.get('/tutor/register');
     element(by.id('name')).sendKeys(browser.params.randomName);
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
@@ -59,7 +59,7 @@ describe('grabcikgu tutor registration page', function() {
   });
 
   it('should allow a tutor to login successfully and display correct data profile', function() {
-    browser.get('http://localhost:4200/tutor/login');
+    browser.get('/tutor/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -68,7 +68,7 @@ describe('grabcikgu tutor registration page', function() {
 
     var urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/tutor/profile';
+        return url === browser.baseUrl + '/tutor/profile';
       });
     };
 
@@ -97,7 +97,7 @@ describe('grabcikgu tutor registration page', function() {
   });
 
   it('should not allow unauthorized access', function() {
-    browser.get('http://localhost:4200/tutor/login');
+    browser.get('/tutor/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('nopass');
     element(by.id('login-submit')).click();
@@ -108,7 +108,7 @@ describe('grabcikgu tutor registration page', function() {
   });
 
   it('should be allowed to edit successfully', function() {
-    browser.get('http://localhost:4200/tutor/login');
+    browser.get('/tutor/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -117,7 +117,7 @@ describe('grabcikgu tutor registration page', function() {
 
     let urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/tutor/profile';
+        return url === browser.baseUrl + '/tutor/profile';
       });
     };
 
@@ -136,7 +136,7 @@ describe('grabcikgu tutor registration page', function() {
 
     urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/tutor/profile/edit';
+        return url === browser.baseUrl + '/tutor/profile/edit';
       });
     };
 
@@ -166,7 +166,7 @@ describe('grabcikgu tutor registration page', function() {
 
     let urlChanged2 = function() {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/tutor/profile';
+        return url === browser.baseUrl + '/tutor/profile';
       });
     };
 
@@ -202,7 +202,7 @@ describe('grabcikgu tutor registration page', function() {
     // Expect page to change url to login and display the successful signout message
     const urlChanged2 = function() {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/tutor/login';
+        return url === browser.baseUrl + '/tutor/login';
       });
     };
 

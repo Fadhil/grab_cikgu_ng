@@ -12,7 +12,7 @@ describe('grabcikgu student registration page', function() {
   });
 
   it('should allow a student to register successfully', function() {
-    browser.get('http://localhost:4200/student/register');
+    browser.get(browser.baseUrl + '/student/register');
     expect(element(by.id('register-form-link')).getText()).toContain('Register');
     element(by.id('name')).sendKeys(browser.params.randomName);
     element(by.id('email')).sendKeys(browser.params.randomEmail);
@@ -24,11 +24,11 @@ describe('grabcikgu student registration page', function() {
       return element(by.css('.alert')).isPresent();
     }, 5000);
     expect(element(by.css('.alert')).getText()).toContain("Successfully registered as a Student.");
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/student/login');
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/student/login');
   });
 
   it('should not allow duplicate registration', function() {
-    browser.get('http://localhost:4200/student/register');
+    browser.get(browser.baseUrl + '/student/register');
     element(by.id('name')).sendKeys(browser.params.randomName);
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
@@ -41,7 +41,7 @@ describe('grabcikgu student registration page', function() {
   });
 
   it('should allow a student to login successfully and display correct data profile', function() {
-    browser.get('http://localhost:4200/student/login');
+    browser.get(browser.baseUrl + '/student/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -50,7 +50,7 @@ describe('grabcikgu student registration page', function() {
 
     var urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/student/profile';
+        return url === browser.baseUrl + '/student/profile';
       });
     };
 
@@ -72,7 +72,7 @@ describe('grabcikgu student registration page', function() {
   });
 
   it('should not allow unauthorized access', function() {
-    browser.get('http://localhost:4200/student/login');
+    browser.get(browser.baseUrl + '/student/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('nopass');
     element(by.id('login-submit')).click();
@@ -83,7 +83,7 @@ describe('grabcikgu student registration page', function() {
   });
 
   it('should be allowed to edit successfully', function() {
-    browser.get('http://localhost:4200/student/login');
+    browser.get(browser.baseUrl + '/student/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -92,7 +92,7 @@ describe('grabcikgu student registration page', function() {
 
     let urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/student/profile';
+        return url === browser.baseUrl + '/student/profile';
       });
     };
 
@@ -107,7 +107,7 @@ describe('grabcikgu student registration page', function() {
 
     urlChanged = function(dom) {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/student/profile/edit';
+        return url === browser.baseUrl + '/student/profile/edit';
       });
     };
 
@@ -133,7 +133,7 @@ describe('grabcikgu student registration page', function() {
 
     urlChanged2 = function() {
       return browser.getCurrentUrl().then(function(url) {
-        return url === 'http://localhost:4200/student/profile';
+        return url === browser.baseUrl + '/student/profile';
       });
     };
 

@@ -13,7 +13,7 @@ describe('grabcikgu search for tutor', function(){
   });
 
   beforeEach(() => {
-    browser.get('http://localhost:4200/student/login');
+    browser.get(browser.baseUrl + '/student/login');
     element(by.id('email')).sendKeys(browser.params.randomEmail);
     element(by.id('password')).sendKeys('12345678');
     element(by.id('login-submit')).click();
@@ -21,7 +21,7 @@ describe('grabcikgu search for tutor', function(){
 
   it('can list the number of tutors by area and subject', function(){
 
-    browser.get('http://localhost:4200/student/people');
+    browser.get(browser.baseUrl + '/student/people');
     expect(element(by.css('.content-header')).getText()).toContain('Search for Tutors');
 
     // Click on state & city

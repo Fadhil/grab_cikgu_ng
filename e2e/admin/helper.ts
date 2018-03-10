@@ -15,7 +15,7 @@ var urlChanged = function(testUrl) {
 
 var RegisterStudent = function(name, email) {
   var deferred = protractor.promise.defer();
-  browser.get('http://localhost:4200/student/register');
+  browser.get('/student/register');
   browser.wait(function() {
     return element(by.id('register-form-link')).isPresent();
   }, 5000);
@@ -31,7 +31,7 @@ var RegisterStudent = function(name, email) {
     return element(by.css('.alert')).isPresent();
   }, 5000);
   expect(element(by.css('.alert')).getText()).toContain("Successfully registered as a Student.");
-  // expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/student/login');
+
   console.log("Created Student");
   deferred.fulfill(true);
   return deferred.promise;
@@ -41,7 +41,7 @@ var RegisterStudent = function(name, email) {
 
 var RegisterTutor = function(name, email) {
   var deferred = protractor.promise.defer();
-  browser.get('http://localhost:4200/tutor/register');
+  browser.get('/tutor/register');
   expect(element(by.id('register-form-link')).getText()).toContain('Register');
   element(by.id('name')).sendKeys(name);
   element(by.id('email')).sendKeys(email);
@@ -65,7 +65,7 @@ var RegisterTutor = function(name, email) {
     return element(by.css('.alert')).isPresent();
   }, 5000);
   expect(element(by.css('.alert')).getText()).toContain("Successfully registered as a Tutor.");
-  expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/tutor/login');
+  expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/tutor/login');
   console.log("Created Tutor");
 
   deferred.fulfill(true);
@@ -80,7 +80,7 @@ var TutorRegisterSubject = function(name, email){
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
   console.log("Original Timeout");
   console.log(originalTimeout);
-  browser.get('http://localhost:4200/tutor/login');
+  browser.get('/tutor/login');
   element(by.id('email')).sendKeys(email);
   element(by.id('password')).sendKeys('12345678');
   element(by.id('login-submit')).click();
@@ -89,16 +89,16 @@ var TutorRegisterSubject = function(name, email){
 
   let urlChanged = function(dom) {
     return browser.getCurrentUrl().then(function(url) {
-      return url === 'http://localhost:4200/tutor/profile';
+      return url === browser.baseUrl + '/tutor/profile';
     });
   };
 
-  browser.wait(urlChanged, 5000);  //wait up to 60 seconds for URL to change
+  browser.wait(urlChanged, 30000);  //wait up to 60 seconds for URL to change
 
   browser.wait(function() {
     //wait for another 30 seconds
     return element(by.id('profilepagetitle')).isPresent();
-  }, 10000);
+  }, 30000);
   //
   // browser.takeScreenshot().then(function (png) {
   //         writeScreenShot(png, 'exception.png');
@@ -110,7 +110,7 @@ var TutorRegisterSubject = function(name, email){
   //
   urlChanged = function(dom) {
     return browser.getCurrentUrl().then(function(url) {
-      return url === 'http://localhost:4200/tutor/profile/edit';
+      return url === browser.baseUrl + '/tutor/profile/edit';
     });
   };
 
@@ -134,7 +134,8 @@ var TutorRegisterSubject = function(name, email){
 
   let urlChanged2 = function() {
     return browser.getCurrentUrl().then(function(url) {
-      return url === 'http://localhost:4200/tutor/profile';
+      // console.log(browser.baseUrl + '/tutor/profile');
+      return url === browser.baseUrl + '/tutor/profile';
     });
   };
 
