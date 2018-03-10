@@ -43,7 +43,7 @@
     "core-js": "^2.4.1",
     "daterangepicker": "^2.1.27",
     "faker": "^4.1.0",
-    "firebase": "^4.9.0",
+    "firebase": "^4.10.1",
     "firebase-tools": "^3.16.0",
     "font-awesome": "^4.7.0",
     "global": "^4.3.2",
