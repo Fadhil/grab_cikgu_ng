@@ -102,7 +102,7 @@ export class AdminBookingsComponent implements OnInit {
     console.log(element);
     let dialogRef = this.dialog.open(BookingDialog, {
       width: '500px',
-      data: element
+      data: element 
     });
   }
 

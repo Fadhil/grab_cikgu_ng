@@ -66,6 +66,7 @@ export class StudentPeopleComponent implements OnInit {
   booking_duration: any;
   booking_remark: any;
 
+  cert:string;
   avatar: string;
 
   constructor(
@@ -288,6 +289,23 @@ export class StudentPeopleComponent implements OnInit {
       });
 
     $("#modal-default").modal('show');
+  }
+
+  openCert(type){
+    if(type=="spm"){
+      this.cert = this.spm;
+    }else if(type=="pmr"){
+      this.cert = this.pmr;
+    }else if(type=="dipdeg"){
+      this.cert = this.dipdeg;
+    }else if(type=="masphd"){
+      this.cert = this.masphd;
+    }
+    $("#modal-default-cert").modal('show');
+  }
+
+  closeCert(){
+    $("#modal-default-dert").modal('hide');
   }
 
   close(){

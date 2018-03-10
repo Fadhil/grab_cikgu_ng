@@ -282,7 +282,7 @@ export class TutorProfileEditComponent implements OnInit {
     }
   }
 
-  uploadSPM(event) {
+  uploadQualification(event,link,type) {
     console.log("upload file");
 
     console.log(this.tutorProfile.picture);
@@ -295,14 +295,21 @@ export class TutorProfileEditComponent implements OnInit {
     let filetype = _.split(file.name, '.');
     console.log(s[0]);
 
-    if(s[0]=='image' && file.size <= 100000){
-      const filePath = 'file/spm/' + this.tutorProfile.id;
+    if(s[0]=='image' && file.size <= 1000000){
+      const filePath = link + this.tutorProfile.id;
       const task = this.firebaseService.storage.upload(filePath, file);
-      console.log(task);
+      console.log(filePath);
       task.downloadURL().subscribe(s => {
-        this.tutorProfile.spm = s;
-
-         //this.firebaseService.updateTutorPic(this.profile)
+        if(type=="spm"){
+          this.tutorProfile.spm = s;
+        }else if(type=="pmr"){
+          this.tutorProfile.pmr = s;
+        }else if(type=="dipdeg"){
+          this.tutorProfile.dipdeg = s;
+        }else if(type=="masphd"){
+          this.tutorProfile.masphd = s;
+        }
+        //this.firebaseService.updateTutorPic(this.profile)
         //this.avatar = s;
       });
       // this.avatar = task.downloadURL();
@@ -315,121 +322,7 @@ export class TutorProfileEditComponent implements OnInit {
       }
       else
       {
-        console.log("Image size is too big");
-        this.alertService.error('Image size is too big');
-      }
-    }
-  }
-
-  uploadPMR(event) {
-    console.log("upload file");
-
-    console.log(this.tutorProfile.picture);
-    const file = event.target.files[0];
-
-    // this.tutorProfile.picture = file;
-    console.log(file);
-    let s = [];
-    s = _.split(file.type, '/')
-    let filetype = _.split(file.name, '.');
-    console.log(s[0]);
-
-    if(s[0]=='image' && file.size <= 100000){
-      const filePath = 'file/pmr/' + this.tutorProfile.id;
-      const task = this.firebaseService.storage.upload(filePath, file);
-      console.log(task);
-      task.downloadURL().subscribe(s => {
-        this.tutorProfile.pmr = s;
-        // this.firebaseService.updateTutorPic(this.profile)
-        //this.avatar = s;
-      });
-      // this.avatar = task.downloadURL();
-    }
-    else {
-      $('#pic_avtr').val('');
-      if(s[0]!='image'){
-        console.log("File is not an image");
-        this.alertService.error('File is not an image');
-      }
-      else
-      {
-        console.log("Image size is too big");
-        this.alertService.error('Image size is too big');
-      }
-    }
-  }
-
-  uploadDipDeg(event) {
-    console.log("upload file");
-
-    console.log(this.tutorProfile.picture);
-    const file = event.target.files[0];
-
-    // this.tutorProfile.picture = file;
-    console.log(file);
-    let s = [];
-    s = _.split(file.type, '/')
-    let filetype = _.split(file.name, '.');
-    console.log(s[0]);
-
-    if(s[0]=='image' && file.size <= 100000){
-      const filePath = 'file/DipDeg/' + this.tutorProfile.id;
-      const task = this.firebaseService.storage.upload(filePath, file);
-      console.log(task);
-      task.downloadURL().subscribe(s => {
-        this.tutorProfile.dipdeg = s;
-        // this.firebaseService.updateTutorPic(this.profile)
-        //this.avatar = s;
-      });
-      // this.avatar = task.downloadURL();
-    }
-    else {
-      $('#pic_avtr').val('');
-      if(s[0]!='image'){
-        console.log("File is not an image");
-        this.alertService.error('File is not an image');
-      }
-      else
-      {
-        console.log("Image size is too big");
-        this.alertService.error('Image size is too big');
-      }
-    }
-  }
-
-  uploadMasPhd(event) {
-    console.log("upload file");
-
-    console.log(this.tutorProfile.picture);
-    const file = event.target.files[0];
-
-    // this.tutorProfile.picture = file;
-    console.log(file);
-    let s = [];
-    s = _.split(file.type, '/')
-    let filetype = _.split(file.name, '.');
-    console.log(s[0]);
-
-    if(s[0]=='image' && file.size <= 100000){
-      const filePath = 'file/MasPhd/' + this.tutorProfile.id;
-      const task = this.firebaseService.storage.upload(filePath, file);
-      console.log(task);
-      task.downloadURL().subscribe(s => {
-        this.tutorProfile.masphd = s;
-        // this.firebaseService.updateTutorPic(this.profile)
-        //this.avatar = s;
-      });
-      // this.avatar = task.downloadURL();
-    }
-    else {
-      $('#pic_avtr').val('');
-      if(s[0]!='image'){
-        console.log("File is not an image");
-        this.alertService.error('File is not an image');
-      }
-      else
-      {
-        console.log("Image size is too big");
+        console.log("Image size is too big (1MB)");
         this.alertService.error('Image size is too big');
       }
     }

@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Tutor } from '../../models/tutor';
 import { FirebaseService } from '../../shared/services/firebase.service';
 
-
 @Component({
   selector: 'app-tutor-profile',
   templateUrl: './tutor-profile.component.html',
@@ -19,6 +18,11 @@ export class TutorProfileComponent implements OnInit {
   spm: string;
   dipdeg: string;
   masphd: string;
+  spmr: string;
+  sspm: string;
+  sdipdeg: string;
+  smasphd: string;
+  cert: string;
   constructor(
     private alertService: AlertService,
     private tutorService: TutorService,
@@ -41,7 +45,6 @@ export class TutorProfileComponent implements OnInit {
         this.spm = this.tutorProfile.spm;
         this.dipdeg = this.tutorProfile.dipdeg;
         this.masphd = this.tutorProfile.masphd;
-
         if(!this.tutorProfile.picture) {
           if (this.tutorProfile.gender.toUpperCase() !== 'MALE') {
             this.avatar = 'assets/img/avatar2.png';
@@ -57,4 +60,20 @@ export class TutorProfileComponent implements OnInit {
       });
   }
 
+  open(type){
+    if(type=="spm"){
+      this.cert = this.spm;
+    }else if(type=="pmr"){
+      this.cert = this.pmr;
+    }else if(type=="dipdeg"){
+      this.cert = this.dipdeg;
+    }else if(type=="masphd"){
+      this.cert = this.masphd;
+    }
+    $("#modal-default").modal('show');
+  }
+  
+  close(){
+    $("#modal-default").modal('hide');
+  }
 }

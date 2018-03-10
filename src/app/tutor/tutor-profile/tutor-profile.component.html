@@ -87,14 +87,15 @@
                 <br>
                 <div>
                   <strong><i class="fa fa-graduation-cap margin-r-5"></i>Qualifications</strong>
-                  <div>
-                    <a class="btn btn-primary btn-block" [href]="pmr">PMR / PT3
+                  <div id="qualification">
+
+                    <a class="btn btn-primary btn-block" (click)="open('pmr')" *ngIf="pmr">PMR / PT3
                     </a>
-                    <a class="btn btn-primary btn-block" [href]="spm">SPM
+                    <a class="btn btn-primary btn-block" (click)="open('spm')" *ngIf="spm">SPM
                     </a>
-                    <a class="btn btn-primary btn-block" [href]="dipdeg">Diploma / Degree
+                    <a class="btn btn-primary btn-block" (click)="open('dipdeg')" *ngIf="dipdeg">Diploma / Degree
                     </a>
-                    <a class="btn btn-primary btn-block" [href]="masphd">Master / PhD
+                    <a class="btn btn-primary btn-block" (click)="open('masphd')" *ngIf="masphd">Master / PhD
                     </a>
                     <!-- <hr> -->
                   </div>
@@ -167,3 +168,20 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+    <div class="modal fade" id="modal-default">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Qualification</h4>
+            <img [src]="cert" width="500px" alt="Tutor Image" class="img-fluid center-block tutor-image">
+          </div>
+          <!-- /.modal-header -->
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+
+    </div>
+  <!-- /.modal -->
