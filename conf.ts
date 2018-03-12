@@ -5,7 +5,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {
-      'args': ["--window-size=1024,800"]
+      'args': ["--window-size=1920,1080"]
       //'args': ["--headless", "--disable-gpu", "--window-size=800,600"]
     }
   },

@@ -1,6 +1,18 @@
 var helper = require('./helper.ts');
 var Promise = require('bluebird');
 
+var urlChanged = function(testUrl) {
+  return browser.getCurrentUrl().then(function(url) {
+    return url === testUrl;
+  });
+};
+
+var fs = require('fs');
+function writeScreenShot(data, filename) {
+    var stream = fs.createWriteStream(filename);
+    stream.write(new Buffer(data, 'base64'));
+    stream.end();
+}
 describe('TutorGo Admin confirm booking', function() {
 
   beforeAll( (done) => {
@@ -33,36 +45,82 @@ describe('TutorGo Admin confirm booking', function() {
   }, 120000);
 
   it('as an admin i would like to view the list of students request bookings', function() {
-    console.log("as an admin I would like to view the list of students request bookings");
+    const EC = protractor.ExpectedConditions;
+
+    console.log("as a student i would like to request a class");
+
+    browser.get('http://localhost:4200/student/login');
+    element(by.id('email')).sendKeys(browser.params.studentEmail1);
+    element(by.id('password')).sendKeys('12345678');
+    element(by.id('login-submit')).click();
+    var urlChanged = function(dom) {
+      return browser.getCurrentUrl().then(function(url) {
+        return url === 'http://localhost:4200/student/profile';
+      });
+    };
+    browser.wait(urlChanged, 10000);
+    browser.wait(function() {
+      return element(by.id('username')).isPresent();
+    }, 10000);
+    browser.takeScreenshot().then(function (png) {
+            writeScreenShot(png, 'studentlogin.png');
+          });
+    element(by.id('findtutors')).click();
+    var urlChanged = function(dom) {
+      return browser.getCurrentUrl().then(function(url) {
+        return url === 'http://localhost:4200/student/people';
+      });
+    };
+    browser.wait(urlChanged, 10000);
+    browser.wait(function() {
+      return element(by.id('searchButton')).isPresent();
+    }, 10000);
+    element(by.id('subject')).element(by.cssContainingText('option', 'Bahasa Malaysia')).click();
+    element(by.id('searchButton')).click();
+    browser.wait(function() {
+      return element(by.id('tutorList')).isPresent();
+    }, 10000);
+    expect(element(by.id('tutorsList')).getText()).toContain(browser.params.tutorName);
+    //expect(element(by.id('tutorList')).element(by.cssContainingText('.item', browser.params.tutorName)));
+    // let foo = element.all(by.id("tutorList")).all(by.css('.item'));
+    // console.log(foo);
+
+    browser.takeScreenshot().then(function (png) {
+            writeScreenShot(png, 'findingtutor.png');
+          });
+
+    // console.log("as an admin I would like to view the list of students request bookings");
+    //
     // browser.get('http://localhost:4200/admin/login');
-    // element(by.id('email')).sendKeys(browser.params.randomEmail);
-    // element(by.id('password')).sendKeys('12345678');
+    // element(by.id('email')).sendKeys('wanakashah@p2digital.com');
+    // element(by.id('password')).sendKeys('One_Nonly148');
     // element(by.id('login-submit')).click();
+    // var urlChanged = function(dom) {
+    //   return browser.getCurrentUrl().then(function(url) {
+    //     return url === 'http://localhost:4200/admin/students';
+    //   });
+    // };
+    // browser.wait(urlChanged, 10000);
+    // browser.wait(function() {
+    //   return element(by.id('loadnames')).isPresent();
+    // }, 10000);
     //
-    // const EC = protractor.ExpectedConditions;
-    //
+    // //expect(element(by.id('loadnames')).getText()).toContain('');
+    // element(by.id('tobookings')).click();
     // var urlChanged = function(dom) {
     //   return browser.getCurrentUrl().then(function(url) {
     //     return url === 'http://localhost:4200/admin/bookings';
     //   });
-      //pending();
-      // done();
-    }, 60000
-  );
-
-  it('should logout successfully', function() {
-    //pending();
+    // };
+    // browser.wait(urlChanged, 10000);
+    // browser.wait(function() {
+    //   return element(by.id('loadbookings')).isPresent();
+    // }, 10000);
+    //
+    // //expect(element(by.cssContainingText('loadbookings', browser.params.tutorName)).element(by.id('openPop')).click());
+    //
+    // browser.takeScreenshot().then(function (png) {
+    //         writeScreenShot(png, 'classrequest.png');
+    //       });
   }, 60000);
-
-  it('should not allow unauthorized access', function() {
-  //   browser.get('http://localhost:4200/admin/login');
-  //   element(by.id('email')).sendKeys(browser.params.randomEmail);
-  //   element(by.id('password')).sendKeys('nopass');
-  //   element(by.id('login-submit')).click();
-  //   browser.wait(function() {
-  //     return element(by.css('.alert')).isPresent();
-  //   }, 5000);
-  //   expect(element(by.css('.alert')).getText()).toContain('Error: The password is invalid or the user does not have a password.');
-    //pending();
-  });
-}, 60000);
+});

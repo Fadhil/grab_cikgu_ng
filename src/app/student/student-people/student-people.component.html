@@ -217,14 +217,14 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <ul class="products-list product-list-in-box">
+      <ul class="products-list product-list-in-box" id="tutorList">
         <li *ngFor="let tutor of tutorsList | async" class="item">
           <div class="product-img">
             <img src="{{tutor.picture ? tutor.picture : 'assets/img/default-50x50.gif'}}">
           </div>
           <div class="product-info">
-            <a class="product-title" (click)="open(tutor)">{{tutor?.name}}
-                <span class="label label-warning pull-right">{{tutor?.hourly_rate_cents? 'RM ' + (tutor?.hourly_rate_cents/100) : 'NA'}}</span></a>
+            <a class="product-title" (click)="open(tutor)" >{{tutor?.name}}</a>
+                <span class="label label-warning pull-right">{{tutor?.hourly_rate_cents? 'RM ' + (tutor?.hourly_rate_cents/100) : 'NA'}}</span>
             <span class="product-description">
               {{tutor?.occupation}}
               <br>
