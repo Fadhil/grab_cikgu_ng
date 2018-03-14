@@ -224,25 +224,23 @@ export class StudentPeopleComponent implements OnInit {
         console.log(res);
       });
 
-    // this.firebaseService.getAdmins()
-    //   .subscribe(list => {
-    //     var returnArr = [];
-    //     let i = 0 ;
-    //     for (let item in list) {
-    //      if (item) {
-    //        console.log(list[item].email);
-    //        returnArr.push({ email: list[item].email});
-    //        i++;
-    //      }
-    //     }
-    //    this.admins = _.reverse(returnArr);
-    //  });
-    //  console.log(this.admins);
-    // this.mailService.mailAdminNotif(li.email)
-    //   .subscribe(res => {
-    //     console.log("Triggered");
-    //     console.log(res);
-    //   });
+    this.firebaseService.getAdmins()
+      .subscribe(list => {
+        var returnArr = [];
+        let i = 0 ;
+        for (let item in list) {
+         if (item) {
+           this.mailService.mailAdminNotif(list[item].email)
+             .subscribe(res => {
+               console.log("Sent:" + list[item].email);
+               console.log(res);
+             });
+           //returnArr.push({ email: list[item].email});
+           i++;
+         }
+        }
+       //this.admins = _.reverse(returnArr);
+     });
 
     this.firebaseService.bookTutor(bookingInfo)
       .then(result => {

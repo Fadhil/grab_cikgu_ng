@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-
+import { MailService } from '../../shared/services/mail.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
 import * as firebase from 'firebase/app';
@@ -20,6 +20,7 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase,
     public sfAuth: AngularFireAuth,
     private locationService: LocationService,
+    public mailService: MailService,
     public storage: AngularFireStorage) {
     console.log('Firebase loaded');
   }
@@ -224,6 +225,24 @@ export class FirebaseService {
     updateBooking['/tutorbooking/' + bookingInfo.key + '/status'] = answer;
     updateBooking['/tutors/' + tutorKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
     updateBooking['/students/' + bookingInfo.studentKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
+    if(answer == "completed"){
+      this.getAdmins()
+        .subscribe(list => {
+          var returnArr = [];
+          let i = 0 ;
+          for (let item in list) {
+           if (item) {
+             this.mailService.mailCompletedNotif(list[item].email)
+               .subscribe(res => {
+                 console.log("Sent:" + list[item].email);
+                 console.log(res);
+               });
+             //returnArr.push({ email: list[item].email});
+             i++;
+           }
+          }
+       });
+    }
     return this.db.object('/').update(updateBooking);
   }
 
@@ -233,8 +252,8 @@ export class FirebaseService {
 
   adminAddClass(bookingInfo): any {
     let updateBooking = {};
-    updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/date'] = bookingInfo.bookingDate;
-    updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/time'] = bookingInfo.bookingTime;
+    updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/date/'] = bookingInfo.bookingDate;
+    updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/time/'] = bookingInfo.bookingTime;
     // updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/'] = status;
 
     // Tutor branch perlu di update
