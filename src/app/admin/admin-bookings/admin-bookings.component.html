@@ -20,12 +20,12 @@
       </mat-form-field>
     </div>
 
-      <mat-table #table [dataSource]="myDataSource" matSort>
+      <mat-table #table [dataSource]="myDataSource" matSort id="listofbookings">
 
         <!-- Tutor Name Column -->
         <ng-container matColumnDef="tutor">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Tutor </mat-header-cell>
-          <mat-cell *matCellDef="let element" id="loadbookings"> {{element.tutorName}} </mat-cell>
+          <mat-cell *matCellDef="let element" > {{element.tutorName}} </mat-cell>
         </ng-container>
 
         <!-- Student Column -->
@@ -54,7 +54,7 @@
         <ng-container matColumnDef="view">
           <mat-header-cell *matHeaderCellDef mat-sort-header> View </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" (click)="openDialog(element)" id="openPop">
+            <button mat-icon-button color="primary" (click)="openDialog(element)" [id]="element.tutorName.replace(' ','_')">
               <mat-icon aria-label="Info">info</mat-icon>
             </button>
 

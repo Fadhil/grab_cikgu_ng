@@ -5,8 +5,8 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {
-      'args': ["--window-size=1920,1080"]
-      //'args': ["--headless", "--disable-gpu", "--window-size=800,600"]
+      'args': ["--window-size=800,600"]
+      // 'args': ["--headless", "--window-size=800,600"]
     }
   },
   suites: {

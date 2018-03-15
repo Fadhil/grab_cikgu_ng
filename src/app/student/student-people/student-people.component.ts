@@ -192,7 +192,6 @@ export class StudentPeopleComponent implements OnInit {
         if (currentTutors.length > 0) {
           this.alertService.success("Found " + currentTutors.length + " match");
         }
-
       });
   }
 
@@ -247,8 +246,9 @@ export class StudentPeopleComponent implements OnInit {
     this.firebaseService.bookTutor(bookingInfo)
       .then(result => {
         this.close(); // close modal
-        this.router.navigateByUrl('/student/class');
         this.alertService.success('Successfully Booked Class');
+        this.router.navigateByUrl('/student/class');
+
       });
 
   }

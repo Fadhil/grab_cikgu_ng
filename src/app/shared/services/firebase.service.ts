@@ -60,9 +60,15 @@ export class FirebaseService {
           if (subject.levels[x]) {
             // console.log(tutor.area_covered);
             // console.log(this.locationService.CITIES.length);
+            console.log(tutor.area_covered);
+            if (!tutor.area_covered) {
+              tutor.area_covered = [];
+              tutor.area_covered.push(tutor.city);
+            }
 
             this.locationService.getCities(tutor.state)
               .subscribe(cities => {
+
                 for (let city in cities) {
                   //if the city is in the covered area then update
                   let result = _.find(tutor.area_covered, function(o){
@@ -90,6 +96,7 @@ export class FirebaseService {
                     + x + '/' + tutor.id] = null;
                   }
                 }
+
               });
 
           } else {
@@ -114,7 +121,6 @@ export class FirebaseService {
     tutor.previous_state = null;
     newTutor['/tutors/' + tutor.id] = tutor;
     return this.db.object('/').update(newTutor);
-
 
     //upload picture to storage
 
@@ -163,7 +169,7 @@ export class FirebaseService {
       subject: bookingInfo.class,
       student: bookingInfo.student,
       bookingTime: bookingInfo.bookingTime,
-      booking_remark: bookingInfo.booking_remark,
+      booking_remark: bookingInfo.booking_remark ? bookingInfo.booking_remark : '',
       status: bookingInfo.status
     };
 
@@ -173,7 +179,7 @@ export class FirebaseService {
       student: bookingInfo.student,
       class: bookingInfo.class,
       bookingTime: bookingInfo.bookingTime,
-      booking_remark: bookingInfo.booking_remark,
+      booking_remark: bookingInfo.booking_remark ? bookingInfo.booking_remark : '',
       status: bookingInfo.status
     };
 
@@ -183,9 +189,11 @@ export class FirebaseService {
       tutor: bookingInfo.tutor,
       class: bookingInfo.class,
       bookingTime: bookingInfo.bookingTime,
-      booking_remark: bookingInfo.booking_remark,
+      booking_remark: bookingInfo.booking_remark ? bookingInfo.booking_remark : '',
       status: bookingInfo.status
     };
+
+    console.log(newBooking);
 
     return this.db.object('/').update(newBooking);
 

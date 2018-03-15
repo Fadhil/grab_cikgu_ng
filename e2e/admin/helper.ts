@@ -66,7 +66,7 @@ var RegisterTutor = function(name, email) {
   }, 5000);
   expect(element(by.css('.alert')).getText()).toContain("Successfully registered as a Tutor.");
   expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/tutor/login');
-  console.log("Created Tutor");
+  console.log("Created Tutor: " + email, name);
 
   deferred.fulfill(true);
   return deferred.promise;
