@@ -76,13 +76,6 @@ export class AdminBookingsComponent implements OnInit {
         });
   }
 
-  myFilter = (d: Date): boolean => {
-      const day = d.getDay();
-      // Prevent Saturday and Sunday from being selected.
-      // return day !== 0 && day !== 6;
-      return true;
-  }
-
   ngAfterViewInit() {
     this.myDataSource.sort = this.sort;
     this.myDataSource.paginator = this.paginator;
@@ -102,7 +95,7 @@ export class AdminBookingsComponent implements OnInit {
     console.log(element);
     let dialogRef = this.dialog.open(BookingDialog, {
       width: '500px',
-      data: element 
+      data: element
     });
   }
 
@@ -119,7 +112,6 @@ export class AdminBookingsComponent implements OnInit {
       default:
         return 'label-default';
     }
-
   }
 
   confirmClass(bookingInfo) {
@@ -179,11 +171,18 @@ export class AdminBookingsComponent implements OnInit {
           console.log(this.data);
       }
 
+      myFilter = (d: Date): boolean => {
+          const day = d.getDay();
+          // Prevent Saturday and Sunday from being selected.
+          // return day !== 0 && day !== 6;
+          return true;
+      }
+
       updateClass() {
         console.log(this.data);
 
-        let c = this.firebaseService.adminAddClass(this.data);
-        console.log(c);
+        let c = this.firebaseService.confirmClass(tutor.id, bookingInfo, "pending");
+        this.dialogRef.close();
         // this.tutorProfile.subjects = null;
         // this.tutorProfile.subjects = this.subjects;
         // console.log(this.subjects);
@@ -196,9 +195,6 @@ export class AdminBookingsComponent implements OnInit {
         //     // this.router.navigateByUrl('/tutor/profile');
         //     this.alertService.error(error);
         //   });
-
-
-
       }
 
       cancelClass(bookingInfo){

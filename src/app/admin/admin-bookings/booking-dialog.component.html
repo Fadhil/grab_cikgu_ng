@@ -7,17 +7,15 @@
       <p>Subject: {{data.subject}} </p>
       <p>Grade: {{data.level}} </p>
       <p><b>Date:
-        <!-- <mat-form-field>
-          <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker"
-          id="date" name="date" [(ngModel)]="data.bookingDate">
+        <mat-form-field>
+          <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" id="date" name="date" [(ngModel)]="data.bookingDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
+        </mat-form-field>
       </b></p>
       <p><b>Time:
         <mat-form-field>
-          <input matInput type="time" id="time"
-        name="time" [(ngModel)]="data.bookingTime">
+          <input matInput type="time" id="time" name="time" [(ngModel)]="data.bookingTime">
         </mat-form-field>
       </b></p>
       <p><b>Status: {{data.status | uppercase}} </b></p>
@@ -63,7 +61,7 @@
   <button mat-button mat-dialog-close>Close</button>
   <!-- <button mat-button (click)="declineClass(element)" color="warn">Reject</button> -->
   <span class="example-fill-remaining-space"></span>
-  <button mat-raised-button color="primary" (click)="updateClass()">Set Class</button>
+  <button mat-raised-button color="primary" (click)="updateClass()">Update Class</button>
 
   <!-- <button mat-button mat-dialog-close color="warn">Delete</button> -->
 </mat-dialog-actions>

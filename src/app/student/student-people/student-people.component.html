@@ -79,14 +79,16 @@
                     <mat-option value="3">3 hour</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <a class="btn btn-primary btn-block" (click)="openCert('pmr')" *ngIf="pmr">PMR / PT3</a>
-                <a class="btn btn-primary btn-block" (click)="openCert('spm')" *ngIf="spm">SPM</a>
-                <a class="btn btn-primary btn-block" (click)="openCert('dipdeg')" *ngIf="dipdeg">Diploma / Degree</a>
-                <a class="btn btn-primary btn-block" (click)="openCert('masphd')" *ngIf="masphd">Master / PhD</a>
-
                 <mat-form-field>
                   <input matInput type="text" placeholder="Remark" [(ngModel)]="booking_remark">
                 </mat-form-field>
+                <br>
+                <a class="btn btn-primary" (click)="openCert('pmr')" *ngIf="pmr">PMR / PT3</a>
+                <a class="btn btn-primary" (click)="openCert('spm')" *ngIf="spm">SPM</a><br>
+                <a class="btn btn-primary" (click)="openCert('dipdeg')" *ngIf="dipdeg">Diploma / Degree</a>
+                <a class="btn btn-primary" (click)="openCert('masphd')" *ngIf="masphd">Master / PhD</a><br>
+
+
                 <!-- <owl-date-time-inline [(ngModel)]="selectedMoment" [pickerType]="'timer'"></owl-date-time-inline> -->
 
                 <!-- <mat-checkbox>Check me!</mat-checkbox> -->
