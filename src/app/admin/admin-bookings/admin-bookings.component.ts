@@ -180,8 +180,8 @@ export class AdminBookingsComponent implements OnInit {
 
       updateClass() {
         console.log(this.data);
-        let c = this.firebaseService.adminAddClass(this.data);
-        console.log(c);
+
+        let c = this.firebaseService.confirmClass(tutor.id, bookingInfo, "pending");
         this.dialogRef.close();
         // this.tutorProfile.subjects = null;
         // this.tutorProfile.subjects = this.subjects;

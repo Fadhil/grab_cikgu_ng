@@ -62,9 +62,11 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
           <mat-cell *matCellDef="let element" >
+
             <!-- <button mat-icon-button color="warn">
               <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
             </button> -->
+            <!--
             <span *ngIf="element.status=='pending'">
               <span matTooltip="Accept this class">
                 <button mat-icon-button color="primary" (click)="confirmClass(element)">
@@ -77,11 +79,13 @@
                 </button>
               </span>
             </span>
+          -->
             <span *ngIf="element.status == 'confirmed'">
               <button mat-raised-button button color="primary" (click)="completeClass(element)">Completed</button>
             </span>
           </mat-cell>
         </ng-container>
+
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

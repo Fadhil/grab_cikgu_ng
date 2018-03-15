@@ -51,10 +51,10 @@
         </ng-container>
 
         <!-- View Column -->
-        <ng-container matColumnDef="view">
+        <ng-container matColumnDef="view" >
           <mat-header-cell *matHeaderCellDef mat-sort-header> View </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" (click)="openDialog(element)" id="openPop">
+            <button mat-icon-button color="primary" (click)="openDialog(element)" id="openPop" *ngIf="element.status != 'confirmed'">
               <mat-icon aria-label="Info">info</mat-icon>
             </button>
 
@@ -91,9 +91,9 @@
                 </button>
               </span>
             </span>
-            <span *ngIf="element.status == 'confirmed'">
+            <!--span *ngIf="element.status == 'confirmed'">
               <button mat-raised-button button color="primary" (click)="completeClass(element)">Completed</button>
-            </span>
+            </span-->
           </mat-cell>
         </ng-container>
 

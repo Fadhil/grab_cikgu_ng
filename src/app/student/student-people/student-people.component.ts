@@ -208,7 +208,7 @@ export class StudentPeopleComponent implements OnInit {
 
     const classInfo = {name: this.subject, level: this.level};
     const bookingTime = {date: this.booking_date, time: this.booking_time, duration: parseFloat(this.booking_duration) };
-
+    tutor.bookings = null;
     const bookingInfo = {tutor: tutor, student: this.studentProfile, class: classInfo, bookingTime: bookingTime, booking_remark: this.booking_remark, status: 'pending'};
     console.log(bookingInfo);
 

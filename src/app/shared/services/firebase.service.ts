@@ -252,6 +252,9 @@ export class FirebaseService {
 
   adminAddClass(bookingInfo): any {
     let updateBooking = {};
+    // updateBooking['/tutorbooking/' + bookingInfo.key + '/status'] = answer;
+    // updateBooking['/tutors/' + tutorKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
+    // updateBooking['/students/' + bookingInfo.studentKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
     updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/date/'] = bookingInfo.bookingDate;
     updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/time/'] = bookingInfo.bookingTime;
     // updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime/'] = status;
