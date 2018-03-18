@@ -48,6 +48,7 @@ export class TutorRegisterComponent implements OnInit {
       this.tutor.age = this.tutor.byear - currentDate.getFullYear();
 
       // save to firebase
+      this.tutor.wallet = {balance: 0};
       this.firebaseService.addTutor(this.tutor).then(res => {
         console.log(res);
         console.log("add Tutor completed");

@@ -118,10 +118,12 @@ export class TutorClassComponent implements OnInit {
     let payment = new Payment();
     payment.type = "cr";
 
-    payment.remark = "Completed class for " + bookingInfo.student + ", " + bookingInfo.name + " (" + bookingInfo.level + ") " + bookingInfo.duration + " hours";
+    payment.remark = "Completed class for " + bookingInfo.student + ", " + bookingInfo.name + " (" + bookingInfo.level + ") " + bookingInfo.duration + " hours. Your current hourly rate " + this.tutorProfile.hourly_rate_cents;
     //TODO calculate the total pay
     if (this.tutorProfile.hourly_rate_cents && bookingInfo.duration) {
       payment.amount = this.tutorProfile.hourly_rate_cents * bookingInfo.duration;
+    } else {
+      payment.amount = 0;
     }
 
 
@@ -134,7 +136,7 @@ export class TutorClassComponent implements OnInit {
     studentPayment.remark = "Credit deducted for class " + bookingInfo.name + " (" + bookingInfo.level + ") " + bookingInfo.duration + " hours";
     studentPayment.amount = payment.amount;
 
-    this.firebaseService.processPayment(this.tutorProfile.id, payment, 'students');
+    this.firebaseService.processPayment(bookingInfo.studentKey, studentPayment, 'students');
 
     console.log(studentPayment);
 

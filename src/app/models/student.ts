@@ -15,4 +15,5 @@ export class Student {
   phone_no: string;
   ic_no: string;
   balance: number;
+  wallet: any;
 }

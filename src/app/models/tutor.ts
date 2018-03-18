@@ -40,4 +40,5 @@ export class Tutor {
   dob: Date;
   previous_state: string;
   balance: number;
+  wallet: any;
 }

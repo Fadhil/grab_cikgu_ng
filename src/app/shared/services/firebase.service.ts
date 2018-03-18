@@ -356,7 +356,9 @@ export class FirebaseService {
         }
 
         let newbalance: number;
+        console.log(payment.amount);
         if (payment.type == "dr") {
+
           newbalance = Number(balance) - payment.amount;
         } else if (payment.type == "cr") {
           newbalance = Number(balance) + payment.amount;

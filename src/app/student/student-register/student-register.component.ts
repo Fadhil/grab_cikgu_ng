@@ -31,6 +31,7 @@ export class StudentRegisterComponent implements OnInit {
         delete this.student['password'];
 
         // save to firebase
+        this.student.wallet = {balance: 0};
         this.firebaseService.addStudent(this.student);
 
 
