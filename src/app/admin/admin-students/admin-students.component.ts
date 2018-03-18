@@ -80,7 +80,7 @@ export class AdminStudentsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'pay'){
-        this.mailService.mailNotifyStudentPayment(element.email, element.payment)
+        this.mailService.mailNotifyStudentTopup(element.email, element.payment)
           .subscribe( res => {
             console.log("Notified student on topup")
           })
