@@ -1,0 +1,22 @@
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+table {
+   width: 100%;
+}
+
+th {
+    height: 50px;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

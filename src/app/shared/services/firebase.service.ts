@@ -376,6 +376,10 @@ export class FirebaseService {
     return this.db.list('/tutors/' + tutorID + '/wallet/transactions').valueChanges();
   }
 
+  getStudentWalletTransactions(studentID) {
+    return this.db.list('/students/' + studentID + '/wallet/transactions').valueChanges();
+  }
+
   getAdmins() {
     return this.db.object('/admins/').valueChanges();
   }

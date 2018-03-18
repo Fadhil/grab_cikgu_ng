@@ -25,6 +25,10 @@ export class StudentProfileComponent implements OnInit {
     this.student_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         this.studentProfile = data;
+        if (this.studentProfile.state == '' || !this.studentProfile.state) {
+          this.alertService.error("Please complete your student profile to start using the system");
+          console.log("Please complete your profile");
+        }
         const d = new Date();
         const n = d.getFullYear();
         // this.tutorProfile.age = n - this.tutorProfile.byear;

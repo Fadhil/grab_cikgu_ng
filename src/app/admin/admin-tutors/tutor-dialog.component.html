@@ -20,10 +20,12 @@
       <div class="col-md-12">
         <p>Balance: <strong> {{data.balance}} </strong></p>
 
-        <table>
+        <table style="border: 1">
+          <th>Date</th>
           <th>Amount</th>
           <th>Remark</th>
           <tr *ngFor="let transaction of transactions">
+            <td>{{transaction.date | date:'yyyy-MM-dd hh:mm a'}}</td>
             <td>{{transaction.amount}}</td>
             <td>{{transaction.remark}}</td>
           </tr>

@@ -78,7 +78,7 @@ export class MailService {
     return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
 
   }
-  
+
   mailTutorNotif(email) {
 
     let msg = `
@@ -265,5 +265,54 @@ export class MailService {
 
     return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
 
+  }
+
+  mailNotifyTutorPayment(email, payment) {
+    let msg = `
+      <p>Dear ${email},</p>
+      <p>You have received a payment of RM ${payment.amount} from TutorGo. Please login at
+      http://grabcikgu.firebaseapp.com/tutor/login to view.</p>
+      <p>TutorGo</p>
+    `
+    let msgn = `Dear ${email}\n
+                You have received a payment of RM ${payment.amount} from TutorGo. Please visit \n
+                https://grabcikgu.firebaseapp.com/admin/login to view.
+                \n
+                TutorGo
+    `
+    let mail_message = {
+      'to': email,
+      'from': 'tutorgo@ptpc.com',
+      'subject': 'You have received a payment from TutorGo',
+      'content': msgn,
+      'htmlcontent': msg
+    }
+
+    return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
+
+  }
+
+  mailNotifyStudentTopup(email, payment) {
+    let msg = `
+      <p>Dear ${email},</p>
+      <p>Your account has been credited with RM ${payment.amount}. Please login at
+      http://grabcikgu.firebaseapp.com/student/login to view.</p>
+      <p>TutorGo</p>
+    `
+    let msgn = `Dear ${email}\n
+                Your account has been credited with RM ${payment.amount}. Please visit \n
+                https://grabcikgu.firebaseapp.com/student/login to view.
+                \n
+                TutorGo
+    `
+    let mail_message = {
+      'to': email,
+      'from': 'tutorgo@ptpc.com',
+      'subject': 'Your account has been credited',
+      'content': msgn,
+      'htmlcontent': msg
+    }
+
+    return this.http.post(this.sendMailUrl, mail_message, this.httpOptions);
   }
 }

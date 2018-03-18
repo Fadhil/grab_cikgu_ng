@@ -40,26 +40,26 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="product-img">
-                      <img src="{{ selectedTutor.picture ? selectedTutor.picture : 'assets/img/user1-128x128.jpg' }}" width="100px" alt="Tutor Image" class="img-fluid center-block tutor-image">
+                      <img src="{{ selectedTutor ? selectedTutor.picture : 'assets/img/user1-128x128.jpg' }}" width="100px" alt="Tutor Image" class="img-fluid center-block tutor-image">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <h3>{{selectedTutor.name}}</h3>
+                    <h3>{{selectedTutor?.name}}</h3>
 
-                    <p>Age: {{selectedTutor.age}}</p>
-                    <p>Gender: {{selectedTutor.gender}}</p>
-                    <p>Location: {{selectedTutor.city}}</p>
-                    <p>Education: {{selectedTutor.qualification}}</p>
-                    <p>Occupation: {{selectedTutor.occupation}}</p>
-                    <p>Experience: {{selectedTutor.experience}}</p>
+                    <p>Age: {{selectedTutor?.age}}</p>
+                    <p>Gender: {{selectedTutor?.gender}}</p>
+                    <p>Location: {{selectedTutor?.city}}</p>
+                    <p>Education: {{selectedTutor?.qualification}}</p>
+                    <p>Occupation: {{selectedTutor?.occupation}}</p>
+                    <p>Experience: {{selectedTutor?.experience}}</p>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <p><b>Tuition Details</b></p>
-                <p>Rate: RM{{selectedTutor.rate}}</p>
+                <p>Hourly Rate: RM {{selectedTutor?.hourly_rate_cents}}</p>
                 <mat-form-field>
                   <input matInput id="date" [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Date" [(ngModel)]="booking_date" required>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

@@ -7,6 +7,7 @@ import { Tutor } from './../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TutorPayDialogComponent } from './tutor-pay-dialog/tutor-pay-dialog.component';
+import { MailService } from '../../shared/services/mail.service';
 import * as _ from 'lodash';
 
 
@@ -29,6 +30,7 @@ export class AdminTutorsComponent implements OnInit {
     private router: Router,
     public firebaseService: FirebaseService,
     public dialog: MatDialog,
+    public mailService: MailService
   ) { }
 
   ngOnInit() {
@@ -73,6 +75,16 @@ export class AdminTutorsComponent implements OnInit {
     let dialogRef = this.dialog.open(TutorPayDialogComponent, {
       width: '500',
       data: element
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'pay'){
+        this.mailService.mailNotifyTutorPayment(element.email, element.payment)
+          .subscribe( res => {
+            console.log("Notified tutor on payment")
+          })
+        console.log(element.payment);
+      }
     });
   }
 

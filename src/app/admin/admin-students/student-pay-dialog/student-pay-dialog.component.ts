@@ -28,6 +28,7 @@ export class StudentPayDialogComponent implements OnInit {
 
   topupButton() {
     console.log(this.payment);
+    this.data.payment = this.payment;
     this.firebaseService.processPayment(this.data.key, this.payment, 'students');
     this.dialogRef.close("pay");
   }

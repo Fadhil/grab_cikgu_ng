@@ -37,8 +37,14 @@ export class StudentLoginComponent implements OnInit {
           .subscribe(data => {
             if(data){
               this.alertService.success('Successfully logged in.', true);
-              location.assign('/student/profile');
+
               this.firebaseService.studentProfile = data;
+              if (this.firebaseService.studentProfile.state != ''){
+                location.assign('/student/profile');
+              }
+              else {
+                location.assign('/student/people');
+              }
             } else {
               this.alertService.error("User is not a registered student");
               // this.firebaseService.logout().then(result => {

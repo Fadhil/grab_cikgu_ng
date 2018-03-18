@@ -103,7 +103,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
     console.log('Logout from');
     this.firebaseService.logout().then(result => {
-      this.alertService.success('Successfully Logged Out from GrabCikgu.');
+      this.alertService.success('Successfully Logged Out from TutorGo.');
     });
   }
 }

@@ -29,6 +29,7 @@ export class TutorPayDialogComponent {
   payButton() {
     console.log(this.payment);
     this.firebaseService.processPayment(this.data.key, this.payment);
+    this.data.payment = this.payment;
     this.dialogRef.close("pay");
 
   }

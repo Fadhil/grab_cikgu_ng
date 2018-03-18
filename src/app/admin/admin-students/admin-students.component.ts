@@ -8,6 +8,7 @@ import { Tutor } from '../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { StudentPayDialogComponent } from './student-pay-dialog/student-pay-dialog.component';
+import { MailService } from '../../shared/services/mail.service';
 
 import * as _ from 'lodash';
 
@@ -29,6 +30,7 @@ export class AdminStudentsComponent implements OnInit {
     private router: Router,
     public firebaseService: FirebaseService,
     public dialog: MatDialog,
+    public mailService: MailService
   ) { }
 
   ngOnInit() {
@@ -75,10 +77,22 @@ export class AdminStudentsComponent implements OnInit {
       width: '500',
       data: element
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'pay'){
+        this.mailService.mailNotifyTutorPayment(element.email, element.payment)
+          .subscribe( res => {
+            console.log("Notified student on topup")
+          })
+        console.log(element.payment);
+      }
+    });
+
   }
 
   openDialog(element){
     console.log(element);
+    element.transactions = this.firebaseService.getStudentWalletTransactions(element.key);
     let dialogRef = this.dialog.open(StudentDialog, {
       width: '500px',
       data: element
@@ -94,12 +108,19 @@ export class AdminStudentsComponent implements OnInit {
 })
 export class StudentDialog {
 
+  transactions: any;
+
   constructor(
     public dialogRef: MatDialogRef<StudentDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
       console.log(this.data);
+      this.data.transactions.subscribe(d => {
+        console.log(d);
+        this.transactions = d;
+      });
+
     }
 
     onNoClick(): void {

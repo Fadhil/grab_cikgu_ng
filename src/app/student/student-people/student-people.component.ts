@@ -87,19 +87,21 @@ export class StudentPeopleComponent implements OnInit {
       this.states = results;
     });
 
-    this.state = 'Selangor';
-    this.onStateChange(this.state);
-    this.city = 'Cyberjaya';
-    this.rate = 'select';
-    this.level = 0;
-    this.onLevelChange(this.level);
-    this.subject = 'select';
-    this.selectedTutor = new Tutor();
 
     this.student_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         this.studentProfile = data;
         this.avatar = 'assets/img/avatar5.png';
+
+        this.state = this.studentProfile.state;
+        this.onStateChange(this.state);
+        this.city = this.studentProfile.city;
+        this.rate = 'select';
+        this.level = 0;
+        this.onLevelChange(this.level);
+        this.subject = 'select';
+        this.selectedTutor = new Tutor();
+
       });
   }
 
@@ -146,6 +148,8 @@ export class StudentPeopleComponent implements OnInit {
 
         if (this.tutors.length > 0) {
           this.alertService.success("Found " + this.tutors.length + " match");
+        } else {
+          this.alertService.error("No tutors found");
         }
       });
   }
@@ -172,26 +176,34 @@ export class StudentPeopleComponent implements OnInit {
     this.firebaseService
       .searchTutorBatch(this.city, this.subject, this.level, this.batch + 1, this.lastKey)
       .map( actions => {
-        return actions.map(action => ({key: action.key, ...action.payload.val()}));
+        if (actions) {
+          return actions.map(action => ({key: action.key, ...action.payload.val()}));
+        }
       })
       .subscribe(tutors => {
-        console.log(tutors);
-        this.lastKey = _.last(tutors).key;
+        if (tutors.length > 0) {
+          console.log(tutors);
+          this.lastKey = _.last(tutors).key;
 
-        const newTutors = _.slice(tutors, 0, this.batch);
+          const newTutors = _.slice(tutors, 0, this.batch);
 
-        let currentTutors = tutors;
+          let currentTutors = tutors;
 
-        if (this.lastKey === _.last(newTutors).key) {
-          this.finished = true;
+          if (this.lastKey === _.last(newTutors).key) {
+            this.finished = true;
+          }
+          this.tutorsList.next( _.concat(this.tutorsList.getValue(), newTutors));
+
+          currentTutors = this.tutorsList.getValue();
+
+          if (currentTutors.length > 0) {
+            this.alertService.success("Found " + currentTutors.length + " match");
+          }
         }
-        this.tutorsList.next( _.concat(this.tutorsList.getValue(), newTutors));
-
-        currentTutors = this.tutorsList.getValue();
-
-        if (currentTutors.length > 0) {
-          this.alertService.success("Found " + currentTutors.length + " match");
+        else {
+          this.alertService.error("No tutors found");
         }
+        
       });
   }
 
