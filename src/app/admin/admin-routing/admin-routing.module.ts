@@ -5,6 +5,8 @@ import { AdminDashboard2Component } from './../admin-dashboard2/admin-dashboard2
 import { AdminComponent } from './../admin.component';
 import { AdminStudentsComponent, StudentDialog } from './../admin-students/admin-students.component';
 import { AdminTutorsComponent, TutorDialog } from './../admin-tutors/admin-tutors.component';
+import { TutorPayDialogComponent } from './../admin-tutors/tutor-pay-dialog/tutor-pay-dialog.component';
+import { StudentPayDialogComponent } from './../admin-students/student-pay-dialog/student-pay-dialog.component';
 import { AdminBookingsComponent, BookingDialog } from './../admin-bookings/admin-bookings.component';
 import { AdminControlSidebarComponent } from './../admin-control-sidebar/admin-control-sidebar.component';
 import { AdminFooterComponent } from './../admin-footer/admin-footer.component';
@@ -74,5 +76,6 @@ export const adminRoutingComponents = [
   AdminTutorsComponent, AdminBookingsComponent, AdminHeaderComponent,
   AdminControlSidebarComponent, AdminFooterComponent, AdminContentComponent,
   AdminLeftSideComponent, AdminHeaderComponent, AdminLoginComponent, AdminRegisterComponent,
-  DialogOverviewExampleDialog, StudentDialog, TutorDialog, BookingDialog, InviteComponent
+  DialogOverviewExampleDialog, StudentDialog, TutorDialog, BookingDialog, InviteComponent,
+  TutorPayDialogComponent, StudentPayDialogComponent
 ];

@@ -15,7 +15,7 @@ import * as _ from 'lodash';
 })
 export class StudentAccountComponent implements OnInit {
 
-  displayedColumns = ['date', 'type', 'amount', 'remark', 'credit_hour'];
+  displayedColumns = ['date', 'type', 'amount', 'remark'];
   myDataSource = new MatTableDataSource();
 
   student_observable: any;
@@ -54,7 +54,7 @@ export class StudentAccountComponent implements OnInit {
             for (let item in da) {
               if (item) {
                 returnArr.push({key: item,
-                                date: da[item].tarikh,
+                                date: da[item].date,
                                 type: da[item].type,
                                 remark: da[item].remark,
                                 amount: da[item].amount,

@@ -18,6 +18,17 @@
           <input matInput type="time" id="time" name="time" [(ngModel)]="data.bookingTime">
         </mat-form-field>
       </b></p>
+      <p><b>Duration:
+        <mat-form-field>
+          <mat-select id="duration" placeholder="Duration" [(ngModel)]="data.bookingDuration" [value]="data.bookingDuration">
+            <mat-option [value]="1">1 hour</mat-option>
+            <mat-option [value]="1.5">1.5 hours</mat-option>
+            <mat-option [value]="2">2 hours</mat-option>
+            <mat-option [value]="2.5">2.5 hours</mat-option>
+            <mat-option [value]="3">3 hour</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </b></p>
       <p><b>Status: {{data.status | uppercase}} </b></p>
       <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Remarks" [(ngModel)]="data.bookingRemark"></textarea>

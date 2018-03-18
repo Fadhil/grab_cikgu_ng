@@ -7,6 +7,7 @@ import { Student } from './../../models/student';
 import { Tutor } from '../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { StudentPayDialogComponent } from './student-pay-dialog/student-pay-dialog.component';
 
 import * as _ from 'lodash';
 
@@ -16,7 +17,7 @@ import * as _ from 'lodash';
   styleUrls: ['./admin-students.component.css']
 })
 export class AdminStudentsComponent implements OnInit {
-  displayedColumns = ['name', 'email', 'phone', 'actions'];
+  displayedColumns = ['name', 'email', 'phone', 'balance', 'actions'];
   myDataSource = new MatTableDataSource();
   students_observable: any;
 
@@ -46,7 +47,7 @@ export class AdminStudentsComponent implements OnInit {
                           grade: data[item].occupation,
                           age: data[item].age,
                           address: data[item].address,
-                          balance: data[item].wallet ? data[item].wallet.balance : null
+                          balance: data[item].wallet ? data[item].wallet.balance : 0
                           });
         }
 
@@ -67,6 +68,13 @@ export class AdminStudentsComponent implements OnInit {
 
   deleteStudent(key) {
     console.log(key);
+  }
+
+  topupStudent(element) {
+    let dialogRef = this.dialog.open(StudentPayDialogComponent, {
+      width: '500',
+      data: element
+    });
   }
 
   openDialog(element){

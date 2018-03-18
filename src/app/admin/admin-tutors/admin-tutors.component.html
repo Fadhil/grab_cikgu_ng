@@ -40,11 +40,20 @@
           <mat-cell *matCellDef="let element"> {{element.phone_no}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="balance">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Wallet Balance </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <button mat-icon-button color="primary" (click)="openDialog(element)">
               <mat-icon aria-label="Info">info</mat-icon>
+            </button>
+
+            <button mat-raised-button color="primary" (click)="payTutor(element)">
+              Pay
             </button>
 
             <button mat-icon-button color="warn" (click)="deleteTutor(element.key)">

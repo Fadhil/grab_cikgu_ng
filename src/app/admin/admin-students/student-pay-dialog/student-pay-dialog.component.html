@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Top Up {{data.name}}</h1>
+<mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Amount" type="number" [(ngModel)]="payment.amount" name="totalpay">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Leave a comment" [(ngModel)]="payment.remark" name="comment"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="example-fill-remaining-space"></span>
+  <button mat-button mat-dialog-close color="primary">Close</button>
+  <button mat-raised-button color="primary" (click)="topupButton()">Pay</button>
+</mat-dialog-actions>

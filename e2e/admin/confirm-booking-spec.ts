@@ -189,6 +189,7 @@ describe('TutorGo Admin confirm booking', function() {
 
             //confirm the class
 
+
             return true;
           }
         });

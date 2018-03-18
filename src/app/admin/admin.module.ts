@@ -16,20 +16,24 @@ import { DialogOverviewExampleDialog } from './admin-register/admin-register.com
 import { StudentDialog } from './admin-students/admin-students.component';
 import { TutorDialog } from './admin-tutors/admin-tutors.component';
 import { BookingDialog } from './admin-bookings/admin-bookings.component';
+import { TutorPayDialogComponent } from './admin-tutors/tutor-pay-dialog/tutor-pay-dialog.component';
+import { StudentPayDialogComponent } from './admin-students/student-pay-dialog/student-pay-dialog.component';
 // import { AdminLoginComponent } from './admin-login/admin-login.component';
-
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
-  ],
+    AdminRoutingModule,
+    ],
   declarations: [],
   entryComponents: [DialogOverviewExampleDialog,
                     StudentDialog,
                     TutorDialog,
-                    BookingDialog
-                    ]
+                    BookingDialog,
+                    TutorPayDialogComponent,
+                    StudentPayDialogComponent
+                  ],
+  exports: []
 
     // AdminComponent,
     // AdminHeaderComponent,

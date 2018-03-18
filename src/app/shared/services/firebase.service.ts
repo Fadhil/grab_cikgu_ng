@@ -227,13 +227,32 @@ export class FirebaseService {
   }
 
   tutorConfirmClass(tutorKey, bookingInfo, answer): any {
+    console.log("tutorConfirmClass");
+    console.log(bookingInfo);
     console.log(bookingInfo);
 
     let updateBooking = {};
     updateBooking['/tutorbooking/' + bookingInfo.key + '/status'] = answer;
     updateBooking['/tutors/' + tutorKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
     updateBooking['/students/' + bookingInfo.studentKey + '/bookings/' + bookingInfo.key + '/status'] = answer;
-    if(answer == "completed"){
+
+    let bookingTimeUpdate = {
+      date: bookingInfo.bookingDate,
+      time: bookingInfo.bookingTime,
+      duration: bookingInfo.bookingDuration
+    };
+
+    if (answer !== 'confirmed' && answer !== 'completed') {
+      updateBooking['/tutorbooking/' + bookingInfo.key + '/bookingTime'] = bookingTimeUpdate;
+      console.log(tutorKey);
+      updateBooking['/tutors/' + tutorKey + '/bookings/' + bookingInfo.key + '/bookingTime'] = bookingTimeUpdate;
+      console.log(bookingInfo.studentKey);
+      updateBooking['/students/' + bookingInfo.studentKey + '/bookings/' + bookingInfo.key + '/bookingTime'] = bookingTimeUpdate;
+
+    }
+
+    if (answer == "completed") {
+
       this.getAdmins()
         .subscribe(list => {
           var returnArr = [];
@@ -319,6 +338,42 @@ export class FirebaseService {
     let info = {};
     info['/tutors/' + tutorKey + '/file/dipdeg'] = picurl;
     return this.db.object('/').update(info);
+  }
+
+  topupTutor(tutorID, topup) {
+    return this.db.list('/tutors/' + tutorID + '/wallet/transactions').push(topup);
+  }
+
+  processPayment(PersonID, payment, type = 'tutors') {
+    let r = this.db.object('/' + type + '/' + PersonID + '/wallet/balance').valueChanges()
+      .subscribe(balance => {
+        console.log(balance);
+
+        r.unsubscribe();
+
+        if (!balance) {
+          balance = 0;
+        }
+
+        let newbalance: number;
+        if (payment.type == "dr") {
+          newbalance = Number(balance) - payment.amount;
+        } else if (payment.type == "cr") {
+          newbalance = Number(balance) + payment.amount;
+        }
+
+        console.log(newbalance);
+        console.log("Pushing new payment");
+        console.log(payment);
+        payment.date = Date.now();
+
+        this.db.object('/' + type + '/' + PersonID + '/wallet/balance').set(newbalance);
+        return this.db.list('/' + type + '/' + PersonID + '/wallet/transactions').push(payment);
+      });
+  }
+
+  getTutorWalletTransactions(tutorID) {
+    return this.db.list('/tutors/' + tutorID + '/wallet/transactions').valueChanges();
   }
 
   getAdmins() {

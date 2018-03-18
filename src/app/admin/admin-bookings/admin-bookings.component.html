@@ -54,11 +54,7 @@
         <ng-container matColumnDef="view" >
           <mat-header-cell *matHeaderCellDef mat-sort-header> View </mat-header-cell>
           <mat-cell *matCellDef="let element">
-<<<<<<< HEAD
-            <button mat-icon-button color="primary" (click)="openDialog(element)" [id]="element.tutorName.replace(' ','_')">
-=======
-            <button mat-icon-button color="primary" (click)="openDialog(element)" id="openPop" *ngIf="element.status != 'confirmed'">
->>>>>>> 25f55a46af78f45df01f5864d1d3b186fcca6f24
+            <button mat-icon-button color="primary" (click)="openDialog(element)" [id]="element.tutorName.replace(' ','_')" *ngIf="element.status != 'confirmed'">
               <mat-icon aria-label="Info">info</mat-icon>
             </button>
 

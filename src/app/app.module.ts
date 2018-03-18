@@ -17,6 +17,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
 import { HeaderComponent } from './shared/components/layouts/header/header.component';
 import { AdminModule } from './admin/admin.module';
+// import { TutorPayDialogComponent } from './admin/admin-tutors/tutor-pay-dialog/tutor-pay-dialog.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -141,6 +142,7 @@ import { DateformatPipe } from './shared/pipes/dateformat.pipe';
     HomepageComponent,
     LoadingSpinnerComponent,
     DateformatPipe,
+    // TutorPayDialogComponent
 ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Tutor } from './../../models/tutor';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TutorPayDialogComponent } from './tutor-pay-dialog/tutor-pay-dialog.component';
 import * as _ from 'lodash';
 
 
@@ -16,7 +17,7 @@ import * as _ from 'lodash';
 })
 export class AdminTutorsComponent implements OnInit {
 
-  displayedColumns = ['name', 'email', 'phone_no', 'actions'];
+  displayedColumns = ['name', 'email', 'phone_no', 'balance', 'actions'];
   myDataSource = new MatTableDataSource();
   tutor_observable: any;
 
@@ -41,10 +42,9 @@ export class AdminTutorsComponent implements OnInit {
                           name: data[item].name,
                           email: data[item].email,
                           phone_no: data[item].phone_no,
-                          city: data[item].city
-                          // transactions: data[item].wallet.transactions,
-                          // balance: data[item].wallet.balance
-
+                          city: data[item].city,
+                          balance: data[item].wallet ? data[item].wallet.balance : 0,
+                          // transactions: data[item].wallet ? data[item].wallet.transactions: null,
                          });
                         }
         this.myDataSource.data = _.reverse(returnArr);
@@ -69,12 +69,35 @@ export class AdminTutorsComponent implements OnInit {
   console.log(key);
   }
 
+  payTutor(element) {
+    let dialogRef = this.dialog.open(TutorPayDialogComponent, {
+      width: '500',
+      data: element
+    });
+  }
+
   openDialog(element){
-    console.log(element);
+    console.log(element.transactions);
+    // element.transactions = JSON.parse(element.transactions);
+
+    element.transactions = this.firebaseService.getTutorWalletTransactions(element.key);
+
     let dialogRef = this.dialog.open(TutorDialog, {
       width: '500px',
       data: element
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'topup') {
+        const topupData = {
+          amount: 50,
+          remark: 'test'
+        };
+        console.log(element.key)
+        this.firebaseService.topupTutor(element.key, topupData);
+      }
+    });
+
   }
 
 }
@@ -86,16 +109,28 @@ export class AdminTutorsComponent implements OnInit {
 })
 export class TutorDialog {
 
+  transactions: any;
+
   constructor(
     public dialogRef: MatDialogRef<TutorDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
         console.log(this.data);
+        this.data.transactions.subscribe(d => {
+          console.log(d);
+          this.transactions = d;
+        });
     }
 
     onNoClick(): void {
       this.dialogRef.close();
+    }
+
+    topup(): void {
+      // topup tutor wallet
+      // done
+      this.dialogRef.close("topup");
     }
 
     submit() {

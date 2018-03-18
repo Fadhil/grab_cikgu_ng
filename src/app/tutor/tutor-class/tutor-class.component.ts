@@ -6,6 +6,7 @@ import { MailService } from '../../shared/services/mail.service';
 import { Router } from '@angular/router';
 import { Student } from './../../models/student';
 import { Tutor } from '../../models/tutor';
+import { Payment } from '../../models/payment';
 import { Subject, Subjects, Levels } from './../../models/subject';
 import * as _ from 'lodash';
 
@@ -110,12 +111,43 @@ export class TutorClassComponent implements OnInit {
   }
 
   completeClass(bookingInfo) {
+    console.log(bookingInfo);
+    console.log(this.tutorProfile.id);
     let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'completed');
-    this.mailService.mailCompletedNotif(bookingInfo.email)
-      .subscribe(res => {
-        console.log("Triggered");
-        console.log(res);
-      });
+
+    let payment = new Payment();
+    payment.type = "cr";
+
+    payment.remark = "Completed class for " + bookingInfo.student + ", " + bookingInfo.name + " (" + bookingInfo.level + ") " + bookingInfo.duration + " hours";
+    //TODO calculate the total pay
+    if (this.tutorProfile.hourly_rate_cents && bookingInfo.duration) {
+      payment.amount = this.tutorProfile.hourly_rate_cents * bookingInfo.duration;
+    }
+
+
+    console.log(payment);
+    this.firebaseService.processPayment(this.tutorProfile.id, payment);
+
+    //charge the student
+    let studentPayment = new Payment();
+    studentPayment.type = "dr";
+    studentPayment.remark = "Credit deducted for class " + bookingInfo.name + " (" + bookingInfo.level + ") " + bookingInfo.duration + " hours";
+    studentPayment.amount = payment.amount;
+
+    this.firebaseService.processPayment(this.tutorProfile.id, payment, 'students');
+
+    console.log(studentPayment);
+
+    // this.mailService.mailCompletedNotif(bookingInfo.email)
+    //   .subscribe(res => {
+    //     console.log("Triggered");
+    //     console.log(res);
+    //   });
+  }
+
+  ngAfterViewInit() {
+    this.myDataSource.sort = this.sort;
+    this.myDataSource.paginator = this.paginator;
   }
 
 }

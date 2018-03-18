@@ -19,3 +19,7 @@
   overflow: auto;
   max-height: 500px;
 }
+
+.mat-column-actions {
+  flex: 0 0 180px;
+}

@@ -54,15 +54,17 @@ export class StudentClassComponent implements OnInit {
             let i = 0 ;
             for (let item in da) {
               if (item) {
-                returnArr.push({  key: item,
-                                  date: da[item].bookingTime.date,
-                                  time: da[item].bookingTime.time,
-                                  duration: da[item].bookingTime.duration,
-                                  name: da[item].class.name,
-                                  level: Levels[da[item].class.level],
-                                  tutorkey: da[item].tutor.key,
-                                  tutor: da[item].tutor.name,
-                                  status: da[item].status});
+                if (da[item].bookingTime) {
+                  returnArr.push({  key: item,
+                                    date: da[item].bookingTime.date ? da[item].bookingTime.date : '',
+                                    time: da[item].bookingTime.time ? da[item].bookingTime.time : null,
+                                    duration: da[item].bookingTime.duration,
+                                    name: da[item].class.name,
+                                    level: Levels[da[item].class.level],
+                                    tutorkey: da[item].tutor.key,
+                                    tutor: da[item].tutor.name,
+                                    status: da[item].status});
+                }
                 i++;
               }
             }

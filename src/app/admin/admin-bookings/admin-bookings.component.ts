@@ -48,13 +48,14 @@ export class AdminBookingsComponent implements OnInit {
         for (let item in data) {
           if (data[item].tutor && data[item].student){
             returnArr.push({key: item,
+                            tutorID: data[item].tutor ? data[item].tutor.id : null,
                             tutorName: data[item].tutor ? data[item].tutor.name : null,
                             tutorPhone: data[item].tutor ? data[item].tutor.phone_no : null,
                             tutorEmail: data[item].tutor ? data[item].tutor.email : null,
                             tutorOccupation: data[item].tutor ? data[item].tutor.occupation : null,
                             tutorLicense: data[item].tutor ? data[item].tutor.tutor_license_no : null,
                             tutorStatus: data[item].tutor ? data[item].tutor.status : null,
-
+                            studentKey: data[item].student ? data[item].student.id : null,
                             studentName: data[item].student ? data[item].student.name : null,
                             studentGrade: data[item].student ? data[item].student.occupation : null,
                             studentAge: data[item].student ? data[item].student.age : null,
@@ -67,6 +68,7 @@ export class AdminBookingsComponent implements OnInit {
                             level: data[item].subject ? Levels[data[item].subject.level] : null, //class
                             bookingDate: data[item].bookingTime ? data[item].bookingTime.date : null, //session
                             bookingTime: data[item].bookingTime ? data[item].bookingTime.time : null, //session
+                            bookingDuration: data[item].bookingTime ? data[item].bookingTime.duration : '1',
                             bookingRemark: data[item].booking_remark,
                             status: data[item].status
                             });
@@ -88,7 +90,7 @@ export class AdminBookingsComponent implements OnInit {
   }
 
   deleteTutor(key){
-  console.log(key);
+    console.log(key);
   }
 
   openDialog(element){
@@ -96,6 +98,12 @@ export class AdminBookingsComponent implements OnInit {
     let dialogRef = this.dialog.open(BookingDialog, {
       width: '500px',
       data: element
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'Update') {
+        this.firebaseService.tutorConfirmClass(element.tutorID, element, 'pending');
+      }
     });
   }
 
@@ -115,7 +123,8 @@ export class AdminBookingsComponent implements OnInit {
   }
 
   confirmClass(bookingInfo) {
-    let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'confirmed');
+    console.log(bookingInfo);
+    let a = this.firebaseService.tutorConfirmClass(bookingInfo.tutorID, bookingInfo, 'confirmed');
     this.mailService.mailAcceptedNotif(bookingInfo.smail)
       .subscribe(res => {
         console.log("Triggered");
@@ -130,7 +139,7 @@ export class AdminBookingsComponent implements OnInit {
   }
 
   declineClass(bookingInfo) {
-    let a = this.firebaseService.tutorConfirmClass(this.tutorProfile.id, bookingInfo, 'declined');
+    let a = this.firebaseService.tutorConfirmClass(bookingInfo.tutorID, bookingInfo, 'declined');
     this.mailService.mailDeclinedNotif(bookingInfo.smail)
       .subscribe(res => {
         console.log("Triggered");
@@ -180,9 +189,9 @@ export class AdminBookingsComponent implements OnInit {
 
       updateClass() {
         console.log(this.data);
-
-        let c = this.firebaseService.confirmClass(tutor.id, bookingInfo, "pending");
-        this.dialogRef.close();
+        console.log(this.tutorProfile);
+        // let c = this.firebaseService.tutorConfirmClass(tutor.id, bookingInfo, "pending");
+        this.dialogRef.close("Update");
         // this.tutorProfile.subjects = null;
         // this.tutorProfile.subjects = this.subjects;
         // console.log(this.subjects);

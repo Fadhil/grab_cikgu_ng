@@ -54,7 +54,7 @@ export class TutorAccountComponent implements OnInit {
             for (let item in da) {
               if (item) {
                 returnArr.push({key: item,
-                                date: da[item].tarikh,
+                                date: da[item].date,
                                 type: da[item].type,
                                 remark: da[item].remark,
                                 // balance: da[item].balance,

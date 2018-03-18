@@ -18,11 +18,16 @@
     <br>
     <div class="row">
       <div class="col-md-12">
-        <p>Name: <strong> {{data.balance}} </strong></p>
-        <p>Email: <strong> {{data.email}} </strong></p>
-        <p>Phone No: <strong> {{data.phone_no}} </strong></p>
-        <p>City: <strong> {{data.city}} </strong></p>
+        <p>Balance: <strong> {{data.balance}} </strong></p>
 
+        <table>
+          <th>Amount</th>
+          <th>Remark</th>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{transaction.amount}}</td>
+            <td>{{transaction.remark}}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </mat-tab>
@@ -33,5 +38,4 @@
 <mat-dialog-actions>
   <span class="example-fill-remaining-space"></span>
   <button mat-button mat-dialog-close color="primary">Close</button>
-  <!-- <button mat-button mat-dialog-close color="warn">Delete</button> -->
 </mat-dialog-actions>
