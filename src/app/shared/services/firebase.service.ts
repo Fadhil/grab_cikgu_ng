@@ -89,6 +89,7 @@ export class FirebaseService {
                                               achievement: tutor.achievement? tutor.achievement : '',
                                               gender: tutor.gender,
                                               age: tutor.age,
+                                              phone_no: tutor.phone_no,
                                               experience: tutor.experience? tutor.experience : '',
                                               rate: tutor.hourly_rate_cents? tutor.hourly_rate_cents:0};
                   } else {

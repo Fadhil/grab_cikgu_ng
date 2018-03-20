@@ -51,6 +51,9 @@
                 <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
               </mat-select>
             </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="011 234 6789" required [(ngModel)]="tutorProfile.phone_no">
+            </mat-form-field>
           </div>
         </mat-card-content>
         <mat-card-actions>
@@ -67,7 +70,7 @@
             <div>
               <strong><i class="fa fa-graduation-cap margin-r-5"></i>Education</strong>
               <p class="text-muted">
-                  <input type="text" class="form-control text-right" id="qualification" name="qualification" [(ngModel)]="tutorProfile.qualification" required placeholder="Education">
+                  <input type="text" class="form-control" id="qualification" name="qualification" [(ngModel)]="tutorProfile.qualification" required placeholder="Education">
               </p>
               <!-- <hr> -->
             </div>
@@ -75,7 +78,7 @@
             <div>
               <strong><i class="fa fa-graduation-cap margin-r-5"></i>Personal Achievement</strong>
               <p class="text-muted">
-                  <input type="text" class="form-control text-right" id="achievement" name="achievement" [(ngModel)]="tutorProfile.achievement" required placeholder="Achievement">
+                  <input type="text" class="form-control" id="achievement" name="achievement" [(ngModel)]="tutorProfile.achievement" required placeholder="Achievement">
               </p>
               <!-- <hr> -->
             </div>
@@ -83,7 +86,7 @@
             <div>
             <strong><i class="fa fa-graduation-cap margin-r-5"></i>Experience</strong>
             <p class="text-muted">
-                <input type="text" class="form-control text-right" id="experience" name="experience" [(ngModel)]="tutorProfile.experience" required placeholder="Experience">
+                <input type="text" class="form-control" id="experience" name="experience" [(ngModel)]="tutorProfile.experience" required placeholder="Experience">
             </p>
             <!-- <hr> -->
 
@@ -114,9 +117,9 @@
               </div>
             </div>
             <div>
-                <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per hour (RM)</strong>
+                <strong><i class="fa fa-clock-o  margin-r-5"></i>Rate per Hour (RM)</strong>
                 <p class="text-muted">
-                   <input type="number" class="form-control text-right" id="hourlyrate" name="hourlyrate" [(ngModel)]="tutorProfile.hourly_rate_cents" required placeholder="Rate">
+                   <input type="number" class="form-control" id="hourlyrate" name="hourlyrate" [(ngModel)]="tutorProfile.hourly_rate_cents" required placeholder="Rate">
                 </p>
             </div>
             <mat-form-field class="example-container">
