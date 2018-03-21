@@ -25,6 +25,19 @@ export class StudentProfileComponent implements OnInit {
     this.student_observable = this.firebaseService.getStudent(localStorage.getItem('currentUserToken'))
       .subscribe(data => {
         this.studentProfile = data;
+        // console.log(this.studentProfile.city);
+        if(!this.studentProfile.picture) {
+          if (this.studentProfile.gender.toUpperCase() !== 'MALE') {
+            this.avatar = 'assets/img/avatar2.png';
+          }
+          else {
+            this.avatar = 'assets/img/avatar5.png';
+          }
+        } else {
+          this.avatar = this.studentProfile.picture;
+
+        }
+
         if (this.studentProfile.state == '' || !this.studentProfile.state) {
           this.alertService.error("Please complete your student profile to start using the system");
           console.log("Please complete your profile");

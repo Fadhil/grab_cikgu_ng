@@ -55,6 +55,7 @@ export class TutorProfileComponent implements OnInit {
           }
         } else {
           this.avatar = this.tutorProfile.picture;
+          
         }
 
         this.showSpinner = false;
